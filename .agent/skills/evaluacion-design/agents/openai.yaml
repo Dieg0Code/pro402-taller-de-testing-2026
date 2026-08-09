@@ -1,0 +1,4 @@
+﻿interface:
+  display_name: "Diseño de Evaluaciones"
+  short_description: "Diseñar evaluaciones claras y auténticas"
+  default_prompt: "Usa $evaluacion-design para estructurar una evaluación con consigna, rúbrica, IA y entrega."

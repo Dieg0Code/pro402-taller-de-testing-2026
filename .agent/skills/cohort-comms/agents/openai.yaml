@@ -1,0 +1,7 @@
+interface:
+  display_name: "Cohort Comms"
+  short_description: "Redacta mensajes docentes para WhatsApp y cohortes"
+  default_prompt: "Usa $cohort-comms para redactar un mensaje breve, claro y persuasivo para mi grupo de estudiantes, listo para copiar y pegar."
+
+policy:
+  allow_implicit_invocation: true

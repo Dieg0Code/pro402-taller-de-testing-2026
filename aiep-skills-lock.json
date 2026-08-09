@@ -1,0 +1,58 @@
+{
+  "framework": "0.0.0",
+  "generatedAt": "2026-08-08T00:54:12.472Z",
+  "items": {
+    "skill:clase-design": {
+      "hash": "2e205518a1541826",
+      "syncedAt": "2026-08-08T00:54:12.472Z"
+    },
+    "skill:cohort-comms": {
+      "hash": "f11613fa5d66549b",
+      "syncedAt": "2026-08-08T00:54:12.472Z"
+    },
+    "skill:evaluacion-design": {
+      "hash": "c6d4cda86459c666",
+      "syncedAt": "2026-08-08T00:54:12.472Z"
+    },
+    "skill:infografias-aiep": {
+      "hash": "2f60afa5d7f80673",
+      "syncedAt": "2026-08-08T00:53:41.035Z"
+    },
+    "skill:reuniones-vcm": {
+      "hash": "075f68274db75d37",
+      "syncedAt": "2026-08-08T00:53:41.035Z"
+    },
+    "skill:slides-aiep": {
+      "hash": "103214a062e1d50e",
+      "syncedAt": "2026-08-08T00:54:12.472Z"
+    },
+    "slides-system": {
+      "hash": "b48d326b2efbb506",
+      "syncedAt": "2026-08-08T00:53:41.035Z"
+    },
+    "pptx-validator": {
+      "hash": "8ae6d8b98024ee90",
+      "syncedAt": "2026-08-08T00:53:41.035Z"
+    },
+    "pbip-validator": {
+      "hash": "42e77ab89387b5de",
+      "syncedAt": "2026-08-08T00:53:41.035Z"
+    },
+    "docs/audiencias.md": {
+      "hash": "f79276ae39cca0d5",
+      "syncedAt": "2026-08-08T00:53:41.035Z"
+    },
+    "docs/estandares.md": {
+      "hash": "cbc07f4b1ff07df2",
+      "syncedAt": "2026-08-08T00:53:41.035Z"
+    },
+    "docs/framework.md": {
+      "hash": "0827c9628bfb8134",
+      "syncedAt": "2026-08-08T00:53:41.035Z"
+    },
+    "docs/estructura-repo.md": {
+      "hash": "067b57dba8c01ecd",
+      "syncedAt": "2026-08-08T00:53:41.035Z"
+    }
+  }
+}

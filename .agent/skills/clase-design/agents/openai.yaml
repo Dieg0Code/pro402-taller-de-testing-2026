@@ -1,0 +1,7 @@
+interface:
+  display_name: "Clase Design"
+  short_description: "Diseña clases de programación web en español"
+  default_prompt: "Usa $clase-design para diseñar una clase de programación web alineada al cronograma y desarrollarla por bloques."
+
+policy:
+  allow_implicit_invocation: true

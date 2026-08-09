@@ -1,0 +1,31 @@
+{
+  "name": "slides-system",
+  "version": "0.1.0",
+  "private": true,
+  "type": "commonjs",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "tsup",
+    "build:watch": "tsup --watch",
+    "dev": "tsx watch src/index.ts",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:text": "node scripts/check-mojibake.mjs && cspell lint --config cspell.json \"README.md\" \"src/**/*.ts\" \"tests/**/*.ts\"",
+    "test:all": "npm run typecheck && npm run build && npm run test && npm run test:text"
+  },
+  "dependencies": {
+    "pptxgenjs": "^4.0.1",
+    "prismjs": "^1.30.0"
+  },
+  "devDependencies": {
+    "@cspell/dict-es-es": "^2.3.0",
+    "@types/node": "^24.5.2",
+    "cspell": "^8.19.4",
+    "jszip": "^3.10.1",
+    "tsup": "^8.5.0",
+    "tsx": "^4.20.5",
+    "typescript": "^5.9.2",
+    "vitest": "^3.2.4"
+  }
+}

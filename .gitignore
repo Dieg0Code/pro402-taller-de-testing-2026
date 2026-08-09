@@ -1,0 +1,24 @@
+# Dependencias / entornos
+**/node_modules/
+**/.venv/
+**/__pycache__/
+**/*.pyc
+
+# Artefactos de build
+**/bin/
+**/obj/
+**/dist/
+*.bak
+
+# Previews de render de PPT (regenerables)
+**/ppt/rendered*/
+**/ppt/montage*.png
+
+# Entregables comprimidos (no versionar)
+/entregables/
+*.rar
+
+# Ruido de SO/editor
+.DS_Store
+Thumbs.db
+~$*

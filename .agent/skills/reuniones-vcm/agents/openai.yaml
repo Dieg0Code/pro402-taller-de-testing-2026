@@ -1,0 +1,7 @@
+interface:
+  display_name: "Reuniones VcM"
+  short_description: "Decks de Vinculación con el Medio (sello + registro institucional)"
+  default_prompt: "Usa $reuniones-vcm para construir un deck de reunión de Vinculación con el Medio: sello VcM con vcmLockup, registro institucional para directiva/externos y densidad de presentación (15-30 slides)."
+
+policy:
+  allow_implicit_invocation: true

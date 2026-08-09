@@ -1,0 +1,7 @@
+interface:
+  display_name: "Infografías AIEP"
+  short_description: "Brief, estilo y revisión de infografías AIEP (GPT Image)"
+  default_prompt: "Usa $infografias-aiep para diseñar el brief de una infografía estilo AIEP, generarla en GPT Image (app desktop) y luego revisar y archivar el PNG con su prompt."
+
+policy:
+  allow_implicit_invocation: true

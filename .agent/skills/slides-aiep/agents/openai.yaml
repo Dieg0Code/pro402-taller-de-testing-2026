@@ -1,0 +1,9 @@
+interface:
+  display_name: "Slides AIEP"
+  short_description: "Aplica identidad visual AIEP a decks PPTX"
+  icon_small: "./assets/logo-aiep-mark.png"
+  icon_large: "./assets/logo-aiep.png"
+  default_prompt: "Usa $slides-aiep para definir la dirección visual AIEP de esta presentación y luego combina con $slides para construir o ajustar el deck."
+
+policy:
+  allow_implicit_invocation: true
