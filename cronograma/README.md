@@ -32,7 +32,25 @@ El módulo se organiza con foco en:
 - diseñar casos de prueba con técnicas formales, y usar la IA para ampliarlos sin delegarle el criterio;
 - automatizar la ejecución en integración continua, para que la prueba deje de depender de la voluntad de alguien;
 - cubrir el arco completo funcional y no funcional: regresión, rendimiento, seguridad, usabilidad y accesibilidad;
+- tratar la protección de datos personales como un requisito verificable del producto: privacidad por diseño, datos de prueba seguros, ejercicio de derechos y evidencia de cumplimiento frente a la Ley 21.719;
 - y trabajar todo sobre un proyecto único, para que el estudiante vea el mismo sistema volverse confiable sesión a sesión.
+
+## Eje Transversal: Protección de Datos Personales
+
+La Ley 21.719 entra en vigor el 1 de diciembre de 2026 y cambia el estándar chileno de protección
+de datos personales. En este módulo no se aborda como una unidad jurídica aislada, sino como un
+conjunto de requisitos que deben traducirse a comportamiento del sistema, casos de prueba y
+evidencia verificable.
+
+Su incorporación progresa en cuatro momentos:
+
+1. **Ciclo de vida:** reconocer finalidad, proporcionalidad, privacidad por diseño y responsabilidad demostrable desde que se define el producto.
+2. **Datos de prueba:** priorizar datos sintéticos, minimización, aislamiento, acceso controlado y eliminación verificable en ambientes no productivos.
+3. **Trazabilidad:** convertir derechos y obligaciones en requisitos, riesgos, casos de prueba y evidencia dentro del plan de pruebas.
+4. **Pruebas no funcionales:** verificar seguridad, privacidad, ejercicio de derechos, decisiones automatizadas y respuesta frente a incidentes.
+
+La guía de referencia del módulo se encuentra en
+[`docs/ley-21719/Guia-Maestra-Ley-21719-Proteccion-Datos-Chile-2026.pdf`](../docs/ley-21719/Guia-Maestra-Ley-21719-Proteccion-Datos-Chile-2026.pdf).
 
 ## Cronograma Detallado
 
@@ -48,7 +66,7 @@ El módulo se organiza con foco en:
 | _Semana 2_ | _Verificación, validación y evidencia_ |
 | 17/08 | Verificación y validación: construir bien el producto vs. construir el producto correcto. Casos reales de fracaso (Therac-25, Ariane 5, Knight Capital) |
 | 18/08 | Software testeado vs. no testeado: comparación de repositorios reales, cobertura e historial de defectos |
-| 19/08 | Ciclo de vida del producto y pruebas asociadas a cada etapa; la calidad del software como producto de mercado |
+| 19/08 | Ciclo de vida del producto y pruebas asociadas a cada etapa. Privacidad por diseño, finalidad y evidencia de cumplimiento desde la definición del producto |
 | _Semana 3_ | _Pruebas estáticas y revisión_ |
 | 24/08 | Pruebas estáticas: el tipado como primera prueba (`pyrefly`, `tsc`) y el linter como segunda barrera |
 | 25/08 | Revisión de código como prueba estática. Review adversarial entre modelos: un agente escribe, otro audita, el estudiante arbitra |
@@ -69,15 +87,15 @@ El módulo se organiza con foco en:
 | 08/09 | TDD con `pytest`: el ciclo rojo-verde-refactor completo sobre el proyecto |
 | 09/09 | TDD en TypeScript con Vitest: la misma disciplina, otra sintaxis |
 | _Semana 6_ | _Integración y extremo a extremo_ |
-| 14/09 | Pruebas de integración sobre FastAPI: fixtures, base de datos de prueba y dobles de prueba |
+| 14/09 | Pruebas de integración sobre FastAPI: fixtures, base de datos y dobles de prueba. Datos sintéticos, minimización, aislamiento y eliminación verificable bajo la Ley 21.719 |
 | 15/09 | Pruebas E2E con Playwright. El agente como usuario que entra por primera vez: exploratorio asistido y hallazgos de usabilidad |
-| 16/09 | Plan de pruebas según ISO/IEC/IEEE 29119: estructura, objetivos y trazabilidad con los requisitos |
+| 16/09 | Plan de pruebas según ISO/IEC/IEEE 29119: estructura, objetivos y trazabilidad. Derechos y obligaciones de protección de datos convertidos en requisitos, riesgos y casos de prueba |
 | _Semana 7_ | _Automatización y pruebas no funcionales_ |
 | 21/09 | **Evaluación Parcial 2 (Unidad 2):** el mismo proyecto con su plan de pruebas y su suite automatizada — casos diseñados con técnicas formales, y pruebas unitarias, de integración y extremo a extremo ejecutándose |
 | 22/09 | Pruebas de regresión e integración continua con GitHub Actions. Pruebas inestables (flaky) y cómo tratarlas |
 | 23/09 | Pruebas no funcionales I: rendimiento, carga y escalabilidad |
 | _Semana 8_ | _Cierre del módulo_ |
-| 28/09 | Pruebas no funcionales II: seguridad, usabilidad, accesibilidad y portabilidad |
+| 28/09 | Pruebas no funcionales II: seguridad, privacidad, usabilidad, accesibilidad y portabilidad. Ley 21.719, decisiones automatizadas y respuesta frente a incidentes |
 | 29/09 | Integración final: pipeline completo en verde y preparación de la defensa |
 | 30/09 | **Evaluación Final (Unidad 2):** el proyecto cerrado con integración continua, pruebas de regresión y no funcionales; defensa con el pipeline ejecutándose en vivo |
 
@@ -91,5 +109,6 @@ Al finalizar, el estudiante debería ser capaz de:
 - Escribir pruebas unitarias, de integración y extremo a extremo con las herramientas actuales del mercado.
 - Implementar un plan de pruebas y automatizar su ejecución en integración continua.
 - Aplicar pruebas funcionales y no funcionales, y comunicar sus resultados de forma profesional.
+- Traducir exigencias de protección de datos personales a requisitos verificables, casos de prueba y evidencia técnica, usando datos de prueba de forma responsable.
 - Usar agentes de IA para ampliar y revisar pruebas sin delegarles el criterio técnico.
 - Demostrar que un sistema funciona, en vez de afirmarlo.

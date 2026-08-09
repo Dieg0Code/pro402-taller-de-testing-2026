@@ -116,6 +116,49 @@ export interface CodePanelOptions extends PositionedBox {
   >[];
 }
 
+export interface CodeGuideNote {
+  lineNumber?: number;
+  color?: string;
+  markerSize?: number;
+  markerFontSize?: number;
+  markerTextColor?: string;
+  eyebrow?: string;
+  eyebrowColor?: string;
+  eyebrowFontSize?: number;
+  title?: string;
+  titleColor?: string;
+  titleFontFace?: string;
+  titleFontSize?: number;
+  titleY?: number;
+  titleH?: number;
+  body?: string;
+  bodyColor?: string;
+  bodyFontFace?: string;
+  bodyFontSize?: number;
+  bodyY?: number;
+  bodyH?: number;
+  bodyValign?: string;
+}
+
+export interface CodeGuidePanelOptions extends Partial<PositionedBox> {
+  title?: string;
+  titleColor?: string;
+  titleFontSize?: number;
+  fill?: string;
+  accent?: string;
+  rectRadius?: number;
+  headerH?: number;
+  bottomPad?: number;
+  dividerGap?: number;
+  dividerColor?: string;
+}
+
+export interface CodeGuideOptions {
+  editor: CodePanelOptions;
+  guide?: CodeGuidePanelOptions;
+  notes?: CodeGuideNote[];
+}
+
 export interface AnnotationTarget extends PositionedBox {
   anchorY?: number;
   side?: "left" | "right";

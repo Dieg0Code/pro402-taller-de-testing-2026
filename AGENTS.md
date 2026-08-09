@@ -28,6 +28,33 @@ neutro, con tildes y ñ.
 - `pptx-validator` (.NET) — integridad del `.pptx`. Antes de cerrar un deck:
   `dotnet run --project tools/pptx-validator -- archivo.pptx`.
 
+## Densidad pedagógica y uso del espacio
+
+- En materiales visuales, cada zona relevante del lienzo debe cumplir una función pedagógica:
+  jerarquizar, relacionar, ejemplificar, orientar la atención o facilitar una explicación.
+- No dejar grandes áreas vacías por resolver una diapositiva con una lista o dos cajas flotantes si
+  ese espacio puede mostrar conexiones, contrastes, pasos, evidencia o una síntesis útil.
+- Aprovechar el espacio no significa rellenarlo ni reducir márgenes. El aire también es funcional
+  cuando mejora el foco y la lectura; la meta es evitar tanto el vacío accidental como la saturación.
+- Antes de cerrar una pieza, preguntar: **¿el espacio disponible está ayudando a enseñar o solo está
+  quedando sin usar?**
+
+## Marca AIEP en presentaciones
+
+- Mantener el logo AIEP completo en todas las diapositivas.
+- Sobre fondos claros, usar el logo institucional a color con transparencia.
+- Sobre fondos oscuros, usar la variante transparente con símbolo rojo y letras/bajada blancas;
+  no resolver el contraste encerrando el logo en una caja o placa blanca.
+
+## Código y microalineación en presentaciones
+
+- El código es contenido principal: las funciones relevantes deben verse completas, incluido su
+  `return`, con sintaxis legible y sin recortes de líneas esenciales.
+- Las anotaciones deben señalar tokens o líneas precisas y conectarse por pasillos externos, sin
+  tapar ni atravesar el código.
+- Todo texto o número dentro de un círculo debe usar la misma caja de la figura, centrado horizontal
+  y verticalmente; revisar también su centrado óptico en el render.
+
 ## Flujo típico de una unidad
 
 `cronograma` → `README.md` de la unidad → `ppt/` (deck) → validar → `infografia/` + `podcast/`.

@@ -1,9 +1,11 @@
 import { describe, expect, it } from "vitest";
-import { addCodeAnnotation, addCodePanel } from "../../src/components";
+import { addCodeAnnotation, addCodeGuide, addCodePanel } from "../../src/components";
 import { boxesIntersect, getEntryBounds, RecordingSlide } from "../../src/adapters/recording-slide";
 import { TOKENS } from "../../src/theme";
 
 const SH = {
+  ellipse: "ellipse",
+  line: "line",
   rect: "rect",
   roundRect: "roundRect",
 } as const;
@@ -197,5 +199,43 @@ describe("addCodeAnnotation", () => {
 
     expect(badgeTexts.length).toBe(0);
     expect(portShapes.length).toBeGreaterThanOrEqual(1);
+  });
+
+  it("explica por línea con marcadores equivalentes y sin conectores", () => {
+    const slide = new RecordingSlide();
+
+    addCodeGuide(slide, SH, {
+      editor: {
+        x: 1,
+        y: 1,
+        w: 4.8,
+        h: 2.8,
+        lang: "python",
+        code: "def sumar(a, b):\n    return a + b",
+        title: "ejemplo.py",
+      },
+      guide: { x: 6, y: 1, w: 2.4, h: 2.8 },
+      notes: [
+        {
+          lineNumber: 2,
+          color: TOKENS.gold,
+          eyebrow: "Resultado",
+          title: "return conserva la salida",
+          body: "La función devuelve la suma.",
+        },
+      ],
+    });
+
+    const markerTexts = slide.texts.filter((entry) => entry.text === "1");
+    const lineReference = slide.texts.find((entry) => entry.text === "L2 · RESULTADO");
+    const connectorSegments = slide.shapes.filter(
+      (shape) =>
+        shape.shapeType === SH.rect &&
+        (shape.options.fill as { color?: string } | undefined)?.color === TOKENS.guide
+    );
+
+    expect(markerTexts).toHaveLength(2);
+    expect(lineReference).toBeTruthy();
+    expect(connectorSegments).toHaveLength(0);
   });
 });

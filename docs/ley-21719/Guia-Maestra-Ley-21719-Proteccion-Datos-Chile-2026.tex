@@ -1,0 +1,557 @@
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[spanish,es-nodecimaldot]{babel}
+\usepackage{fontspec}
+\IfFontExistsTF{Segoe UI}{
+  \setmainfont{Segoe UI}
+  \setsansfont{Segoe UI}
+}{
+  \setmainfont{Arial}
+  \setsansfont{Arial}
+}
+\renewcommand{\familydefault}{\sfdefault}
+
+\usepackage[a4paper,top=13mm,bottom=15mm,left=15mm,right=15mm]{geometry}
+\usepackage[table]{xcolor}
+\usepackage{graphicx}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{enumitem}
+\usepackage{microtype}
+\usepackage{tikz}
+\usepackage[most]{tcolorbox}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{ragged2e}
+\usepackage{setspace}
+
+\definecolor{Navy}{HTML}{102A43}
+\definecolor{Ink}{HTML}{243B53}
+\definecolor{Slate}{HTML}{526D82}
+\definecolor{Muted}{HTML}{829AB1}
+\definecolor{Charcoal}{HTML}{2F343B}
+\definecolor{Neutral}{HTML}{60666D}
+\definecolor{Red}{HTML}{D62027}
+\definecolor{RedDark}{HTML}{A5141A}
+\definecolor{Paper}{HTML}{F8F3EC}
+\definecolor{White}{HTML}{FFFFFF}
+\definecolor{Line}{HTML}{D9E2EC}
+\definecolor{BlueSoft}{HTML}{EAF3FA}
+\definecolor{MintSoft}{HTML}{E8F5EF}
+\definecolor{RedSoft}{HTML}{FBEAEC}
+\definecolor{GoldSoft}{HTML}{FFF3D6}
+\definecolor{PurpleSoft}{HTML}{F0ECF8}
+
+\pagecolor{Paper}
+\color{Charcoal}
+\hypersetup{colorlinks=true,urlcolor=Navy,linkcolor=Navy,pdfauthor={Material docente AIEP},pdftitle={Guía maestra — Ley 21.719 de protección de datos personales}}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+\linespread{1.04}
+\emergencystretch=2em
+\hyphenpenalty=10000
+\exhyphenpenalty=10000
+\setlist[itemize]{leftmargin=5mm,itemsep=1.8mm,topsep=1.5mm,parsep=0pt}
+
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyfoot[L]{\fontsize{8}{10}\selectfont\color{Muted}GUÍA MAESTRA · LEY 21.719 · AGOSTO 2026}
+\fancyfoot[R]{\fontsize{8}{10}\selectfont\color{Muted}\thepage\ / 9}
+
+\newtcolorbox{card}[1][]{
+  enhanced,
+  colback=White,
+  colframe=Line,
+  boxrule=0.45pt,
+  arc=3mm,
+  left=5mm,right=5mm,top=4.2mm,bottom=4.2mm,
+  before skip=0pt,after skip=0pt,
+  drop fuzzy shadow=black!8,
+  #1
+}
+\newtcolorbox{softcard}[2][]{
+  enhanced,
+  colback=#2,
+  colframe=#2,
+  boxrule=0pt,
+  arc=3mm,
+  left=5mm,right=5mm,top=4.2mm,bottom=4.2mm,
+  before skip=0pt,after skip=0pt,
+  #1
+}
+\newcommand{\eyebrow}[1]{\fontsize{8.5}{10}\selectfont\bfseries\color{Red}\MakeUppercase{#1}}
+\newcommand{\displaytitle}[1]{\fontsize{29}{31}\selectfont\bfseries\color{Navy}#1}
+\newcommand{\sectiontitle}[1]{\fontsize{23}{25}\selectfont\bfseries\color{Navy}#1}
+\newcommand{\lead}[1]{\fontsize{12}{16}\selectfont\color{Neutral}#1}
+\newcommand{\cardtitle}[1]{\fontsize{10}{12}\selectfont\bfseries\color{Charcoal}#1}
+\newcommand{\bodycopy}[1]{\fontsize{10.5}{14}\selectfont\color{Charcoal}#1}
+\newcommand{\smallcopy}[1]{\fontsize{9.8}{13}\selectfont\color{Charcoal}#1}
+\newcommand{\microcopy}[1]{\fontsize{8.7}{11}\selectfont\color{Neutral}#1}
+\newcommand{\metric}[1]{\fontsize{24}{25}\selectfont\bfseries\color{Red}#1}
+\newcommand{\pill}[2][BlueSoft]{\tikz[baseline=(X.base)]\node[fill=#1,rounded corners=2mm,inner xsep=3mm,inner ysep=1.5mm,text=Navy,font=\fontsize{8.5}{9}\selectfont\bfseries] (X) {#2};}
+\newcommand{\stepnum}[1]{\tikz[baseline=(X.base)]\node[fill=Red,text=White,circle,minimum size=7mm,font=\fontsize{9}{9}\selectfont\bfseries] (X) {#1};}
+\newcommand{\iconcircle}[2][BlueSoft]{\tikz[baseline=(X.base)]\node[fill=#1,text=Navy,circle,minimum size=9mm,font=\fontsize{10}{10}\selectfont] (X) {#2};}
+\newcommand{\principleitem}[3]{%
+  \begin{minipage}[t]{\linewidth}
+    \vspace{0pt}
+    \begin{minipage}[t]{8mm}\vspace{0pt}\stepnum{#1}\end{minipage}\hfill
+    \begin{minipage}[t]{\dimexpr\linewidth-11mm\relax}
+      \vspace{0pt}\cardtitle{#2}\par\vspace{0.8mm}\smallcopy{#3}
+    \end{minipage}
+  \end{minipage}
+}
+
+\newcommand{\pageintro}[4]{%
+  \begin{minipage}[t]{0.72\textwidth}
+    \eyebrow{#1}\par\vspace{2.2mm}
+    \sectiontitle{#2}\par\vspace{2.6mm}
+    \lead{#3}
+  \end{minipage}\hfill
+  \begin{minipage}[t]{0.17\textwidth}
+    \RaggedLeft
+    \fontsize{10}{12}\selectfont\bfseries\color{Red}0#4 / 09\par\vspace{2mm}
+    \begin{tikzpicture}
+      \fill[Line] (0,0) rectangle (2.6,0.11);
+      \fill[Red] (0,0) rectangle ({2.6*#4/9},0.11);
+    \end{tikzpicture}
+  \end{minipage}
+  \par\vspace{6mm}
+}
+
+\newcommand{\twocol}[2]{%
+  \begin{minipage}[t]{0.485\textwidth}#1\end{minipage}\hfill
+  \begin{minipage}[t]{0.485\textwidth}#2\end{minipage}
+}
+\newcommand{\threecol}[3]{%
+  \begin{minipage}[t]{0.316\textwidth}#1\end{minipage}\hfill
+  \begin{minipage}[t]{0.316\textwidth}#2\end{minipage}\hfill
+  \begin{minipage}[t]{0.316\textwidth}#3\end{minipage}
+}
+
+\begin{document}
+\RaggedRight
+
+% 01 — PORTADA
+\thispagestyle{fancy}
+\vspace*{2mm}
+\eyebrow{Guía maestra · Chile 2026}\par\vspace{6mm}
+\begin{minipage}[t]{0.62\textwidth}
+  \fontsize{39}{40}\selectfont\bfseries\color{Navy}La privacidad\\cambia de\\estándar\par
+  \vspace{4mm}
+  \lead{Lo esencial de la Ley 21.719 para decidir, diseñar, desarrollar, administrar y enseñar con datos personales.}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.29\textwidth}
+  \begin{softcard}{Red}
+    \color{White}\fontsize{10}{12}\selectfont\bfseries ENTRA EN VIGOR\par\vspace{2mm}
+    \fontsize{30}{30}\selectfont\bfseries 01 DIC\par
+    \fontsize{17}{20}\selectfont\bfseries 2026
+  \end{softcard}
+\end{minipage}
+
+\vspace{8mm}
+\begin{softcard}{Navy}
+  \color{White}
+  \eyebrow{En 60 segundos}\color{White}\par\vspace{2mm}
+  \fontsize{18}{23}\selectfont\bfseries Chile pasa de una regulación centrada en bases de datos a un sistema de derechos, deberes demostrables, fiscalización y sanciones reales.
+\end{softcard}
+
+\vspace{7mm}
+\threecol{
+  \begin{card}
+    \iconcircle[BlueSoft]{\textbf{01}}\par\vspace{3mm}
+    \cardtitle{CONTROL}\par\vspace{1.5mm}
+    \smallcopy{Las personas ganan herramientas concretas para conocer, corregir, mover, limitar o eliminar sus datos.}
+  \end{card}
+}{
+  \begin{card}
+    \iconcircle[MintSoft]{\textbf{02}}\par\vspace{3mm}
+    \cardtitle{EVIDENCIA}\par\vspace{1.5mm}
+    \smallcopy{Ya no basta declarar buenas prácticas: la organización debe poder demostrar cómo las aplica.}
+  \end{card}
+}{
+  \begin{card}
+    \iconcircle[RedSoft]{\textbf{03}}\par\vspace{3mm}
+    \cardtitle{RESPONSABILIDAD}\par\vspace{1.5mm}
+    \smallcopy{La privacidad se vuelve una capacidad observable en procesos, sistemas, contratos y decisiones.}
+  \end{card}
+}
+
+\vfill
+\begin{card}
+  \twocol{
+    \cardtitle{Elige tu ruta}\par\vspace{2mm}
+    \smallcopy{Lee páginas 1, 2 y 9 si necesitas una mirada ejecutiva rápida.}
+  }{
+    \pill{Decisiones}\quad\pill[MintSoft]{Operación}\quad\pill[PurpleSoft]{Tecnología}
+  }
+\end{card}
+\newpage
+
+% 02 — CAMBIO DE ESTÁNDAR
+\pageintro{01 · El cambio}{De guardar datos a gobernarlos}{La pregunta ya no es solo «¿tenemos autorización?», sino «¿podemos justificar cada uso y demostrar control durante todo el ciclo de vida?}{2}
+
+\twocol{
+  \begin{softcard}{GoldSoft}
+    \eyebrow{Punto de partida · 1999}\par\vspace{2mm}
+    \fontsize{18}{21}\selectfont\bfseries\color{Navy}Ley 19.628\par\vspace{3mm}
+    \bodycopy{Un marco pionero para su época, con menor capacidad institucional y diseñado antes del cloud, la IA y la economía de plataformas.}
+  \end{softcard}
+}{
+  \begin{softcard}{MintSoft}
+    \eyebrow{Nuevo estándar · 2026}\par\vspace{2mm}
+    \fontsize{18}{21}\selectfont\bfseries\color{Navy}Ley 21.719\par\vspace{3mm}
+    \bodycopy{Derechos exigibles, obligaciones demostrables, una autoridad especializada y sanciones proporcionales al riesgo.}
+  \end{softcard}
+}
+
+\vspace{6mm}
+\begin{card}
+  \cardtitle{Ocho principios para orientar cada decisión}\par\vspace{4mm}
+  \twocol{
+    \principleitem{1}{Licitud y lealtad}{Base válida y trato justo.}\par\vspace{3mm}
+    \principleitem{2}{Finalidad}{Propósitos definidos.}\par\vspace{3mm}
+    \principleitem{3}{Proporcionalidad}{Solo lo necesario.}\par\vspace{3mm}
+    \principleitem{4}{Calidad}{Datos exactos y vigentes.}
+  }{
+    \principleitem{5}{Responsabilidad}{Demostrar cumplimiento.}\par\vspace{3mm}
+    \principleitem{6}{Seguridad}{Protección según riesgo.}\par\vspace{3mm}
+    \principleitem{7}{Transparencia}{Explicación comprensible.}\par\vspace{3mm}
+    \principleitem{8}{Confidencialidad}{Evitar usos indebidos.}
+  }
+\end{card}
+
+\vspace{6mm}
+\begin{softcard}{BlueSoft}
+  \twocol{
+    \eyebrow{Pregunta de diseño}\par\vspace{2mm}
+    \fontsize{17}{21}\selectfont\bfseries\color{Navy}¿Podemos explicar por qué existe cada dato? 
+  }{
+    \bodycopy{Si no sabemos su finalidad, responsable, plazo, origen o controles, tenemos una deuda de gobierno antes que una deuda técnica.}
+  }
+\end{softcard}
+\newpage
+
+% 03 — DERECHOS
+\pageintro{02 · Las personas}{Derechos que deben funcionar de verdad}{Un formulario no resuelve el problema. Cada derecho necesita un canal, responsables, plazos, reglas de identidad y trazabilidad de la respuesta.}{3}
+
+\threecol{
+  \begin{card}\iconcircle{\textbf{A}}\quad\cardtitle{Acceso}\par\vspace{3mm}\smallcopy{Saber qué datos se tratan, para qué, de dónde vienen y con quién se comparten.}\end{card}
+}{
+  \begin{card}\iconcircle[MintSoft]{\textbf{R}}\quad\cardtitle{Rectificación}\par\vspace{3mm}\smallcopy{Corregir información inexacta, desactualizada, incompleta o equívoca.}\end{card}
+}{
+  \begin{card}\iconcircle[RedSoft]{\textbf{S}}\quad\cardtitle{Supresión}\par\vspace{3mm}\smallcopy{Solicitar eliminación cuando falte fundamento o el dato ya no sea necesario.}\end{card}
+}
+\vspace{5mm}
+\threecol{
+  \begin{card}\iconcircle[GoldSoft]{\textbf{O}}\quad\cardtitle{Oposición}\par\vspace{3mm}\smallcopy{Objetar tratamientos en los casos previstos y exigir una evaluación fundada.}\end{card}
+}{
+  \begin{card}\iconcircle[PurpleSoft]{\textbf{B}}\quad\cardtitle{Bloqueo}\par\vspace{3mm}\smallcopy{Suspender temporalmente el uso mientras se verifica una controversia.}\end{card}
+}{
+  \begin{card}\iconcircle[BlueSoft]{\textbf{P}}\quad\cardtitle{Portabilidad}\par\vspace{3mm}\smallcopy{Recibir o trasladar datos en un formato estructurado y reutilizable, cuando proceda.}\end{card}
+}
+
+\vspace{6mm}
+\twocol{
+  \begin{softcard}{Navy}
+    \color{White}\eyebrow{Decisiones automatizadas}\color{White}\par\vspace{2mm}
+    \fontsize{15}{19}\selectfont\bfseries Explicación, impugnación y revisión humana\par\vspace{2mm}
+    \fontsize{9.3}{12.5}\selectfont Cuando una decisión automatizada produce efectos significativos, el sistema y el proceso deben permitir entenderla y cuestionarla.
+  \end{softcard}
+}{
+  \begin{softcard}{RedSoft}
+    \eyebrow{Niños, niñas y adolescentes}\par\vspace{2mm}
+    \fontsize{15}{19}\selectfont\bfseries\color{Navy}Protección reforzada\par\vspace{2mm}
+    \smallcopy{La edad, la comprensión real y el interés superior exigen lenguaje, controles y decisiones especialmente cuidadosas.}
+  \end{softcard}
+}
+
+\vspace{6mm}
+\begin{card}
+  \twocol{
+    \cardtitle{Consentimiento que sirve}\par\vspace{2mm}
+    \bodycopy{Debe ser libre, informado, específico, inequívoco y demostrable; además, retirarlo debe ser tan viable como otorgarlo.}
+  }{
+    \eyebrow{Prueba rápida}\par\vspace{2mm}
+    \smallcopy{¿La persona entendería qué ocurrirá sin ayuda legal ni técnica? Si la respuesta es no, el diseño todavía no está listo.}
+  }
+\end{card}
+\newpage
+
+% 04 — CICLO DE VIDA
+\pageintro{03 · La organización}{Privacidad como sistema operativo}{La ley atraviesa estrategia, compras, producto, desarrollo, soporte, personas y seguridad. Se administra como un ciclo, no como una campaña anual.}{4}
+
+\threecol{
+  \begin{card}
+    \stepnum{1}\par\vspace{3mm}\cardtitle{Antes de tratar}\par\vspace{2mm}
+    \smallcopy{Definir finalidad, base de licitud, datos mínimos, riesgos, roles, plazos y comunicación a las personas.}
+  \end{card}
+}{
+  \begin{card}
+    \stepnum{2}\par\vspace{3mm}\cardtitle{Mientras se trata}\par\vspace{2mm}
+    \smallcopy{Controlar accesos, calidad, conservación, terceros, solicitudes, cambios y evidencia de las decisiones.}
+  \end{card}
+}{
+  \begin{card}
+    \stepnum{3}\par\vspace{3mm}\cardtitle{Cuando algo cambia}\par\vspace{2mm}
+    \smallcopy{Reevaluar el riesgo frente a incidentes, nuevos usos, integraciones, modelos de IA o transferencias.}
+  \end{card}
+}
+
+\vspace{6mm}
+\begin{softcard}{BlueSoft}
+  \twocol{
+    \eyebrow{Por diseño y por defecto}\par\vspace{2mm}
+    \fontsize{17}{21}\selectfont\bfseries\color{Navy}La opción más protectora debe ser la inicial.
+  }{
+    \bodycopy{La privacidad se incorpora desde la arquitectura y la experiencia de usuario: visibilidad, permisos, defaults, retención y eliminación.}
+  }
+\end{softcard}
+
+\vspace{6mm}
+\cardtitle{Seguridad adecuada al riesgo}\par\vspace{3mm}
+\twocol{
+  \begin{card}\iconcircle{\textbf{C}}\quad\cardtitle{Confidencialidad}\par\vspace{2mm}\smallcopy{Solo accede quien necesita hacerlo, bajo permisos claros y revisables.}\end{card}
+}{
+  \begin{card}\iconcircle[MintSoft]{\textbf{I}}\quad\cardtitle{Integridad}\par\vspace{2mm}\smallcopy{Los datos y registros se mantienen completos, exactos y protegidos frente a cambios indebidos.}\end{card}
+}
+\vspace{4mm}
+\twocol{
+  \begin{card}\iconcircle[GoldSoft]{\textbf{D}}\quad\cardtitle{Disponibilidad}\par\vspace{2mm}\smallcopy{La información y los servicios están accesibles cuando realmente se necesitan.}\end{card}
+}{
+  \begin{card}\iconcircle[PurpleSoft]{\textbf{R}}\quad\cardtitle{Resiliencia}\par\vspace{2mm}\smallcopy{La operación puede resistir, responder y recuperarse de fallas o ataques.}\end{card}
+}
+
+\vfill
+\microcopy{La exigencia no es una lista idéntica para todos: las medidas deben ser coherentes con la naturaleza de los datos, el contexto y el impacto posible.}
+\newpage
+
+% 05 — RIESGO E INCIDENTES
+\pageintro{04 · El riesgo}{Prevenir, detectar y responder}{Los tratamientos de alto riesgo necesitan una evaluación previa. Los incidentes necesitan una respuesta ensayada, con criterio y evidencia.}{5}
+
+\begin{card}
+  \cardtitle{¿Cuándo levantar la mano? Señales de alto riesgo}\par\vspace{4mm}
+  \twocol{
+    \bodycopy{\stepnum{1}\quad Perfilamiento o decisiones automatizadas con efectos significativos.\par\vspace{4mm}
+    \stepnum{2}\quad Observación, seguimiento o control sistemático de personas.}
+  }{
+    \bodycopy{\stepnum{3}\quad Datos sensibles, biométricos, de salud o de grupos especialmente vulnerables.\par\vspace{4mm}
+    \stepnum{4}\quad Gran escala, nuevas tecnologías o combinación de fuentes que eleva el impacto.}
+  }
+\end{card}
+
+\vspace{6mm}
+\cardtitle{Ruta mínima frente a una vulneración}\par\vspace{3mm}
+\begin{softcard}{Navy}
+  \color{White}\centering
+  \fontsize{10}{13}\selectfont\bfseries
+  DETECTAR \quad→\quad CONTENER \quad→\quad EVALUAR \quad→\quad REGISTRAR \quad→\quad REPORTAR \quad→\quad APRENDER
+\end{softcard}
+
+\vspace{6mm}
+\twocol{
+  \begin{softcard}{RedSoft}
+    \eyebrow{Ojo con el mito}\par\vspace{2mm}
+    \fontsize{17}{20}\selectfont\bfseries\color{RedDark}La ley no fija una regla general de 72 horas.\par\vspace{2mm}
+    \smallcopy{Exige actuar «sin dilaciones indebidas» y comunicar según la gravedad y los supuestos aplicables. La velocidad importa, pero también el criterio.}
+  \end{softcard}
+}{
+  \begin{softcard}{MintSoft}
+    \eyebrow{Evaluación de impacto}\par\vspace{2mm}
+    \fontsize{17}{20}\selectfont\bfseries\color{Navy}Decidir antes de desplegar\par\vspace{2mm}
+    \smallcopy{Describe el tratamiento, prueba necesidad y proporcionalidad, identifica daños posibles y define mitigaciones antes de asumir el riesgo.}
+  \end{softcard}
+}
+
+\vspace{6mm}
+\begin{card}
+  \threecol{
+    \cardtitle{Datos especiales}\par\vspace{2mm}\smallcopy{Salud, biometría, origen, convicciones y vida sexual requieren cautelas reforzadas.}
+  }{
+    \cardtitle{Proveedores y cloud}\par\vspace{2mm}\smallcopy{Delegar infraestructura no delega responsabilidad. Roles, instrucciones y seguridad deben quedar claros.}
+  }{
+    \cardtitle{Transferencias}\par\vspace{2mm}\smallcopy{Mover datos entre países exige fundamento, salvaguardas y visibilidad sobre destinos y subencargados.}
+  }
+\end{card}
+\newpage
+
+% 06 — DEL REQUISITO AL SISTEMA
+\pageintro{05 · Producto y software}{Convertir la ley en\\comportamiento verificable}{Cada exigencia debe bajar a una decisión de diseño, una conducta observable del sistema y una evidencia que pueda revisarse.}{6}
+
+\threecol{
+  \begin{softcard}{BlueSoft}\eyebrow{01 · Regla}\par\vspace{2mm}\cardtitle{Minimización}\par\vspace{2mm}\smallcopy{Pedir únicamente lo necesario para una finalidad definida.}\par\vspace{3mm}\microcopy{\textbf{Se prueba:} campos, APIs, logs y retención.}\end{softcard}
+}{
+  \begin{softcard}{MintSoft}\eyebrow{02 · Regla}\par\vspace{2mm}\cardtitle{Consentimiento}\par\vspace{2mm}\smallcopy{Registrar versión, propósito, momento y retiro sin fricción.}\par\vspace{3mm}\microcopy{\textbf{Se prueba:} interfaz, registro y revocación.}\end{softcard}
+}{
+  \begin{softcard}{PurpleSoft}\eyebrow{03 · Regla}\par\vspace{2mm}\cardtitle{Acceso y portabilidad}\par\vspace{2mm}\smallcopy{Entregar información completa, segura y reutilizable.}\par\vspace{3mm}\microcopy{\textbf{Se prueba:} identidad, alcance y formato.}\end{softcard}
+}
+\vspace{5mm}
+\threecol{
+  \begin{softcard}{GoldSoft}\eyebrow{04 · Regla}\par\vspace{2mm}\cardtitle{Corrección y supresión}\par\vspace{2mm}\smallcopy{Propagar cambios o eliminaciones sin romper integridad ni obligaciones.}\par\vspace{3mm}\microcopy{\textbf{Se prueba:} réplicas, caché y respaldos.}\end{softcard}
+}{
+  \begin{softcard}{RedSoft}\eyebrow{05 · Regla}\par\vspace{2mm}\cardtitle{Seguridad e incidentes}\par\vspace{2mm}\smallcopy{Prevenir, detectar, contener y dejar trazabilidad útil.}\par\vspace{3mm}\microcopy{\textbf{Se prueba:} permisos, alertas y recuperación.}\end{softcard}
+}{
+  \begin{softcard}{BlueSoft}\eyebrow{06 · Regla}\par\vspace{2mm}\cardtitle{Decisiones automatizadas}\par\vspace{2mm}\smallcopy{Explicar resultados y habilitar revisión humana efectiva.}\par\vspace{3mm}\microcopy{\textbf{Se prueba:} explicación, sesgo y apelación.}\end{softcard}
+}
+
+\vspace{7mm}
+\begin{card}
+  \eyebrow{Patrón de trabajo}\par\vspace{3mm}
+  \centering
+  \fontsize{11.5}{15}\selectfont\bfseries\color{Navy}
+  PRINCIPIO \quad→\quad REQUISITO \quad→\quad COMPORTAMIENTO \quad→\quad PRUEBA \quad→\quad EVIDENCIA
+\end{card}
+
+\vspace{7mm}
+\twocol{
+  \begin{softcard}{Navy}
+    \color{White}\cardtitle{\color{White}Ejemplo · eliminación}\par\vspace{2mm}
+    \fontsize{9.3}{12.5}\selectfont La solicitud se autentica, se evalúa, se ejecuta en sistemas dependientes, se informa el resultado y queda un registro mínimo de cumplimiento.
+  \end{softcard}
+}{
+  \begin{softcard}{MintSoft}
+    \cardtitle{La evidencia correcta}\par\vspace{2mm}
+    \smallcopy{No es acumular datos personales «por si acaso». Es conservar la mínima prueba necesaria para explicar una decisión o control.}
+  \end{softcard}
+}
+
+\vfill
+\microcopy{UX también es cumplimiento: lenguaje comprensible, opciones honestas, jerarquía visual y ausencia de patrones que empujen a aceptar.}
+\newpage
+
+% 07 — TESTING E IA
+\pageintro{06 · Testing e IA}{Los datos de prueba también cuentan}{Un ambiente no productivo sigue siendo tratamiento de datos. La etiqueta «test» no reduce el daño posible ni reemplaza los controles.}{7}
+
+\twocol{
+  \begin{softcard}{MintSoft}
+    \eyebrow{Sí · diseñar para reducir riesgo}\par\vspace{3mm}
+    \bodycopy{\textbf{+}\quad Datos sintéticos por defecto.\par\vspace{3mm}
+    \textbf{+}\quad Subconjuntos mínimos y aislados.\par\vspace{3mm}
+    \textbf{+}\quad Accesos temporales y auditables.\par\vspace{3mm}
+    \textbf{+}\quad Borrado verificable al terminar.\par\vspace{3mm}
+    \textbf{+}\quad Casos de prueba para derechos y fallas.}
+  \end{softcard}
+}{
+  \begin{softcard}{RedSoft}
+    \eyebrow{No · normalizar atajos peligrosos}\par\vspace{3mm}
+    \bodycopy{\textbf{×}\quad Copiar producción completa.\par\vspace{3mm}
+    \textbf{×}\quad Compartir dumps por canales informales.\par\vspace{3mm}
+    \textbf{×}\quad Dejar credenciales o enlaces permanentes.\par\vspace{3mm}
+    \textbf{×}\quad Confundir seudonimizar con anonimizar.\par\vspace{3mm}
+    \textbf{×}\quad Conservar datos sin dueño ni plazo.}
+  \end{softcard}
+}
+
+\vspace{6mm}
+\begin{card}
+  \eyebrow{Antes de usar IA con datos personales}\par\vspace{4mm}
+  \twocol{
+    \bodycopy{\stepnum{1}\quad ¿Es necesario usar estos datos?\par\vspace{4mm}
+    \stepnum{2}\quad ¿Tenemos base, información y límites claros?}
+  }{
+    \bodycopy{\stepnum{3}\quad ¿Qué recibe, conserva o reutiliza el proveedor?\par\vspace{4mm}
+    \stepnum{4}\quad ¿Podemos explicar, revisar y cuestionar el resultado?}
+  }
+\end{card}
+
+\vspace{6mm}
+\threecol{
+  \begin{softcard}{GoldSoft}\cardtitle{Anonimizar no es renombrar}\par\vspace{2mm}\smallcopy{Si una persona puede reidentificarse combinando atributos, el riesgo sigue vivo.}\end{softcard}
+}{
+  \begin{softcard}{BlueSoft}\cardtitle{Pasar pruebas no basta}\par\vspace{2mm}\smallcopy{La conformidad técnica es necesaria, pero no reemplaza finalidad, gobierno ni transparencia.}\end{softcard}
+}{
+  \begin{softcard}{PurpleSoft}\cardtitle{El proveedor no absorbe todo}\par\vspace{2mm}\smallcopy{La organización mantiene deberes sobre selección, instrucciones, monitoreo y transferencias.}\end{softcard}
+}
+\newpage
+
+% 08 — PLAN DE ACCIÓN
+\pageintro{07 · Preparación}{Un plan que sí cabe en la agenda}{La meta no es producir una montaña de documentos. Es crear una secuencia visible de decisiones, responsables, controles y mejoras.}{8}
+
+\twocol{
+  \begin{card}\stepnum{1}\quad\cardtitle{Descubrir}\par\vspace{2mm}\smallcopy{Inventariar tratamientos, sistemas, datos, flujos, terceros y responsables.}\end{card}\par\vspace{4mm}
+  \begin{card}\stepnum{3}\quad\cardtitle{Diseñar}\par\vspace{2mm}\smallcopy{Ajustar bases, información, consentimiento, contratos, retención y derechos.}\end{card}\par\vspace{4mm}
+  \begin{card}\stepnum{5}\quad\cardtitle{Probar}\par\vspace{2mm}\smallcopy{Simular solicitudes, incidentes, eliminación, portabilidad y recuperación.}\end{card}
+}{
+  \begin{card}\stepnum{2}\quad\cardtitle{Priorizar}\par\vspace{2mm}\smallcopy{Ordenar por sensibilidad, escala, automatización, personas e impacto.}\end{card}\par\vspace{4mm}
+  \begin{card}\stepnum{4}\quad\cardtitle{Implementar}\par\vspace{2mm}\smallcopy{Llevar decisiones a producto, procesos, permisos, registros y respuesta.}\end{card}\par\vspace{4mm}
+  \begin{card}\stepnum{6}\quad\cardtitle{Mejorar}\par\vspace{2mm}\smallcopy{Medir, auditar y revisar ante cambios de finalidad, sistema o proveedor.}\end{card}
+}
+
+\vspace{7mm}
+\cardtitle{¿Qué significa para mi rol?}\par\vspace{3mm}
+\threecol{
+  \begin{softcard}{BlueSoft}
+    \iconcircle[White]{\textbf{DA}}\par\vspace{3mm}\cardtitle{Dirección y administración}\par\vspace{2mm}
+    \smallcopy{Definir apetito de riesgo, gobernanza, recursos, compras responsables y decisiones que puedan defenderse.}
+  \end{softcard}
+}{
+  \begin{softcard}{MintSoft}
+    \iconcircle[White]{\textbf{TI}}\par\vspace{3mm}\cardtitle{Tecnología y desarrollo}\par\vspace{2mm}
+    \smallcopy{Traducir principios a arquitectura, historias, criterios de aceptación, observabilidad, seguridad y pruebas.}
+  \end{softcard}
+}{
+  \begin{softcard}{PurpleSoft}
+    \iconcircle[White]{\textbf{DE}}\par\vspace{3mm}\cardtitle{Docencia y equipos}\par\vspace{2mm}
+    \smallcopy{Construir criterio práctico: reconocer datos, preguntar por la finalidad y escalar riesgos sin temor.}
+  \end{softcard}
+}
+
+\vspace{7mm}
+\begin{softcard}{Navy}
+  \color{White}\centering
+  \fontsize{16}{20}\selectfont\bfseries El mejor primer entregable no es una política. Es un mapa compartido de qué hacemos con los datos y por qué.
+\end{softcard}
+\newpage
+
+% 09 — CIERRE, SANCIONES Y FUENTES
+\pageintro{08 · Decidir con contexto}{Lo confirmado y lo que hay que vigilar}{La entrada en vigor está fijada. La implementación institucional continúa y debe seguirse sin convertir la incertidumbre en excusa para esperar.}{9}
+
+\threecol{
+  \begin{softcard}{GoldSoft}\eyebrow{Infracciones leves}\par\vspace{2mm}\metric{5.000}\par\smallcopy{UTM como máximo legal.}\end{softcard}
+}{
+  \begin{softcard}{RedSoft}\eyebrow{Infracciones graves}\par\vspace{2mm}\metric{10.000}\par\smallcopy{UTM como máximo legal.}\end{softcard}
+}{
+  \begin{softcard}{Navy}\color{White}\eyebrow{Muy graves}\color{White}\par\vspace{2mm}\fontsize{24}{25}\selectfont\bfseries 20.000\par\fontsize{9.8}{13}\selectfont UTM como máximo legal.\end{softcard}
+}
+
+\vspace{5mm}
+\twocol{
+  \begin{softcard}{MintSoft}
+    \eyebrow{Confirmado}\par\vspace{2mm}
+    \cardtitle{La ley rige desde el 1 de diciembre de 2026}\par\vspace{2mm}
+    \smallcopy{Incluye fiscalización, registro público de sanciones, responsabilidad civil y reglas agravadas por reincidencia o tamaño empresarial.}
+  \end{softcard}
+}{
+  \begin{softcard}{BlueSoft}
+    \eyebrow{A monitorear}\par\vspace{2mm}
+    \cardtitle{Instalación de la Agencia y regulación complementaria}\par\vspace{2mm}
+    \smallcopy{El Senado rechazó en mayo de 2026 la primera propuesta de consejeros. Eso no equivale a postergar la vigencia legal.}
+  \end{softcard}
+}
+
+\vspace{5mm}
+\begin{card}
+  \eyebrow{Fuentes oficiales para profundizar}\par\vspace{3mm}
+  \microcopy{
+    \textbf{Texto actualizado de la Ley 21.719 · Biblioteca del Congreso Nacional}\par
+    \href{https://www.bcn.cl/leychile/Navegar?idNorma=1209272&idParte=10527471&idVersion=2026-12-01}{bcn.cl/leychile — versión con vigencia desde el 01-12-2026}\par\vspace{2mm}
+    \textbf{Historia y análisis legislativo · Biblioteca del Congreso Nacional}\par
+    \href{https://obtienearchivo.bcn.cl/obtienearchivo?id=repositorio\%2F10221\%2F37137\%2F1\%2FInforme_12_25_Ley_Datos_Personales_rev.pdf}{Informe BCN sobre la nueva institucionalidad y sus principales cambios}\par\vspace{2mm}
+    \textbf{Ley 19.628 original · Biblioteca del Congreso Nacional}\par
+    \href{https://www.bcn.cl/leychile/Navegar?dt=open&idLey=19628}{Texto de referencia del marco vigente desde 1999}\par\vspace{2mm}
+    \textbf{Estado de nombramientos de la Agencia · Senado de Chile}\par
+    \href{https://www.senado.cl/comunicaciones/noticias/desestiman-propuesta-de-consejeros-para-la-agencia-de-proteccion-de-datos}{Senado rechaza propuesta inicial de consejeros, mayo de 2026}
+  }
+\end{card}
+
+\vspace{5mm}
+\begin{softcard}{Red}
+  \color{White}\centering
+  \fontsize{18}{22}\selectfont\bfseries La privacidad deja de ser una promesa y pasa a ser una capacidad observable.
+\end{softcard}
+
+\vfill
+\microcopy{Documento de orientación general para profesionales y equipos. No reemplaza asesoría jurídica aplicada a un caso concreto. Actualizado: agosto de 2026.}
+
+\end{document}

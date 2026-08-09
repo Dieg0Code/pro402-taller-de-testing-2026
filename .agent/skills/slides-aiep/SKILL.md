@@ -56,20 +56,26 @@ Usar esta skill para definir la dirección visual de una presentación antes de 
 - No usar UI ficticia descuidada como simple decoración: alineación, espaciado, jerarquía, tamaño de controles y ubicación de acciones deben respetar convenciones básicas de interfaz.
 - Si un componente sería importante dentro del módulo real, también debe estar bien construido en la diapositiva; una maqueta torpe enseña mal.
 - Cuando una slide incluya código, el snippet debe verse como código real: tipografía monoespaciada, sintaxis coloreada y una presentación cercana a un editor.
+- El código es ciudadano de primer orden: mostrar completas las funciones relevantes —incluido su `return`— y nunca recortar una línea necesaria para entender o ejecutar el ejemplo.
 - Evitar bloques de código planos, monocromos o sin jerarquía visual; si el material pretende enseñar técnica, el snippet también debe comunicarla visualmente.
 - Si una slide explica partes concretas de un snippet, la relación debe verse: usar conectores, subrayados, marcas o anotaciones que calcen con la zona del código que se está comentando.
 - No dejar que las tarjetas explicativas “floten” al lado del código sin anclaje visual; si una observación depende de una línea o atributo puntual, esa dependencia debe leerse en la composición.
+- No fingir precisión sobre tokens calculando posiciones horizontales a partir del ancho estimado de la fuente. Si el render no garantiza esa geometría, usar marcadores numerados en el gutter y repetir número + línea en una guía integrada de alto contraste.
+- Cuando una guía por líneas resuelva la relación, preferir una sola superficie explicativa bien jerarquizada antes que varias cards flotantes unidas por recorridos largos.
 - Esos conectores no deben ensuciar el snippet: idealmente salen desde el borde del panel de código y recorren pasillos externos, no atraviesan el bloque de texto ni pisan tokens importantes.
 - Los conectores deben ser visualmente secundarios: la marca de color puede vivir en el punto de origen y destino, mientras la línea de recorrido puede ser más silenciosa para no competir con el código.
 - Esta exigencia se extiende a otros artefactos técnicos: terminales, árboles de archivos, JSON, respuestas HTTP, paneles tipo DevTools o estructuras similares deben respetar la gramática visual de su herramienta de origen.
 - Cuando existan componentes compartidos para esos artefactos, reutilizarlos y mejorarlos en `tools/slides-system/` antes de crear otra versión local para una clase puntual.
+- Cuando texto o números vivan dentro de un círculo, el contenedor de texto debe usar exactamente la misma caja que la figura, con alineación horizontal y vertical al centro; comprobar también el centrado óptico en el render.
 
 ## Reglas de logo
 
 - Portada: usar el logo completo en la esquina superior derecha con margen generoso.
 - Aperturas de bloque: usar el logo completo en tamaño contenido.
 - Slides internas: incluir el logo AIEP completo en todas las diapositivas. Este es el estándar vigente; no reemplazarlo por el `mark` ni omitirlo aunque existan otros motivos geométricos de marca.
-- No deformar, recolorear ni estirar el logo.
+- En fondos claros, usar la versión institucional a color con transparencia real.
+- En fondos oscuros, usar la variante transparente con símbolo rojo y letras/bajada blancas. No encerrar el logo en una placa o caja blanca para resolver contraste.
+- No deformar, recolorear arbitrariamente ni estirar el logo; el cambio claro/oscuro debe provenir de variantes institucionales preparadas para cada fondo.
 - No poner el logo sobre fondos con bajo contraste.
 
 ## Reglas de contenido visible

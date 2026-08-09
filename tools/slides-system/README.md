@@ -29,7 +29,7 @@ La base nueva vive en `src/` con TypeScript. La implementación JS actual se man
 ## Componentes iniciales
 
 - `primitives`: header, chip, pill, card, miniCard y statement.
-- `code-panel`: snippet con resaltado de sintaxis.
+- `code-panel`: snippet con resaltado de sintaxis; admite recorridos anotados cuando la geometría es confiable y guías numeradas por línea cuando no conviene estimar la posición de tokens.
 - `terminal-panel`: terminal con prompts y salidas.
 - `browser-mock`: maqueta de navegador.
 - `form-mock`: maqueta de formulario con CTA centrado.

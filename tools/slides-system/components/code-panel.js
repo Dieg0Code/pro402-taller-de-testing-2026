@@ -208,6 +208,321 @@ function addCodePanel(slide, SH, opts = {}) {
   };
 }
 
+/**
+ * Presenta código como artefacto principal y conecta tokens concretos con una
+ * explicación externa. A diferencia de addCodeAnnotation, evita cubrir líneas
+ * completas con resaltados y mantiene todos los recorridos fuera del editor.
+ */
+function addCodeWalkthrough(slide, SH, opts = {}) {
+  const editor = opts.editor || {};
+  const metrics = addCodePanel(slide, SH, editor);
+  const callouts = opts.callouts || [];
+
+  callouts.forEach((callout, index) => {
+    const color = callout.color || TOKENS.red;
+    const lineNumber = callout.lineNumber || 1;
+    const column = callout.column || 1;
+    const tokenLength = callout.length || 4;
+    const codeStartX =
+      metrics.codeX + metrics.textOffsetX + (metrics.lineDigits + 1) * metrics.charW;
+    const markerX = codeStartX + (column - 1) * metrics.charW;
+    const markerW = Math.max(0.18, tokenLength * metrics.charW);
+    const lineTop =
+      metrics.codeY + metrics.textOffsetY + (lineNumber - 1) * metrics.linePitch;
+    const anchorY = lineTop + metrics.linePitch * 0.54;
+    const underlineY = lineTop + metrics.linePitch * 0.88;
+    const targetX = callout.x;
+    const targetY = callout.y;
+    const targetW = callout.w;
+    const targetH = callout.h;
+    const targetAnchorY = callout.anchorY != null
+      ? targetY + callout.anchorY
+      : targetY + targetH / 2;
+    const edgeX = metrics.codeX + metrics.codeW;
+    const laneX = callout.laneX || edgeX + 0.22 + index * 0.08;
+    const connectorColor = callout.connectorColor || TOKENS.guide;
+    const stroke = callout.stroke || 0.018;
+
+    // La única marca dentro del editor corresponde exactamente al token explicado.
+    slide.addShape(SH.roundRect, {
+      x: markerX,
+      y: underlineY,
+      w: markerW,
+      h: 0.045,
+      rectRadius: 0.02,
+      fill: { color },
+      line: { color, pt: 0 },
+    });
+
+    // Un puerto discreto lleva la lectura al pasillo externo sin atravesar el código.
+    slide.addShape(SH.roundRect, {
+      x: edgeX + 0.02,
+      y: anchorY - 0.09,
+      w: 0.09,
+      h: 0.18,
+      rectRadius: 0.03,
+      fill: { color },
+      line: { color, pt: 0 },
+    });
+    addSegment(slide, SH, edgeX, anchorY - stroke / 2, laneX - edgeX, stroke, connectorColor);
+    addSegment(
+      slide,
+      SH,
+      laneX - stroke / 2,
+      Math.min(anchorY, targetAnchorY),
+      stroke,
+      Math.max(stroke, Math.abs(targetAnchorY - anchorY)),
+      connectorColor
+    );
+    addSegment(
+      slide,
+      SH,
+      laneX,
+      targetAnchorY - stroke / 2,
+      Math.max(stroke, targetX - laneX),
+      stroke,
+      connectorColor
+    );
+
+    slide.addShape(SH.roundRect, {
+      x: targetX,
+      y: targetY,
+      w: targetW,
+      h: targetH,
+      rectRadius: 0.07,
+      fill: { color: callout.fill || TOKENS.white },
+      line: { color: callout.border || TOKENS.border, pt: 1 },
+    });
+    slide.addShape(SH.rect, {
+      x: targetX,
+      y: targetY,
+      w: 0.11,
+      h: targetH,
+      fill: { color },
+      line: { color, pt: 0 },
+    });
+
+    const lineTag = callout.lineTag || `L${lineNumber}`;
+    slide.addShape(SH.roundRect, {
+      x: targetX + 0.28,
+      y: targetY + 0.2,
+      w: 0.54,
+      h: 0.28,
+      rectRadius: 0.05,
+      fill: { color },
+      line: { color, pt: 0 },
+    });
+    slide.addText(lineTag, {
+      x: targetX + 0.28,
+      y: targetY + 0.2,
+      w: 0.54,
+      h: 0.28,
+      fontFace: TYPOGRAPHY.body,
+      fontSize: 8.5,
+      bold: true,
+      color: callout.tagColor || TOKENS.white,
+      align: "center",
+      valign: "mid",
+      margin: 0,
+    });
+    slide.addText((callout.eyebrow || "LECTURA").toUpperCase(), {
+      x: targetX + 0.96,
+      y: targetY + 0.23,
+      w: targetW - 1.22,
+      h: 0.18,
+      fontFace: TYPOGRAPHY.body,
+      fontSize: 9.2,
+      bold: true,
+      color: callout.eyebrowColor || color,
+      charSpacing: 0.9,
+      margin: 0,
+    });
+    slide.addText(callout.title || "", {
+      x: targetX + 0.28,
+      y: targetY + 0.64,
+      w: targetW - 0.56,
+      h: callout.titleH || 0.3,
+      fontFace: callout.titleFontFace || TYPOGRAPHY.body,
+      fontSize: callout.titleFontSize || 17,
+      bold: true,
+      color: TOKENS.ink,
+      margin: 0,
+    });
+    slide.addText(callout.body || "", {
+      x: targetX + 0.28,
+      y: targetY + (callout.bodyY || 1.02),
+      w: targetW - 0.56,
+      h: callout.bodyH || Math.max(0.3, targetH - 1.2),
+      fontFace: TYPOGRAPHY.body,
+      fontSize: callout.bodyFontSize || 13.5,
+      color: TOKENS.slate,
+      valign: "mid",
+      breakLine: false,
+      margin: 0,
+    });
+  });
+
+  return metrics;
+}
+
+/**
+ * Explica líneas concretas sin estimar la posición horizontal de un token.
+ * La correspondencia se resuelve con marcadores numerados en el gutter y una
+ * única guía de lectura de alto contraste, sin conectores ni cards flotantes.
+ */
+function addCodeGuide(slide, SH, opts = {}) {
+  const editor = opts.editor || {};
+  const metrics = addCodePanel(slide, SH, editor);
+  const notes = opts.notes || [];
+  const guide = opts.guide || {};
+  const guideX = guide.x != null ? guide.x : metrics.codeX + metrics.codeW + 0.34;
+  const guideY = guide.y != null ? guide.y : metrics.codeY;
+  const guideW = guide.w || 3.6;
+  const guideH = guide.h || metrics.codeH;
+  const panelFill = guide.fill || TOKENS.navy;
+
+  slide.addShape(SH.roundRect, {
+    x: guideX,
+    y: guideY,
+    w: guideW,
+    h: guideH,
+    rectRadius: guide.rectRadius || 0.07,
+    fill: { color: panelFill },
+    line: { color: panelFill, pt: 0 },
+  });
+  slide.addShape(SH.rect, {
+    x: guideX + 0.26,
+    y: guideY + 0.26,
+    w: 0.08,
+    h: 0.28,
+    fill: { color: guide.accent || TOKENS.red },
+    line: { color: guide.accent || TOKENS.red, pt: 0 },
+  });
+  slide.addText((guide.title || "LECTURA DEL CÓDIGO").toUpperCase(), {
+    x: guideX + 0.5,
+    y: guideY + 0.28,
+    w: guideW - 0.76,
+    h: 0.22,
+    fontFace: TYPOGRAPHY.body,
+    fontSize: guide.titleFontSize || 9.5,
+    bold: true,
+    color: guide.titleColor || TOKENS.white,
+    charSpacing: 1.1,
+    margin: 0,
+  });
+
+  const headerH = guide.headerH || 0.76;
+  const bottomPad = guide.bottomPad || 0.22;
+  const dividerGap = guide.dividerGap || 0.08;
+  const availableH = Math.max(0.4, guideH - headerH - bottomPad);
+  const sectionH = notes.length > 0
+    ? (availableH - dividerGap * Math.max(0, notes.length - 1)) / notes.length
+    : availableH;
+
+  notes.forEach((note, index) => {
+    const color = note.color || TOKENS.red;
+    const lineNumber = note.lineNumber || 1;
+    const markerSize = note.markerSize || 0.24;
+    const markerCenterY =
+      metrics.codeY + metrics.textOffsetY + (lineNumber - 1) * metrics.linePitch + metrics.linePitch * 0.54;
+    const markerX = metrics.codeX + 0.015;
+
+    // La marca vive en el gutter: identifica una línea completa y nunca finge
+    // apuntar a un token cuya geometría depende del render de la fuente.
+    slide.addShape(SH.ellipse, {
+      x: markerX,
+      y: markerCenterY - markerSize / 2,
+      w: markerSize,
+      h: markerSize,
+      fill: { color },
+      line: { color, pt: 0 },
+    });
+    slide.addText(String(index + 1), {
+      x: markerX,
+      y: markerCenterY - markerSize / 2,
+      w: markerSize,
+      h: markerSize,
+      fontFace: TYPOGRAPHY.body,
+      fontSize: note.markerFontSize || 8.4,
+      bold: true,
+      color: note.markerTextColor || (color === TOKENS.gold ? TOKENS.ink : TOKENS.white),
+      align: "center",
+      valign: "mid",
+      margin: 0,
+    });
+
+    const sectionY = guideY + headerH + index * (sectionH + dividerGap);
+    if (index > 0) {
+      slide.addShape(SH.line, {
+        x: guideX + 0.26,
+        y: sectionY - dividerGap / 2,
+        w: guideW - 0.52,
+        h: 0,
+        line: { color: guide.dividerColor || TOKENS.titleFill, pt: 1 },
+      });
+    }
+
+    slide.addShape(SH.ellipse, {
+      x: guideX + 0.26,
+      y: sectionY + 0.12,
+      w: 0.32,
+      h: 0.32,
+      fill: { color },
+      line: { color, pt: 0 },
+    });
+    slide.addText(String(index + 1), {
+      x: guideX + 0.26,
+      y: sectionY + 0.12,
+      w: 0.32,
+      h: 0.32,
+      fontFace: TYPOGRAPHY.body,
+      fontSize: 9.2,
+      bold: true,
+      color: note.markerTextColor || (color === TOKENS.gold ? TOKENS.ink : TOKENS.white),
+      align: "center",
+      valign: "mid",
+      margin: 0,
+    });
+    slide.addText(`L${lineNumber} · ${(note.eyebrow || "LECTURA").toUpperCase()}`, {
+      x: guideX + 0.7,
+      y: sectionY + 0.17,
+      w: guideW - 0.98,
+      h: 0.18,
+      fontFace: TYPOGRAPHY.body,
+      fontSize: note.eyebrowFontSize || 8.8,
+      bold: true,
+      color: note.eyebrowColor || color,
+      charSpacing: 0.8,
+      margin: 0,
+    });
+    slide.addText(note.title || "", {
+      x: guideX + 0.26,
+      y: sectionY + (note.titleY || 0.54),
+      w: guideW - 0.52,
+      h: note.titleH || 0.34,
+      fontFace: note.titleFontFace || TYPOGRAPHY.body,
+      fontSize: note.titleFontSize || 16.5,
+      bold: true,
+      color: note.titleColor || TOKENS.white,
+      margin: 0,
+    });
+    slide.addText(note.body || "", {
+      x: guideX + 0.26,
+      y: sectionY + (note.bodyY || 0.98),
+      w: guideW - 0.52,
+      h: note.bodyH || Math.max(0.28, sectionH - 1.12),
+      fontFace: note.bodyFontFace || TYPOGRAPHY.body,
+      fontSize: note.bodyFontSize || 12.8,
+      color: note.bodyColor || TOKENS.softBlue,
+      valign: note.bodyValign || "top",
+      breakLine: false,
+      margin: 0,
+    });
+  });
+
+  return metrics;
+}
+
 function addSegment(slide, SH, x, y, w, h, color) {
   slide.addShape(SH.rect, {
     x,
@@ -453,4 +768,6 @@ function addCodeAnnotation(slide, SH, opts = {}) {
 module.exports = {
   addCodePanel,
   addCodeAnnotation,
+  addCodeWalkthrough,
+  addCodeGuide,
 };

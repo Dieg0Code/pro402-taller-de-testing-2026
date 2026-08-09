@@ -50,6 +50,7 @@ import type {
   ChipOptions,
   ComponentTreeOptions,
   CodeAnnotationOptions,
+  CodeGuideOptions,
   CodePanelOptions,
   CssRuleStackOptions,
   DomTreePanelOptions,
@@ -141,6 +142,7 @@ type CodePanelExports = {
     SH: ShapeCatalog,
     opts: CodeAnnotationOptions
   ) => void;
+  addCodeGuide: (slide: SlideLike, SH: ShapeCatalog, opts: CodeGuideOptions) => void;
 };
 
 type TerminalExports = {
@@ -521,6 +523,7 @@ export const addHeader = primitives.addHeader;
 
 export const addCodePanel = codePanel.addCodePanel;
 export const addCodeAnnotation = codePanel.addCodeAnnotation;
+export const addCodeGuide = codePanel.addCodeGuide;
 
 export const addTerminalPanel = terminalPanel.addTerminalPanel;
 export const addBrowserMock = browserMock.addBrowserMock;
