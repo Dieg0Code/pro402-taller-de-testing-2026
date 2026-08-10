@@ -39,6 +39,21 @@ neutro, con tildes y ñ.
 - Antes de cerrar una pieza, preguntar: **¿el espacio disponible está ayudando a enseñar o solo está
   quedando sin usar?**
 
+## Modalidad pedagógica y función del README
+
+- Diseñar las actividades para trabajo individual por defecto. No asumir parejas, grupos, equipos
+  de estudiantes ni revisión entre pares; usar una modalidad colaborativa solo cuando el docente la
+  solicite explícitamente.
+- El `README.md` de una clase es la fuente conceptual y pedagógica desde la que se deriva el deck:
+  debe contener explicaciones, ejemplos, código, ejercicios, preguntas, pistas y evidencias
+  esperadas.
+- No redactar el `README.md` como guion privado de facilitación. Evitar coreografías del docente,
+  instrucciones de manejo de la sala, decisiones internas de producción y comentarios meta.
+- Sí incluir duración, horarios y ritmos sugeridos cuando ayuden al estudiante a anticipar el
+  recorrido, administrar su trabajo o comprender qué se espera durante la sesión.
+- El `README.md` es material de cara al estudiante: no incluir notas internas para el docente,
+  rutas del repositorio ni referencias al andamiaje usado para producir la clase.
+
 ## Marca AIEP en presentaciones
 
 - Mantener el logo AIEP completo en todas las diapositivas.

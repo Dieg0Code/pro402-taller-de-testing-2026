@@ -62,7 +62,7 @@ La guía de referencia del módulo se encuentra en
 | _Semana 1_ | _¿Qué significa que funcione?_ |
 | 10/08 | Presentación del módulo y diagnóstico. La tesis del curso: si el código lo escribe un agente, el testing es lo que decide si sirve |
 | 11/08 | Entorno de trabajo: `uv`, `ruff`, `pyrefly` y `pytest`. Primer test en verde el mismo día |
-| 12/08 | La calidad no es opinión: ISO/IEC 25010 y sus ocho características aplicadas a un producto real |
+| 12/08 | La calidad no es opinión: ISO/IEC 25010:2023 y sus nueve características aplicadas a un producto real |
 | _Semana 2_ | _Verificación, validación y evidencia_ |
 | 17/08 | Verificación y validación: construir bien el producto vs. construir el producto correcto. Casos reales de fracaso (Therac-25, Ariane 5, Knight Capital) |
 | 18/08 | Software testeado vs. no testeado: comparación de repositorios reales, cobertura e historial de defectos |
