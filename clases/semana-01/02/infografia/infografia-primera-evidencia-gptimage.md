@@ -2,120 +2,116 @@
 
 - Audiencia: estudiantes técnicos de PRO402.
 - Propósito: sintetizar la progresión desde un entorno reproducible hasta una conclusión proporcional a la evidencia.
-- Formato: vertical 2:3, equivalente a 1024 × 1536 px.
+- Formato: afiche vertical largo para WhatsApp y repaso en aula.
 - Generación: GPT Image mediante la herramienta integrada de Codex.
-- Fuente: `clases/semana-01/02/README.md`.
-- Convención visual: VIBE AIEP · SIN LOGOS.
+- Fuente conceptual: `clases/semana-01/02/README.md`.
+- Referencias visuales: infografía anterior de la Clase 02 para cobertura; Clase 03 para calidad y riqueza visual; logo AIEP vigente como única marca autorizada.
 
-## Prompt inicial
+## Prompt final
 
 ```text
 Use case: infographic-diagram
+Asset type: final extra-tall vertical educational infographic for WhatsApp sharing and classroom review.
 
-Create a polished educational infographic in Spanish for technical programming students.
+Create a brand-new Spanish infographic titled “CLASE 02 · TU PRIMERA EVIDENCIA” with subtitle “Entorno reproducible + primer test”, aimed at beginner technical programming students in PRO402.
 
-FORMAT AND INTENT
-- Extra-tall vertical educational poster, 2:3 aspect ratio, equivalent to 1024 × 1536 px, high visual polish.
-- Dense but highly readable: use nearly all available canvas space for teaching, with consistent modest spacing. No huge empty gaps, but never cramped.
-- Designed for WhatsApp viewing and classroom review.
-- Audience: beginner technical students in PRO402 Taller de Testing y Calidad de Software.
-- VIBE AIEP · SIN LOGOS.
+Use the old Class 02 infographic only as a content-density and lesson-coverage reference. Create a complete visual redesign; do not preserve its monochromatic styling or repetitive white-card appearance. Match the sophisticated richness, functional color coding, varied compositions, icon quality, hierarchy, purposeful density and internal padding of the new Class 03 infographic.
 
-VISUAL STYLE
-- Warm paper background #F8F3EC.
-- Navy #102A43 for title, structure, section numbers and line icons.
-- Ink #243B53 and slate #52606D only for readable secondary text.
-- Restrained red #D62027 for key arrows, failures and emphasis, around 10%.
-- Soft blue #E6EEF7 and soft neutral #EDE6DA for selected card fills.
-- White cards with thin #D8CFC4 borders, clean editorial grid, precise alignment, generous internal padding.
-- Sophisticated contemporary information design: institutional and technical, but warm and energetic.
-- Consistent thin line icons only: laptop/code, package/lock, magnifier, type brackets, test flask/check, warning triangle, human decision.
-- No photography, no 3D, no gradients, no generic corporate people, no decorative filler.
-- No logos, trademarks, badges or watermarks. Tool names may appear only as plain typography.
-- Use bold condensed sans serif for headings and clean modern sans serif for body.
-- Strong visual rhythm from top to bottom. All text large enough to read; no footnote-sized copy.
+Use the supplied current AIEP logo as the only approved logo. Reproduce it faithfully once in the header. Do not use, invent or imitate an older AIEP mark. Do not distort, recolor, crop, redraw, simplify or enclose it in a box.
 
-COMPOSITION
-Build one continuous top-to-bottom evidence journey using six compact teaching zones. Use varied layouts—hero comparison, 2×2 matrix, red-to-green flow, decision strip, diagnostic mapping, final chain—while maintaining one coherent grid. Fill the poster thoughtfully to avoid a sparse feeling.
+LESSON OBJECTIVE
+Show the progression from “en mi computador funciona” toward a reproducible chain of evidence using uv, Ruff, Pyrefly and pytest. Make clear that each control answers a different question, a red test can be valuable evidence, the agent proposes while the team decides, and all-green output does not mean perfect software.
+
+VISUAL DIRECTION
+- Sophisticated contemporary editorial information design: professional, elegant, energetic and technically credible.
+- Warm ivory background, navy structure, readable dark ink and AIEP red for failures, warnings and emphasis.
+- Functional secondary accents: cobalt for environment, teal for analysis, violet for types, green for passing evidence, amber for decisions and coral-red for failures.
+- Varied flat-and-line icons: laptop, terminal, project files, lock, package, magnifier, document, type brackets, pytest flask, warning, human judgment, target, shield and evidence chain.
+- Mix light panels, tinted diagrams, dark navy emphasis bands, colored status chips and full-width colored sections.
+- Strong contrast, generous internal padding, large headings and readable body text.
+- Use nearly all available canvas space for teaching without crowding.
+- Vary the composition: hero transformation, environment blueprint, four-part dashboard, red-to-green diagnostic flow, decision spectrum, sabotage map and evidence pipeline.
+- No photography, 3D, decorative filler, fake certifications, extra logos or watermark.
 
 HEADER
+Place the exact approved AIEP logo at the upper right.
 “CLASE 02 · TU PRIMERA EVIDENCIA”
 “Entorno reproducible + primer test”
-“«En mi computador funciona»” → “¿Qué evidencia puedes mostrar?”
+“«En mi computador funciona»” → “¿QUÉ EVIDENCIA PUEDES MOSTRAR?”
 
 ZONE 1
-“ENTORNO REPRODUCIBLE”
-“pyproject.toml · dependencias y reglas”
-“uv.lock · versiones exactas”
-“.python-version · versión de Python”
-“.venv · entorno aislado”
+Keep a navy numbered circle containing “1”.
+Heading: “UN ENTORNO TAMBIÉN ES EVIDENCIA”
+Create a project blueprint around a central folder and terminal:
+“pyproject.toml” — “Dependencias y reglas”
+“uv.lock” — “Versiones exactas”
+“.python-version” — “Versión de Python”
+“.venv” — “Entorno local reconstruible”
+“SE COMPARTE: receta + versiones”
+“SE RECONSTRUYE: .venv”
 “REPRODUCIBLE ≠ CORRECTO”
 “Permite repetir el entorno; todavía no prueba el comportamiento.”
 
 ZONE 2
-“CUATRO CONTROLES, CUATRO PREGUNTAS”
+Keep a navy numbered circle containing “2”.
+Heading: “CUATRO CONTROLES · CUATRO PREGUNTAS”
+Create four complementary controls with unique icons:
 “uv” — “¿El entorno coincide?”
 “Ruff” — “¿La estructura cumple las reglas?”
 “Pyrefly” — “¿Los tipos respetan el contrato?”
 “pytest” — “¿El comportamiento coincide con lo esperado?”
-“No compiten. Se complementan.”
+“ENTORNO” → “CÓDIGO” → “CONTRATOS” → “COMPORTAMIENTO”
+“NO COMPITEN · SE COMPLEMENTAN”
 
 ZONE 3
-“UNA PRUEBA ROJA PUEDE SER BUENA EVIDENCIA”
+Keep a navy numbered circle containing “3”.
+Heading: “UNA PRUEBA ROJA PUEDE SER BUENA EVIDENCIA”
 “ENTRADA” — “[3.8, 4.1, 3.95]”
 “ESPERADO” — “4.0”
 “OBTENIDO” — “3.9”
 “1 failed · 1 passed”
 “Decimal + ROUND_HALF_UP” → “2 passed”
-“No debilites la expectativa. Corrige la implementación según la regla.”
+“NO DEBILITES LA EXPECTATIVA”
+“Corrige la implementación según la regla.”
 
 ZONE 4
-“EL AGENTE PROPONE · EL EQUIPO DECIDE”
+Keep a navy numbered circle containing “4”.
+Heading: “EL AGENTE PROPONE · EL EQUIPO DECIDE”
 “ACEPTAR” — “[5.5] → 5.5”
 “MODIFICAR” — “Precisar caso o riesgo”
 “POSPONER” — “[] → requiere decisión”
-“RECHAZAR” — “Duplicados o datos fuera del contrato”
+“RECHAZAR” — “Duplicado o fuera del contrato”
 “Cada caso debe volver visible un riesgo nuevo.”
+The agent may propose alternatives, but human judgment must visually dominate.
 
 ZONE 5
-“SABOTAJE CONTROLADO: PREDICE LA BARRERA”
+Keep a navy numbered circle containing “5”.
+Heading: “SABOTAJE CONTROLADO: PREDICE LA BARRERA”
+Use a diagnostic-map composition:
 “Dependencia sin actualizar lockfile” → “uv”
 “import math sin uso” → “Ruff”
 “list[str] con pruebas numéricas” → “Pyrefly”
 “ROUND_DOWN cambia la regla” → “pytest”
-“Dos controles pueden dar señales distintas: observan dimensiones distintas.”
+“PREDICE → EJECUTA → LEE → RESTAURA → VERIFICA”
+“Dos controles pueden dar señales distintas porque observan dimensiones distintas.”
 
 ZONE 6
-“CIERRE: CADENA DE EVIDENCIA”
+Keep a navy numbered circle containing “6”.
+Heading: “CIERRE: CADENA DE EVIDENCIA”
 “INTENCIÓN” → “ENTORNO” → “ANÁLISIS” → “PRUEBAS” → “CONCLUSIÓN PROPORCIONAL”
+Terminal card:
 “uv lock --check”
 “uv run ruff check .”
 “uv run pyrefly check”
 “uv run pytest -q”
-“4 passed”
+Green evidence badge: “4 passed”
 “TODO VERDE ≠ SOFTWARE PERFECTO”
 “Solo demuestra lo que realmente verificamos.”
 “Calidad es formular una expectativa, producir evidencia y no exagerar la conclusión.”
 
-TEXT REQUIREMENTS
-- Render every requested text verbatim, exactly once, in impeccable Spanish with correct accents, punctuation and symbols.
-- Do not invent extra labels, fake code, dates, statistics or paragraphs.
-- Preserve decimal points and exact technical names.
-- Avoid text over illustrations and low-contrast gray text.
-- Keep every numbered circle perfectly centered.
-- Make the final output feel full, purposeful, pedagogical and elegant—not sparse, not saturated.
+Render every requested Spanish text verbatim with correct accents, punctuation and symbols. Spell all technical names and commands exactly. Preserve decimal points and brackets. Do not invent dates, statistics, tools, labels or claims. Keep every number centered optically inside its circle. Make the result full, polished, colorful, varied and satisfying—never monochromatic, sparse, cramped or noisy.
 ```
 
 ## Corrección aplicada
 
-La primera generación deformó la etiqueta `ACEPTAR`. Se realizó una edición localizada:
-
-```text
-Use case: precise-object-edit
-
-Correct one typographic defect only. Preserve the entire infographic exactly as it is.
-
-In section 4, replace the malformed word “ACEPTAA” with exactly “ACEPTAR”. Render it in the same green uppercase typography, size, weight and position. Preserve “[5.5] → 5.5” directly beneath it.
-
-Do not alter, reflow, translate, add or remove anything else. Keep Spanish accents perfect. No logos, trademarks or watermarks.
-```
+La primera generación del rediseño repitió los números dentro del círculo y al comienzo de cada encabezado. Se realizó una edición localizada para conservar únicamente los círculos numerados y retirar los prefijos `1 ·` a `6 ·` de los títulos, sin modificar el resto de la composición.
