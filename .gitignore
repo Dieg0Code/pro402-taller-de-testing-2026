@@ -18,6 +18,9 @@
 /entregables/
 *.rar
 
+# Rúbricas de corrección (instrumento interno, no se distribuye)
+**/rubrica_eval_*.md
+
 # Ruido de SO/editor
 .DS_Store
 Thumbs.db

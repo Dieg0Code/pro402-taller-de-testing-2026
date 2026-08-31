@@ -4,15 +4,39 @@
 
 - Período: 10 de agosto - 30 de septiembre de 2026
 - Horario: Lunes, Martes y Miércoles de 08:30 a 10:50
-- Total: 72 horas · 24 sesiones de 3 horas pedagógicas · 8 semanas
+- Planificado: 72 horas · 24 sesiones de 3 horas pedagógicas · 8 semanas
+- Realizado: 19 sesiones · 57 horas de docencia directa. Cinco sesiones no se realizaron (ausencia docente justificada del 17 al 19 de agosto; actividades de vinculación con el medio el 24 y el 26 de agosto)
 - Modalidad: Presencial, laboratorio PC. Los estudiantes trabajan sobre su propio equipo
-- Unidades: UA1 Calidad y testing de software (32 h) · UA2 Desarrollo y ejecución de casos de prueba (40 h)
+- Unidades: UA1 Calidad y testing de software (27 h) · UA2 Desarrollo y ejecución de casos de prueba (30 h)
 - Evaluación: 3 sumativas prácticas e incrementales (1 en la Unidad 1, 2 en la Unidad 2), evaluadas por producto y desempeño con rúbrica. No hay pruebas escritas
 - Stack de práctica: Python (`uv`, `ruff`, `pyrefly`, `pytest`, FastAPI) como columna vertebral, TypeScript (Vitest, Playwright) en la capa de interfaz, y GitHub Actions como integración continua
 - Proyecto transversal: cada estudiante hace confiable su propio sistema a lo largo del módulo. Las tres evaluaciones son incrementos del mismo repositorio, que al cierre queda como pieza de portafolio: un servicio con tipado estricto, pirámide de pruebas completa y pipeline en verde
 
 > El feriado del 18 de septiembre cae viernes, por lo que no afecta sesiones. La única
 > contingencia de calendario sería un receso institucional de esa semana completa.
+
+## Ajuste del Cronograma
+
+De las nueve sesiones comprendidas entre el 10 y el 26 de agosto se realizaron cuatro. Las cinco
+restantes no se recuperan como sesiones adicionales, porque el período del módulo no se extiende:
+los contenidos se redistribuyen en las quince sesiones que quedan, del 31 de agosto al 30 de
+septiembre.
+
+El ajuste se resolvió fusionando cinco pares de sesiones, en todos los casos donde dos contenidos
+comparten instrumento, herramienta o estándar y podían enseñarse en una sola sesión sin perder
+profundidad:
+
+| Contenidos fusionados | Sesión resultante |
+| --- | --- |
+| Software probado vs. no probado + pruebas estáticas (tipado y linter) | Clase 05 |
+| Ciclo de vida y pruebas por etapa + estándares ISO/IEC 25010 e ISO/IEC/IEEE 29119 | Clase 07 |
+| TDD con `pytest` + TDD en TypeScript con Vitest | Clase 11 |
+| Regresión e integración continua + integración final del pipeline | Clase 15 |
+| Pruebas no funcionales I (rendimiento) + II (seguridad, privacidad, usabilidad, accesibilidad) | Clase 16 |
+
+Las tres evaluaciones sumativas se mantienen, con sus fechas corridas: la primera pasa del 1 al 8 de
+septiembre, la segunda del 21 al 23 de septiembre, y la final se conserva el 30 de septiembre. El
+carácter incremental del proyecto no cambia: las tres siguen siendo versiones del mismo repositorio.
 
 ## Enfoque del Módulo
 
@@ -54,50 +78,48 @@ La guía de referencia del módulo se encuentra en
 
 ## Cronograma Detallado
 
-### Unidad 1: Calidad y Testing de Software (33 horas)
+### Unidad 1: Calidad y Testing de Software (27 horas)
 **Foco:** Qué significa que un software "funcione", cómo se mide contra estándares y cómo se detectan defectos antes de ejecutar una sola línea.
 
-| Día | Contenido |
-|-----|-----------|
-| _Semana 1_ | _¿Qué significa que funcione?_ |
-| 10/08 | Presentación del módulo y diagnóstico. La tesis del curso: si el código lo escribe un agente, el testing es lo que decide si sirve |
-| 11/08 | Entorno de trabajo: `uv`, `ruff`, `pyrefly` y `pytest`. Primer test en verde el mismo día |
-| 12/08 | La calidad no es opinión: ISO/IEC 25010:2023 y sus nueve características aplicadas a un producto real |
-| _Semana 2_ | _Verificación, validación y evidencia_ |
-| 17/08 | Verificación y validación: construir bien el producto vs. construir el producto correcto. Casos reales de fracaso (Therac-25, Ariane 5, Knight Capital) |
-| 18/08 | Software testeado vs. no testeado: comparación de repositorios reales, cobertura e historial de defectos |
-| 19/08 | Ciclo de vida del producto y pruebas asociadas a cada etapa. Privacidad por diseño, finalidad y evidencia de cumplimiento desde la definición del producto |
-| _Semana 3_ | _Pruebas estáticas y revisión_ |
-| 24/08 | Pruebas estáticas: el tipado como primera prueba (`pyrefly`, `tsc`) y el linter como segunda barrera |
-| 25/08 | Revisión de código como prueba estática. Review adversarial entre modelos: un agente escribe, otro audita, el estudiante arbitra |
-| 26/08 | Estándares internacionales: ISO/IEC 25010 e ISO/IEC/IEEE 29119, y la documentación de pruebas que exigen |
-| _Semana 4_ | _Auditoría de calidad_ |
-| 31/08 | Taller integrador: auditoría de verificación y validación aplicada al proyecto propio |
-| 01/09 | **Evaluación Parcial 1 (Unidad 1):** línea base de calidad del proyecto — tipado estricto y análisis estático en verde, primeras pruebas que documentan el comportamiento actual, y hallazgos de la auditoría ISO/IEC 25010 evidenciados en el repositorio |
+| Día | Clase | Contenido |
+|-----|-------|-----------|
+| _Semana del 10/08_ | | _¿Qué significa que funcione?_ |
+| 10/08 | 01 | Presentación del módulo y diagnóstico. La tesis del curso: si el código lo escribe un agente, el testing es lo que decide si sirve |
+| 11/08 | 02 | Entorno de trabajo: `uv`, `ruff`, `pyrefly` y `pytest`. Primer test en verde el mismo día |
+| 12/08 | 03 | La calidad no es opinión: ISO/IEC 25010:2023 y sus nueve características aplicadas a un producto real |
+| _Semana del 17/08_ | | _Sesiones no realizadas_ |
+| 17/08 – 19/08 | — | Ausencia docente justificada |
+| _Semana del 24/08_ | | _Verificación y validación_ |
+| 24/08 | — | Vinculación con el medio |
+| 25/08 | 04 | Verificación y validación: construir bien el producto vs. construir el producto correcto. Casos reales de fracaso (Therac-25, Ariane 5, Knight Capital) |
+| 26/08 | — | Vinculación con el medio |
+| _Semana del 31/08_ | | _Pruebas estáticas y revisión_ |
+| 31/08 | 05 | Software probado vs. no probado, con indicadores verificables sobre un proyecto real. Pruebas estáticas: el tipado como primera prueba (`pyrefly`) y el linter como segunda barrera (`ruff`) |
+| 01/09 | 06 | Revisión de código como prueba estática. Review adversarial entre modelos: un agente escribe, otro audita, el estudiante arbitra |
+| 02/09 | 07 | Ciclo de vida del producto y pruebas asociadas a cada etapa. Estándares ISO/IEC 25010 e ISO/IEC/IEEE 29119 y la documentación de pruebas que exigen. Privacidad por diseño, finalidad y evidencia de cumplimiento desde la definición del producto |
+| _Semana del 07/09_ | | _Auditoría de calidad_ |
+| 07/09 | 08 | Taller integrador: auditoría de verificación y validación aplicada al proyecto propio |
+| 08/09 | — | **Evaluación Parcial 1 (Unidad 1):** línea base de calidad del proyecto — tipado estricto y análisis estático en verde, primeras pruebas que documentan el comportamiento actual, y hallazgos de la auditoría ISO/IEC 25010 evidenciados en el repositorio |
 
-### Unidad 2: Desarrollo y Ejecución de Casos de Prueba (39 horas)
+### Unidad 2: Desarrollo y Ejecución de Casos de Prueba (30 horas)
 **Foco:** Diseñar, escribir y automatizar pruebas reales sobre un proyecto propio, hasta sostener un plan de pruebas ejecutándose solo en integración continua.
 
-| Día | Contenido |
-|-----|-----------|
-| _Semana 4_ | _Diseño de casos de prueba_ |
-| 02/09 | Diseño de casos: partición de equivalencia, análisis de valores límite y tablas de decisión |
-| _Semana 5_ | _De los casos al código_ |
-| 07/09 | Caja negra, caja blanca y cobertura: por qué el 100% de cobertura no prueba nada. Generar casos con IA y auditarlos críticamente |
-| 08/09 | TDD con `pytest`: el ciclo rojo-verde-refactor completo sobre el proyecto |
-| 09/09 | TDD en TypeScript con Vitest: la misma disciplina, otra sintaxis |
-| _Semana 6_ | _Integración y extremo a extremo_ |
-| 14/09 | Pruebas de integración sobre FastAPI: fixtures, base de datos y dobles de prueba. Datos sintéticos, minimización, aislamiento y eliminación verificable bajo la Ley 21.719 |
-| 15/09 | Pruebas E2E con Playwright. El agente como usuario que entra por primera vez: exploratorio asistido y hallazgos de usabilidad |
-| 16/09 | Plan de pruebas según ISO/IEC/IEEE 29119: estructura, objetivos y trazabilidad. Derechos y obligaciones de protección de datos convertidos en requisitos, riesgos y casos de prueba |
-| _Semana 7_ | _Automatización y pruebas no funcionales_ |
-| 21/09 | **Evaluación Parcial 2 (Unidad 2):** el mismo proyecto con su plan de pruebas y su suite automatizada — casos diseñados con técnicas formales, y pruebas unitarias, de integración y extremo a extremo ejecutándose |
-| 22/09 | Pruebas de regresión e integración continua con GitHub Actions. Pruebas inestables (flaky) y cómo tratarlas |
-| 23/09 | Pruebas no funcionales I: rendimiento, carga y escalabilidad |
-| _Semana 8_ | _Cierre del módulo_ |
-| 28/09 | Pruebas no funcionales II: seguridad, privacidad, usabilidad, accesibilidad y portabilidad. Ley 21.719, decisiones automatizadas y respuesta frente a incidentes |
-| 29/09 | Integración final: pipeline completo en verde y preparación de la defensa |
-| 30/09 | **Evaluación Final (Unidad 2):** el proyecto cerrado con integración continua, pruebas de regresión y no funcionales; defensa con el pipeline ejecutándose en vivo |
+| Día | Clase | Contenido |
+|-----|-------|-----------|
+| _Semana del 07/09_ | | _Diseño de casos de prueba_ |
+| 09/09 | 09 | Diseño de casos: partición de equivalencia, análisis de valores límite y tablas de decisión |
+| _Semana del 14/09_ | | _De los casos al código_ |
+| 14/09 | 10 | Caja negra, caja blanca y cobertura: por qué el 100% de cobertura no prueba nada. Generar casos con IA y auditarlos críticamente |
+| 15/09 | 11 | TDD con `pytest`: el ciclo rojo-verde-refactor completo sobre el proyecto, y su traducción a Vitest en TypeScript |
+| 16/09 | 12 | Pruebas de integración sobre FastAPI: fixtures, base de datos y dobles de prueba. Datos sintéticos, minimización, aislamiento y eliminación verificable bajo la Ley 21.719 |
+| _Semana del 21/09_ | | _Extremo a extremo y plan de pruebas_ |
+| 21/09 | 13 | Pruebas E2E con Playwright. El agente como usuario que entra por primera vez: exploratorio asistido y hallazgos de usabilidad |
+| 22/09 | 14 | Plan de pruebas según ISO/IEC/IEEE 29119: estructura, objetivos y trazabilidad. Derechos y obligaciones de protección de datos convertidos en requisitos, riesgos y casos de prueba |
+| 23/09 | — | **Evaluación Parcial 2 (Unidad 2):** el mismo proyecto con su plan de pruebas y su suite automatizada — casos diseñados con técnicas formales, y pruebas unitarias, de integración y extremo a extremo ejecutándose |
+| _Semana del 28/09_ | | _Cierre del módulo_ |
+| 28/09 | 15 | Pruebas de regresión e integración continua con GitHub Actions. Pruebas inestables (flaky) y cómo tratarlas. Pipeline completo en verde sobre el proyecto |
+| 29/09 | 16 | Pruebas no funcionales: rendimiento, carga y escalabilidad; seguridad, privacidad, usabilidad, accesibilidad y portabilidad. Ley 21.719, decisiones automatizadas y respuesta frente a incidentes |
+| 30/09 | — | **Evaluación Final (Unidad 2):** el proyecto cerrado con integración continua, pruebas de regresión y no funcionales; defensa con el pipeline ejecutándose en vivo |
 
 ## Resultado Esperado del Módulo
 
