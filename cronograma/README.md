@@ -5,10 +5,10 @@
 - Período: 10 de agosto - 30 de septiembre de 2026
 - Horario: Lunes, Martes y Miércoles de 08:30 a 10:50
 - Planificado: 72 horas · 24 sesiones de 3 horas pedagógicas · 8 semanas
-- Realizado: 19 sesiones · 57 horas de docencia directa. Cinco sesiones no se realizaron (ausencia docente justificada del 17 al 19 de agosto; actividades de vinculación con el medio el 24 y el 26 de agosto)
+- Realizado: 18 sesiones · 54 horas de docencia directa. Seis sesiones no se realizaron (ausencia docente justificada del 17 al 19 de agosto; actividades de vinculación con el medio el 24 y el 26 de agosto; actividad externa en el Liceo Comercial el 2 de septiembre)
 - Modalidad: Presencial, laboratorio PC. Los estudiantes trabajan sobre su propio equipo
 - Unidades: UA1 Calidad y testing de software (27 h) · UA2 Desarrollo y ejecución de casos de prueba (30 h)
-- Evaluación: 3 sumativas prácticas e incrementales (1 en la Unidad 1, 2 en la Unidad 2), evaluadas por producto y desempeño con rúbrica. No hay pruebas escritas
+- Evaluación: 3 sumativas prácticas e incrementales (1 en la Unidad 1, 2 en la Unidad 2), evaluadas por producto y desempeño con rúbrica. No hay pruebas escritas. Las tres pautas se entregan al inicio y cada estudiante avanza a su propio ritmo: no se rinden en sesión de clase, sino que se envían en la fecha de corte y se corrigen fuera del aula
 - Stack de práctica: Python (`uv`, `ruff`, `pyrefly`, `pytest`, FastAPI) como columna vertebral, TypeScript (Vitest, Playwright) en la capa de interfaz, y GitHub Actions como integración continua
 - Proyecto transversal: cada estudiante hace confiable su propio sistema a lo largo del módulo. Las tres evaluaciones son incrementos del mismo repositorio, que al cierre queda como pieza de portafolio: un servicio con tipado estricto, pirámide de pruebas completa y pipeline en verde
 
@@ -17,9 +17,9 @@
 
 ## Ajuste del Cronograma
 
-De las nueve sesiones comprendidas entre el 10 y el 26 de agosto se realizaron cuatro. Las cinco
-restantes no se recuperan como sesiones adicionales, porque el período del módulo no se extiende:
-los contenidos se redistribuyen en las quince sesiones que quedan, del 31 de agosto al 30 de
+De las nueve sesiones comprendidas entre el 10 y el 26 de agosto se realizaron cuatro, y el 2 de
+septiembre se perdió una más. Ninguna se recupera como sesión adicional, porque el período del
+módulo no se extiende: los contenidos se redistribuyen en las sesiones que quedan hasta el 30 de
 septiembre.
 
 El ajuste se resolvió fusionando cinco pares de sesiones, en todos los casos donde dos contenidos
@@ -34,9 +34,24 @@ profundidad:
 | Regresión e integración continua + integración final del pipeline | Clase 15 |
 | Pruebas no funcionales I (rendimiento) + II (seguridad, privacidad, usabilidad, accesibilidad) | Clase 16 |
 
-Las tres evaluaciones sumativas se mantienen, con sus fechas corridas: la primera pasa del 1 al 8 de
-septiembre, la segunda del 21 al 23 de septiembre, y la final se conserva el 30 de septiembre. El
-carácter incremental del proyecto no cambia: las tres siguen siendo versiones del mismo repositorio.
+Las tres evaluaciones sumativas se mantienen y siguen siendo versiones del mismo repositorio. Lo
+que cambió es su forma de entrega: las pautas ya están en manos de los estudiantes y cada uno avanza
+a su propio ritmo, de modo que **ninguna evaluación ocupa sesión de clase**. Lo que se fija es la
+fecha de corte en que cada estudiante envía su avance, que se corrige fuera del aula:
+
+| Evaluación | Fecha de corte | Qué se envía |
+| --- | --- | --- |
+| Parcial 1 (Unidad 1) | Lunes 21 de septiembre | La línea base de calidad del proyecto |
+| Parcial 2 (Unidad 2) | Viernes 25 de septiembre | El plan de pruebas y la suite automatizada |
+| Final (Unidad 2) | Miércoles 30 de septiembre | El proyecto cerrado, con su pipeline en verde |
+
+Las tres fechas son de envío, no de sesión. La primera y la última caen en días de clase, lo que
+permite recordarlas esa misma mañana; la segunda cae en viernes para dejar el fin de semana de
+corrección antes de la recta final.
+
+Al liberar los tres días que las evaluaciones ocupaban en la versión anterior, las sesiones
+recuperadas absorben la pérdida del 2 de septiembre sin necesidad de fusionar ningún par nuevo, y
+todavía dejan dos sesiones al cierre para trabajo supervisado sobre el proyecto.
 
 ## Enfoque del Módulo
 
@@ -96,10 +111,10 @@ La guía de referencia del módulo se encuentra en
 | _Semana del 31/08_ | | _Pruebas estáticas y revisión_ |
 | 31/08 | 05 | Software probado vs. no probado, con indicadores verificables sobre un proyecto real. Pruebas estáticas: el tipado como primera prueba (`pyrefly`) y el linter como segunda barrera (`ruff`) |
 | 01/09 | 06 | Revisión de código como prueba estática. Review adversarial entre modelos: un agente escribe, otro audita, el estudiante arbitra |
-| 02/09 | 07 | Ciclo de vida del producto y pruebas asociadas a cada etapa. Estándares ISO/IEC 25010 e ISO/IEC/IEEE 29119 y la documentación de pruebas que exigen. Privacidad por diseño, finalidad y evidencia de cumplimiento desde la definición del producto |
+| 02/09 | — | Actividad externa en el Liceo Comercial |
 | _Semana del 07/09_ | | _Auditoría de calidad_ |
-| 07/09 | 08 | Taller integrador: auditoría de verificación y validación aplicada al proyecto propio |
-| 08/09 | — | **Evaluación Parcial 1 (Unidad 1):** línea base de calidad del proyecto — tipado estricto y análisis estático en verde, primeras pruebas que documentan el comportamiento actual, y hallazgos de la auditoría ISO/IEC 25010 evidenciados en el repositorio |
+| 07/09 | 07 | Ciclo de vida del producto y pruebas asociadas a cada etapa. Estándares ISO/IEC 25010 e ISO/IEC/IEEE 29119 y la documentación de pruebas que exigen. Privacidad por diseño, finalidad y evidencia de cumplimiento desde la definición del producto |
+| 08/09 | 08 | Taller integrador: cómo se conduce una auditoría de verificación y validación de principio a fin, qué se mira en cada paso y qué evidencia debe quedar registrada |
 
 ### Unidad 2: Desarrollo y Ejecución de Casos de Prueba (30 horas)
 **Foco:** Diseñar, escribir y automatizar pruebas reales sobre un proyecto propio, hasta sostener un plan de pruebas ejecutándose solo en integración continua.
@@ -114,12 +129,14 @@ La guía de referencia del módulo se encuentra en
 | 16/09 | 12 | Pruebas de integración sobre FastAPI: fixtures, base de datos y dobles de prueba. Datos sintéticos, minimización, aislamiento y eliminación verificable bajo la Ley 21.719 |
 | _Semana del 21/09_ | | _Extremo a extremo y plan de pruebas_ |
 | 21/09 | 13 | Pruebas E2E con Playwright. El agente como usuario que entra por primera vez: exploratorio asistido y hallazgos de usabilidad |
+| **21/09** | — | **Fecha de corte de la Evaluación Parcial 1** (envío, no ocupa la sesión) |
 | 22/09 | 14 | Plan de pruebas según ISO/IEC/IEEE 29119: estructura, objetivos y trazabilidad. Derechos y obligaciones de protección de datos convertidos en requisitos, riesgos y casos de prueba |
-| 23/09 | — | **Evaluación Parcial 2 (Unidad 2):** el mismo proyecto con su plan de pruebas y su suite automatizada — casos diseñados con técnicas formales, y pruebas unitarias, de integración y extremo a extremo ejecutándose |
+| 23/09 | 15 | Pruebas de regresión e integración continua con GitHub Actions. Pruebas inestables (flaky) y cómo tratarlas. Pipeline completo en verde sobre el proyecto |
+| **25/09** | — | **Fecha de corte de la Evaluación Parcial 2** (viernes, sin sesión) |
 | _Semana del 28/09_ | | _Cierre del módulo_ |
-| 28/09 | 15 | Pruebas de regresión e integración continua con GitHub Actions. Pruebas inestables (flaky) y cómo tratarlas. Pipeline completo en verde sobre el proyecto |
-| 29/09 | 16 | Pruebas no funcionales: rendimiento, carga y escalabilidad; seguridad, privacidad, usabilidad, accesibilidad y portabilidad. Ley 21.719, decisiones automatizadas y respuesta frente a incidentes |
-| 30/09 | — | **Evaluación Final (Unidad 2):** el proyecto cerrado con integración continua, pruebas de regresión y no funcionales; defensa con el pipeline ejecutándose en vivo |
+| 28/09 | 16 | Pruebas no funcionales: rendimiento, carga y escalabilidad; seguridad, privacidad, usabilidad, accesibilidad y portabilidad. Ley 21.719, decisiones automatizadas y respuesta frente a incidentes |
+| 29/09 | — | Taller de cierre: trabajo supervisado sobre el proyecto, con el docente disponible para resolver lo que falte antes del corte final |
+| 30/09 | — | Cierre del módulo. **Fecha de corte de la Evaluación Final**: el proyecto con integración continua, pruebas de regresión y no funcionales, y su pipeline en verde |
 
 ## Resultado Esperado del Módulo
 

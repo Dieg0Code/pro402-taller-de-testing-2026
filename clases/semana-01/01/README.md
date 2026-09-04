@@ -449,11 +449,14 @@ prueban algo que importa.
 Las tres evaluaciones no son tres trabajos distintos: son **tres versiones del mismo proyecto**, cada
 vez más confiable.
 
-| Entrega | Fecha | Qué se entrega |
+Las tres pautas se entregan al inicio del módulo y avanzas a tu propio ritmo: ninguna se rinde en
+clase. Lo que está fijado es la fecha de corte en que envías tu avance.
+
+| Entrega | Fecha de corte | Qué se envía |
 | --- | --- | --- |
-| **Evaluación 1** | 1 de septiembre | Creas tu proyecto y le montas su línea base de calidad: tipado estricto, análisis estático sin advertencias, primeras pruebas y los hallazgos de tu propia auditoría |
-| **Evaluación 2** | 21 de septiembre | El mismo proyecto con su plan de pruebas y su suite automatizada funcionando |
-| **Evaluación final** | 30 de septiembre | El mismo proyecto con integración continua, pruebas de regresión y no funcionales, defendido con el pipeline ejecutándose en vivo |
+| **Evaluación 1** | Lunes 21 de septiembre | Tu proyecto con su línea base de calidad: tipado estricto, análisis estático sin advertencias, primeras pruebas y los hallazgos de tu propia auditoría |
+| **Evaluación 2** | Viernes 25 de septiembre | El mismo proyecto con su plan de pruebas y su suite automatizada funcionando |
+| **Evaluación final** | Miércoles 30 de septiembre | El mismo proyecto con integración continua, pruebas de regresión y no funcionales, con su pipeline en verde |
 
 Trabajar sobre un proyecto único durante ocho semanas tiene una razón pedagógica: **el testing solo
 se entiende cuando el sistema crece**. Escribir una prueba aislada es un ejercicio; ver esa misma
