@@ -122,11 +122,11 @@ La guía de referencia del módulo se encuentra en
 | Día | Clase | Contenido |
 |-----|-------|-----------|
 | _Semana del 07/09_ | | _Diseño de casos de prueba_ |
-| 09/09 | 09 | Diseño de casos: partición de equivalencia, análisis de valores límite y tablas de decisión |
+| 09/09 | 09 | Diseño de casos: partición de equivalencia, análisis de valores límite y tablas de decisión. De la tabla al código: la aserción, la parametrización y el vocabulario para leer una prueba escrita por otro |
 | _Semana del 14/09_ | | _De los casos al código_ |
-| 14/09 | 10 | Caja negra, caja blanca y cobertura: por qué el 100% de cobertura no prueba nada. Generar casos con IA y auditarlos críticamente |
+| 14/09 | 10 | Caja negra, caja blanca y cobertura: por qué el 100% de cobertura no prueba nada. Dobles de prueba y el mecanismo por el que una suite mockeada llega al 100% sin verificar nada. Generar casos con IA y auditarlos críticamente |
 | 15/09 | 11 | TDD con `pytest`: el ciclo rojo-verde-refactor completo sobre el proyecto, y su traducción a Vitest en TypeScript |
-| 16/09 | 12 | Pruebas de integración sobre FastAPI: fixtures, base de datos y dobles de prueba. Datos sintéticos, minimización, aislamiento y eliminación verificable bajo la Ley 21.719 |
+| 16/09 | 12 | Pruebas de integración sobre FastAPI: fixtures, base de datos y dónde un doble deja de ser legítimo. Datos sintéticos, minimización, aislamiento y eliminación verificable bajo la Ley 21.719 |
 | _Semana del 21/09_ | | _Extremo a extremo y plan de pruebas_ |
 | 21/09 | 13 | Pruebas E2E con Playwright. El agente como usuario que entra por primera vez: exploratorio asistido y hallazgos de usabilidad |
 | **21/09** | — | **Fecha de corte de la Evaluación Parcial 1** (envío, no ocupa la sesión) |
