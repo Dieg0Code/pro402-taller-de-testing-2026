@@ -25,3 +25,6 @@
 .DS_Store
 Thumbs.db
 ~$*
+
+# Contexto interno de planificación (no se distribuye)
+**/interno_*.md
