@@ -3,16 +3,16 @@
 ## Información General
 
 - Período: 10 de agosto - 30 de septiembre de 2026
-- Horario: Lunes, Martes y Miércoles de 08:30 a 10:50. Entre el 21 y el 29 de septiembre se suma un segundo bloque de 11:00 a 13:15
+- Horario: Lunes, Martes y Miércoles de 08:30 a 10:50. El martes 22, el lunes 28 y el martes 29 de septiembre se suma un segundo bloque de 11:00 a 13:15, en el Laboratorio de Redes
 - Modalidad: Presencial, laboratorio PC. Los estudiantes trabajan sobre su propio equipo
-- Unidades: UA1 Calidad y testing de software (30 h) · UA2 Desarrollo y ejecución de casos de prueba (30 h)
+- Unidades: UA1 Calidad y testing de software (24 h) · UA2 Desarrollo y ejecución de casos de prueba (30 h)
 - Evaluación: 3 sumativas prácticas e incrementales (1 en la Unidad 1, 2 en la Unidad 2), evaluadas por producto y desempeño con rúbrica. No hay pruebas escritas
 - Stack de práctica: Python (`uv`, `ruff`, `pyrefly`, `pytest`, FastAPI) como columna vertebral, TypeScript (Vitest, Playwright) en la capa de interfaz, y GitHub Actions como integración continua
 - Proyecto transversal: cada estudiante hace confiable su propio sistema a lo largo del módulo. Las tres evaluaciones son incrementos del mismo repositorio, que al cierre queda como pieza de portafolio: un servicio con tipado estricto, pirámide de pruebas completa y pipeline en verde
 
 > Entre el 14 y el 16 de septiembre no hay sesiones: la semana de fiestas patrias es receso
-> institucional. Las clases se retoman el lunes 21 y, desde ese día, cada jornada lleva dos
-> bloques: 08:30 a 10:50 y 11:00 a 13:15.
+> institucional. Las clases se retoman el lunes 21. El martes 22, el lunes 28 y el martes 29
+> hay un segundo bloque de 11:00 a 13:15, en el Laboratorio de Redes.
 
 ## Evaluación
 
@@ -67,7 +67,7 @@ El módulo trabaja con una guía maestra de la Ley 21.719 como referencia.
 
 ## Cronograma Detallado
 
-### Unidad 1: Calidad y Testing de Software (30 horas)
+### Unidad 1: Calidad y Testing de Software (24 horas)
 **Foco:** Qué significa que un software "funcione", cómo se mide contra estándares y cómo se detectan defectos antes de ejecutar una sola línea.
 
 | Día | Bloque | Clase | Contenido |
@@ -85,9 +85,6 @@ El módulo trabaja con una guía maestra de la Ley 21.719 como referencia.
 | 07/09 | 08:30–10:50 | 07 | Ciclo de vida del producto y pruebas asociadas a cada etapa. Estándares ISO/IEC 25010 e ISO/IEC/IEEE 29119 y la documentación de pruebas que exigen. Privacidad por diseño, finalidad y evidencia de cumplimiento desde la definición del producto |
 | 08/09 | 08:30–10:50 | 08 | Taller integrador: cómo se conduce una auditoría de verificación y validación de principio a fin, qué se mira en cada paso y qué evidencia debe quedar registrada |
 
-Dos contenidos de esta unidad se retoman en septiembre, en el bloque de 11:00 a 13:15: las pruebas
-estáticas el lunes 21 y el ciclo de vida con sus estándares el miércoles 23.
-
 ### Unidad 2: Desarrollo y Ejecución de Casos de Prueba (30 horas)
 **Foco:** Diseñar, escribir y automatizar pruebas reales sobre un proyecto propio, hasta sostener un plan de pruebas ejecutándose solo en integración continua.
 
@@ -98,12 +95,10 @@ estáticas el lunes 21 y el ciclo de vida con sus estándares el miércoles 23.
 | _Semana del 14/09_ | | | _Receso institucional de fiestas patrias: no hay sesiones_ |
 | _Semana del 21/09_ | | | _De los casos al código, y del código a la interfaz_ |
 | 21/09 | 08:30–10:50 | 10 | Caja negra, caja blanca y cobertura: por qué el 100% de cobertura no prueba nada. Dobles de prueba y el mecanismo por el que una suite mockeada llega al 100% sin verificar nada. Generar casos con IA y auditarlos críticamente |
-| 21/09 | 11:00–13:15 | — | Pruebas estáticas, retomadas de la Unidad 1: el tipado como primera prueba (`pyrefly`) y el linter como segunda barrera (`ruff`), sobre el proyecto ya instrumentado |
 | **21/09** | — | — | **Fecha de corte de la Evaluación Parcial 1** (envío, no ocupa sesión) |
 | 22/09 | 08:30–10:50 | 11 | TDD con `pytest`: el ciclo rojo-verde-refactor completo sobre el proyecto, y su traducción a Vitest en TypeScript |
 | 22/09 | 11:00–13:15 | 12 | Pruebas de integración sobre FastAPI: fixtures, base de datos y dónde un doble deja de ser legítimo. Datos sintéticos, minimización, aislamiento y eliminación verificable bajo la Ley 21.719 |
 | 23/09 | 08:30–10:50 | 13 | Pruebas E2E con Playwright. El agente como usuario que entra por primera vez: exploratorio asistido y hallazgos de usabilidad |
-| 23/09 | 11:00–13:15 | — | Ciclo de vida y estándares, retomados de la Unidad 1: qué prueba corresponde a cada etapa y qué documentación exigen ISO/IEC 25010 e ISO/IEC/IEEE 29119, como antesala del plan de pruebas |
 | **25/09** | — | — | **Fecha de corte de la Evaluación Parcial 2** (viernes, sin sesión) |
 | _Semana del 28/09_ | | | _Plan de pruebas, automatización y cierre_ |
 | 28/09 | 08:30–10:50 | 14 | Plan de pruebas según ISO/IEC/IEEE 29119: estructura, objetivos y trazabilidad. Derechos y obligaciones de protección de datos convertidos en requisitos, riesgos y casos de prueba |
