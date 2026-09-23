@@ -14,6 +14,15 @@
 **/ppt/rendered*/
 **/ppt/montage*.png
 
+# Archivos temporales de revisión y render
+/.tmp/
+/tmp/
+
+# Material nominal de corrección: nombre, repositorio y nota de cada estudiante.
+# No se distribuye, igual que las rúbricas. Las plantillas sí se versionan.
+/evaluaciones/
+/output/
+
 # Entregables comprimidos (no versionar)
 /entregables/
 *.rar
