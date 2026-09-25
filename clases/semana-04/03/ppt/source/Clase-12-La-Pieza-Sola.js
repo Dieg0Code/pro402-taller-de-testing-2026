@@ -515,7 +515,7 @@ function slideCover() {
     }
   );
   rule(slide, M, 5.46, CW, NAVY_RULE, 1);
-  addText(slide, "Martes 22 de septiembre de 2026 · 11:00 – 13:15 · Laboratorio de Redes", {
+  addText(slide, "Miércoles 23 de septiembre de 2026 · 08:30 – 10:50 · Laboratorio PC", {
     x: M,
     y: 5.66,
     w: 7.4,
@@ -823,10 +823,10 @@ function slideMap() {
   );
 
   const bloques = [
-    ["1", "11:10", "Lo que se rompe al juntar", "Una función verificada falla igual cuando la alcanza una solicitud HTTP"],
-    ["2", "11:40", "Quién prepara el mundo", "Tres pruebas, tres órdenes de ejecución, tres resultados distintos"],
-    ["3", "12:15", "Qué datos pueden existir", "Proporcionalidad aplicada a la fixture y borrado que se comprueba"],
-    ["4", "12:45", "Dónde el doble deja de valer", "El mismo defecto: rojo con la base real, verde con la base sustituida"],
+    ["1", "08:40", "Lo que se rompe al juntar", "Una función verificada falla igual cuando la alcanza una solicitud HTTP"],
+    ["2", "09:10", "Quién prepara el mundo", "Tres pruebas, tres órdenes de ejecución, tres resultados distintos"],
+    ["3", "09:45", "Qué datos pueden existir", "Proporcionalidad aplicada a la fixture y borrado que se comprueba"],
+    ["4", "10:15", "Dónde el doble deja de valer", "El mismo defecto: rojo con la base real, verde con la base sustituida"],
   ];
 
   bloques.forEach(([numero, hora, titulo, detalle], index) => {
@@ -876,7 +876,7 @@ function slideMap() {
   });
 
   rect(slide, M, 5.5, CW, 0.5, NAVY_CHIP);
-  addText(slide, "Pausa: 12:05 – 12:15 · Cierre: 13:05 – 13:15 · Corte de la Evaluación Parcial 2: viernes 25 de septiembre", {
+  addText(slide, "Pausa: 09:35 – 09:45 · Cierre: 10:40 – 10:50 · Corte de la Evaluación Parcial 2: viernes 25 de septiembre", {
     x: M + 0.28,
     y: 5.61,
     w: CW - 0.56,
@@ -3180,7 +3180,7 @@ function slideBlockThreeAnswers() {
 
 function slideBlockFourDivider() {
   const { slide } = createSlide("dark");
-  addKicker(slide, M, 1.5, "Bloque 4 de 4 · 20 minutos", C.gold, 5);
+  addKicker(slide, M, 1.5, "Bloque 4 de 4 · 25 minutos", C.gold, 5);
   addText(slide, "Dónde un doble deja de ser legítimo", {
     x: M,
     y: 1.98,

@@ -1,9 +1,9 @@
 # Clase 12 - Semana 04 - La pieza sola no es el sistema: integración, la fixture que decide qué datos existen y el doble que deja de ser legítimo
 
 - **Unidad:** 02 · Desarrollo y Ejecución de Casos de Prueba
-- **Fecha:** Martes 22 de septiembre de 2026
-- **Duración:** 3 horas pedagógicas · 135 minutos (11:00 - 13:15)
-- **Modalidad:** Presencial en Laboratorio de Redes
+- **Fecha:** Miércoles 23 de septiembre de 2026
+- **Duración:** 3 horas pedagógicas · 140 minutos (08:30 - 10:50)
+- **Modalidad:** Presencial en Laboratorio PC
 - **Docente:** Diego Obando
 - **Marco de referencia:** FastAPI y su cliente de pruebas `TestClient` · `pytest`: *fixtures*, `conftest.py` y alcance · SQLite como base de datos de prueba · ISO/IEC/IEEE 29119-3:2021 · requisitos de datos de prueba (8.5) y de ambiente de prueba (8.6) · Ley 21.719 · minimización y eliminación verificable
 
@@ -91,13 +91,13 @@ cuando se le pide una prueba de integración.
 
 | Horario | Sección | Propósito |
 |---------|---------|-----------|
-| 11:00 - 11:10 | Encuadre | Retomar el límite con el que cerró el bloque de la mañana —todo lo verificado hasta ahora se verificó sobre piezas aisladas— y plantear la pregunta que ocupa la sesión: qué evidencia demuestra que esas piezas funcionan juntas. Recordar la fecha de corte de la segunda evaluación parcial. |
-| 11:10 - 11:40 | Bloque 1 | Qué separa una prueba de integración de una unitaria, y la primera ejecución sobre la API del proyecto: una función ya verificada, alcanzada por una solicitud HTTP, falla por una razón que ninguna prueba unitaria podía revelar. El defecto de contrato. |
-| 11:40 - 12:05 | Bloque 2 | La *fixture* —la preparación reutilizable de lo que una prueba necesita, junto con su desmontaje— como la pieza que administra el costo de integrar de verdad. Y la demostración de por qué hace falta: dos pruebas que pasan por separado y fallan juntas. |
-| 12:05 - 12:15 | Pausa | Descanso técnico. |
-| 12:15 - 12:45 | Bloque 3 | Qué datos pueden existir dentro de una prueba. Datos sintéticos frente a copia de datos reales, minimización aplicada al contenido de la fixture, y el desmontaje convertido en eliminación verificable mediante una prueba que la comprueba. |
-| 12:45 - 13:05 | Bloque 4 | Hasta dónde es legítimo sustituir una dependencia en este nivel. El criterio, su demostración —la misma prueba pasa con la base sustituida y falla con la base real, y el defecto era real— y el sesgo de un agente al que se le pide una prueba de integración. |
-| 13:05 - 13:15 | Cierre | Consolidar qué afirma cada nivel de prueba y qué no alcanza a afirmar, y dejar planteado lo que sigue faltando: nadie ha comprobado todavía el sistema por donde lo usa una persona. |
+| 08:30 - 08:40 | Encuadre | Retomar el límite con el que cerró la sesión anterior —todo lo verificado hasta ahora se verificó sobre piezas aisladas— y plantear la pregunta que ocupa la sesión: qué evidencia demuestra que esas piezas funcionan juntas. Recordar la fecha de corte de la segunda evaluación parcial. |
+| 08:40 - 09:10 | Bloque 1 | Qué separa una prueba de integración de una unitaria, y la primera ejecución sobre la API del proyecto: una función ya verificada, alcanzada por una solicitud HTTP, falla por una razón que ninguna prueba unitaria podía revelar. El defecto de contrato. |
+| 09:10 - 09:35 | Bloque 2 | La *fixture* —la preparación reutilizable de lo que una prueba necesita, junto con su desmontaje— como la pieza que administra el costo de integrar de verdad. Y la demostración de por qué hace falta: dos pruebas que pasan por separado y fallan juntas. |
+| 09:35 - 09:45 | Pausa | Descanso técnico. |
+| 09:45 - 10:15 | Bloque 3 | Qué datos pueden existir dentro de una prueba. Datos sintéticos frente a copia de datos reales, minimización aplicada al contenido de la fixture, y el desmontaje convertido en eliminación verificable mediante una prueba que la comprueba. |
+| 10:15 - 10:40 | Bloque 4 | Hasta dónde es legítimo sustituir una dependencia en este nivel. El criterio, su demostración —la misma prueba pasa con la base sustituida y falla con la base real, y el defecto era real— y el sesgo de un agente al que se le pide una prueba de integración. |
+| 10:40 - 10:50 | Cierre | Consolidar qué afirma cada nivel de prueba y qué no alcanza a afirmar, y dejar planteado lo que sigue faltando: nadie ha comprobado todavía el sistema por donde lo usa una persona. |
 
 > Se trabaja sobre el mismo proyecto de reserva de laboratorio de las sesiones anteriores, con dos
 > piezas nuevas. La primera es una API HTTP de un solo endpoint, que recibe una solicitud de reserva
@@ -1364,14 +1364,14 @@ punto 5.
 
 # BLOQUE 4: Dónde un doble deja de ser legítimo
 
-- **Duración:** 20 minutos
+- **Duración:** 25 minutos
 - **Objetivo del bloque:** fijar el criterio que decide qué se puede sustituir en una prueba de
   integración y qué no, y comprobar ejecutando qué ocurre cuando se cruza ese límite. Al finalizar,
   el estudiante debe poder mirar una prueba que se presenta como de integración y decir si integra
   algo o si es una prueba unitaria con otro nombre.
 - **Modalidad:** exposición con ejecución en vivo y comparación de dos ejecuciones del mismo caso.
-- **Ritmo sugerido:** 4 minutos para el criterio, 5 para el defecto con la base real, 5 para la misma
-  comprobación con la base sustituida, 3 para lo que el doble registró y 3 para el sesgo del agente y
+- **Ritmo sugerido:** 5 minutos para el criterio, 6 para el defecto con la base real, 6 para la misma
+  comprobación con la base sustituida, 4 para lo que el doble registró y 4 para el sesgo del agente y
   el ejercicio.
 
 ## Desarrollo
@@ -1632,7 +1632,7 @@ colaboración.
 
 ## 2. La afirmación que se puede sostener
 
-Al terminar la sesión de la mañana, lo defendible era sobre cada pieza por separado: qué comprueba,
+Al terminar la sesión anterior, lo defendible era sobre cada pieza por separado: qué comprueba,
 que se la vio fallar antes de existir, qué cambios detecta. Hoy se le agrega una segunda capa, y las
 dos juntas son lo que se le pide a un profesional:
 
