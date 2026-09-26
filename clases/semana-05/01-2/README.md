@@ -1040,7 +1040,7 @@ completa, con las pruebas de la mañana y las dos de este bloque, en los tres:
   18 passed (1.1m)
 ```
 
-Las mismas seis pruebas por navegador, y el mismo resultado en los tres. La única que falla es la del
+Las mismas siete pruebas por navegador, y el mismo resultado en los tres. La única que falla es la del
 `[object Object]`, y en los tres navegadores recibe exactamente el mismo texto. Del lado del servidor,
 la suite de `pytest` —las 20 pruebas de siempre, la de concurrencia del bloque 1 y las dos de seguridad
 del bloque 2— se ejecutó con dos versiones de Python:
