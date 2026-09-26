@@ -590,8 +590,8 @@ function slideOpeningQuestion() {
   addHeader(
     slide,
     "Para abrir",
-    "Veinte pruebas en verde. ¿Qué quedó sin probar?",
-    "El proyecto llega con todo lo que dejaron las cinco sesiones anteriores. La suite de pytest se ejecuta completa y pasa.",
+    "Veintitrés pruebas. ¿Qué quedó sin probar?",
+    "La única roja es la prueba de suplantación del lunes, que quedó así a propósito.",
     false,
     { subtitleH: 0.38, titleFontSize: 27 }
   );
@@ -605,8 +605,8 @@ function slideOpeningQuestion() {
     fontSize: 10.4,
     lines: [
       { text: "> uv run pytest -q" },
-      { text: "....................            [100%]", kind: "muted" },
-      { text: "20 passed in 1.80s" },
+      { text: "......................F         [100%]", kind: "muted" },
+      { text: "1 failed, 22 passed, 1 warning in 1.94s" },
     ],
   });
 
@@ -617,7 +617,7 @@ function slideOpeningQuestion() {
     6.3,
     1.18,
     "Suite",
-    "Las pruebas automatizadas que se ejecutan juntas, con un solo comando. El proyecto tiene dos: la de pytest, con veinte, y la de la interfaz, que corre con otro ejecutor.",
+    "Las pruebas automatizadas que se ejecutan juntas, con un solo comando. El proyecto tiene dos: la de pytest, con veintitrés, y la de la interfaz, que corre con otro ejecutor.",
     AZUL
   );
 
@@ -630,7 +630,7 @@ function slideOpeningQuestion() {
     5.44,
     1.18,
     "Una suite completa",
-    "Cubre todas las reglas del sistema y todos sus bordes. Termina informando veinte pruebas en verde.",
+    "Cubre todas las reglas del sistema y todos sus bordes. Termina con veintidós en verde y el rojo que ya se conoce.",
     VERDE
   );
 
@@ -641,13 +641,13 @@ function slideOpeningQuestion() {
     5.44,
     1.18,
     "Una suite a la que le falta la mitad",
-    "Si alguien borrara ocho de las veinte, informaría doce en verde. También sería verde.",
+    "Si alguien borrara ocho de las veintidós que pasan, informaría catorce en verde y el mismo rojo.",
     ROJO
   );
 
   addText(
     slide,
-    "El color no cambia cuando faltan pruebas. Solo cambia cuando las que hay fallan.",
+    "El resultado no cambia cuando faltan pruebas. Solo cambia cuando las que hay fallan.",
     {
       x: 7.18,
       y: 5.34,
@@ -1376,10 +1376,10 @@ function slideAgentPlan() {
   });
 
   const cifras = [
-    ["392", "líneas de documento", AZUL],
+    ["365", "líneas de documento", AZUL],
     ["10", "subcláusulas cubiertas", AZUL],
-    ["8", "elementos de prueba", VERDE],
-    ["13", "riesgos valorados", ROJO],
+    ["6", "elementos de prueba", VERDE],
+    ["16", "riesgos valorados", ROJO],
   ];
   cifras.forEach(([numero, glosa, color], index) => {
     const x = 7.18 + (index % 2) * 2.78;
@@ -1406,16 +1406,16 @@ function slideAgentPlan() {
     });
   });
 
-  addKicker(slide, M, 4.32, "Su registro de riesgos · las cuatro entradas de nivel más alto", C.red, 7);
+  addKicker(slide, M, 4.3, "Su registro de riesgos de producto · nivel = probabilidad × impacto, cada uno de 1 a 3", C.red, 11);
 
   const columnas = [1.02, 8.31, 0.62, 0.62, 1.32];
   const encabezados = ["ID", "Riesgo de producto identificado por el agente", "P", "I", "Nivel"];
   let x = M;
   encabezados.forEach((titulo, index) => {
-    rect(slide, x, 4.6, columnas[index], 0.3, NAVY_CHIP);
+    rect(slide, x, 4.56, columnas[index], 0.3, NAVY_CHIP);
     addText(slide, titulo.toUpperCase(), {
       x: x + 0.12,
-      y: 4.66,
+      y: 4.62,
       w: columnas[index] - 0.24,
       h: 0.2,
       fontSize: 8.8,
@@ -1428,20 +1428,21 @@ function slideAgentPlan() {
   });
 
   const riesgos = [
-    ["RP-01", "El cupo cuenta todas las reservas históricas del RUT: al llegar a tres queda bloqueado para siempre.", "3", "3", "9"],
-    ["RP-04", "La tabla no registra fecha, así que un bloque tomado queda tomado para siempre.", "3", "3", "9"],
-    ["RP-02", "Dos solicitudes simultáneas pueden tomar el mismo bloque: no hay restricción de unicidad.", "2", "3", "6"],
-    ["RP-05", "No se valida el formato del RUT ni del correo. Se aceptan datos basura o vacíos.", "3", "2", "6"],
+    ["RP1", "Suplantación: el RUT no se verifica, así que cualquiera puede agotar la cuota de otra persona.", "3", "3", "9"],
+    ["RP2", "La cuota no es semanal: reservas_de cuenta todas las reservas históricas del RUT.", "3", "2", "6"],
+    ["RP3", "Doble reserva o bloqueo bajo concurrencia: una espera larga podría producir un error 500.", "2", "3", "6"],
+    ["RP4", "Mensaje ilegible: si falta un campo, la pantalla puede mostrar [object Object].", "3", "2", "6"],
+    ["RP7", "Formatos no validados: el RUT, el correo y el nombre vacío se aceptan sin control.", "3", "2", "6"],
   ];
   riesgos.forEach((fila, indexFila) => {
-    const y = 4.9 + indexFila * 0.32;
+    const y = 4.86 + indexFila * 0.3;
     let cx = M;
     fila.forEach((celda, index) => {
-      rect(slide, cx, y, columnas[index], 0.32, indexFila % 2 === 0 ? C.white : C.softNeutral);
+      rect(slide, cx, y, columnas[index], 0.3, indexFila % 2 === 0 ? C.white : C.softNeutral);
       const esNivel = index === 4;
       addText(slide, celda, {
         x: cx + 0.12,
-        y: y + 0.05,
+        y: y + 0.04,
         w: columnas[index] - 0.24,
         h: 0.22,
         fontSize: index === 1 ? 9.4 : 10.2,
@@ -1452,8 +1453,6 @@ function slideAgentPlan() {
       cx += columnas[index];
     });
   });
-
-  addFuente(slide, 6.22, "El nivel es el producto de probabilidad por impacto, en una escala de 1 a 3 que el propio agente definió en el documento.", { w: 11.2 });
 
   addTakeaway(slide, "Hay que decirlo de entrada: el plan es bueno.", { y: 6.5, h: 0.5 });
   validateSlide(slide, pptx);
@@ -1467,7 +1466,7 @@ function slideRiskVerified() {
   addHeader(
     slide,
     "Bloque 1 · comprobar antes de creer",
-    "El riesgo principal, convertido en prueba",
+    "Un riesgo del plan, convertido en prueba",
     "El requisito del proyecto dice «hasta 3 reservas por semana». Si eso es cierto, quien tuvo tres en semanas pasadas debe poder reservar hoy.",
     false,
     { subtitleH: 0.38 }
@@ -1478,7 +1477,7 @@ function slideRiskVerified() {
     y: 2.44,
     w: 6.72,
     h: 2.84,
-    title: "La prueba que convierte RP-01 en una pregunta con respuesta",
+    title: "La prueba que convierte RP2 en una pregunta con respuesta",
     fontSize: 9.8,
     lang: "python",
     code: [
@@ -1504,7 +1503,7 @@ function slideRiskVerified() {
     fontSize: 10.2,
     lines: [
       { text: "assert 409 == 201", kind: "muted" },
-      { text: "1 failed in 0.62s" },
+      { text: "1 failed, 1 warning in 0.86s" },
     ],
   });
 
@@ -1522,7 +1521,7 @@ function slideRiskVerified() {
 
   rect(slide, M, 5.3, CW, 0.78, C.warm);
   rect(slide, M, 5.3, 0.06, 0.78, ROJO);
-  addKicker(slide, M + 0.3, 5.4, "Y las veinte pruebas pasan igual", ROJO, 5);
+  addKicker(slide, M + 0.3, 5.4, "Y las veintidós que pasaban siguen pasando", ROJO, 6);
   addText(
     slide,
     "La regla recibe el conteo ya hecho y decide bien. Contar mal ocurre antes, y eso nadie lo probó.",
@@ -1561,8 +1560,8 @@ function slideTheC03Line() {
     2.44,
     CW,
     1.06,
-    "C-03 · Restricción: no existe un documento formal de requisitos. La base de prueba se deriva del código, de las constantes y de los nombres de las pruebas existentes.",
-    "Escrito por el propio agente, en su tabla de restricciones",
+    "RPy2 · Riesgo de proyecto: faltan requisitos formales. Las reglas se infieren del código y de los nombres de las pruebas.",
+    "Escrito por el propio agente, en su registro de riesgos de proyecto",
     ROJO
   );
 
@@ -1619,7 +1618,7 @@ function slideTheC03Line() {
 
   const ramas = [
     [M, "Si el nombre estaba bien elegido", "Acertó. Es lo que ocurrió aquí.", VERDE, C.white],
-    [M + 6.04, "Si el nombre estaba mal elegido", "El mismo riesgo, el mismo nivel 9, la misma redacción segura. Y equivocado.", ROJO, C.warm],
+    [M + 6.04, "Si el nombre estaba mal elegido", "El mismo riesgo, el mismo nivel 6, la misma redacción segura. Y equivocado.", ROJO, C.warm],
   ];
   ramas.forEach(([x, titulo, glosa, color, fondo]) => {
     rect(slide, x, 4.36, 5.85, 0.92, fondo);
@@ -1683,11 +1682,11 @@ function slideTheC03Line() {
 function slideBlockOneQuestions() {
   slideQuestions(1, "Tres preguntas antes de repartir el esfuerzo", [
     [
-      "La suite informa veinte pruebas en verde y el plan lista trece riesgos, cuatro de ellos altos. Un compañero concluye que las veinte pruebas están mal escritas. ¿Tiene razón?",
+      "La suite informa veintidós pruebas en verde y el plan lista dieciséis riesgos. Un compañero concluye que las veintidós están mal escritas. ¿Tiene razón?",
       "Revisa qué recibe la función del cupo como argumento y quién calcula ese argumento.",
     ],
     [
-      "El agente escribió que su base de prueba salió del código y de los nombres, y aun así acertó en el riesgo principal. Si el resultado fue correcto, ¿qué problema queda?",
+      "El agente escribió que su base de prueba salió del código y de los nombres, y aun así acertó en la cuota semanal. Si el resultado fue correcto, ¿qué problema queda?",
       "Piensa qué documento habría salido si la constante estuviera mal nombrada. Compáralo con el que salió.",
     ],
     [
@@ -1704,7 +1703,7 @@ function slideBlockOneAnswers() {
   slideAnswers(1, "Lo que tenía que aparecer", [
     [
       "No tiene razón",
-      "Las veinte están bien escritas. El defecto está antes de la función que prueban.",
+      "Las veintidós están bien escritas. El defecto está antes de la función que prueban.",
       "La prueba recibe el conteo ya hecho; contar mal ocurre un nivel más arriba.",
       "Culpar a la suite de no encontrar algo que en su nivel no puede ocurrir.",
     ],
@@ -1743,7 +1742,7 @@ function slideBlockTwoDivider() {
   rule(slide, M, 3.66, 4.2, C.gold, 2.4);
   addText(
     slide,
-    "Trece riesgos sobre la mesa y probarlos todos por igual no es una opción. Hace falta un criterio para repartir, y después medir si el esfuerzo que ya está invertido coincide con él.",
+    "Dieciséis riesgos sobre la mesa y probarlos todos por igual no es una opción. Hace falta un criterio para repartir, y después medir si el esfuerzo que ya está invertido coincide con él.",
     {
       x: M,
       y: 3.94,
@@ -1977,7 +1976,7 @@ function slideRiskBecameDefect() {
   addHeader(
     slide,
     "Bloque 2 · lo que cambia al ejecutar",
-    "RP-01 ya no es un riesgo",
+    "RP2 ya no es un riesgo",
     "Su probabilidad llegó a uno en el bloque anterior, cuando la prueba se ejecutó y falló.",
     false,
     { subtitleH: 0.38 }
@@ -2081,19 +2080,19 @@ function slideRiskBecameDefect() {
 
   addText(
     slide,
-    "Un registro de riesgos que después de un mes conserva las mismas trece filas es un registro que nadie ejecutó.",
+    "Y el agente dejó en su registro dos defectos ya confirmados: RP1, la suplantación, y RP4, el [object Object], tienen una prueba en rojo desde el lunes.",
     {
       x: M,
-      y: 5.72,
+      y: 5.68,
       w: CW,
-      h: 0.3,
-      fontSize: 12.6,
+      h: 0.44,
+      fontSize: 11.4,
       bold: true,
       color: C.ink,
     }
   );
 
-  addTakeaway(slide, "Quedan doce riesgos por tratar y un defecto por corregir.");
+  addTakeaway(slide, "Quedan trece riesgos por tratar y tres defectos confirmados por corregir.");
   validateSlide(slide, pptx);
 }
 
@@ -2106,7 +2105,7 @@ function slideLevelRule() {
     slide,
     "Bloque 2 · la regla",
     "El nivel lo decide dónde cabe el fallo",
-    "La fuente dice que el análisis de riesgo determina los niveles de prueba, pero no cómo. La regla sale del criterio de la sesión anterior.",
+    "La fuente dice que el análisis de riesgo determina los niveles de prueba, pero no cómo. La regla sale del criterio de la sesión de integración.",
     false,
     { subtitleH: 0.38 }
   );
@@ -2129,10 +2128,10 @@ function slideLevelRule() {
   );
 
   const casos = [
-    ["RP-09", "El comprobante no escapa el separador", "Dentro de una función que recibe texto y devuelve texto", "Unitaria", VERDE],
-    ["RP-01", "El cupo cuenta todas las reservas históricas", "Solo cuando la ruta consulta la base de datos", "Integración", AZUL],
-    ["RP-05", "No se valida el formato del RUT", "En el borde donde la solicitud se convierte en modelo", "Integración", AZUL],
-    ["RP-02", "Dos solicitudes toman el mismo bloque", "Solo si hay más de una solicitud a la vez", "Ninguno alcanza", ROJO],
+    ["RP6", "El comprobante muestra el RUT completo", "Dentro de una función que recibe los datos y arma el texto", "Unitaria", VERDE],
+    ["RP2", "La cuota cuenta todas las reservas históricas", "Solo cuando la ruta consulta la base de datos", "Integración", AZUL],
+    ["RP7", "No se valida el formato del RUT", "En el borde donde la solicitud se convierte en modelo", "Integración", AZUL],
+    ["RP3", "Dos solicitudes toman el mismo bloque", "Solo si hay más de una solicitud a la vez", "Ninguno alcanza", ROJO],
   ];
 
   casos.forEach(([id, riesgo, donde, nivel, color], index) => {
@@ -2212,7 +2211,7 @@ function slideEffortCount() {
     color: C.white,
     valign: "mid",
   });
-  addText(slide, "20 pruebas en 3 archivos", {
+  addText(slide, "23 pruebas en 5 archivos", {
     x: 9.0,
     y: 2.37,
     w: 3.54,
@@ -2231,12 +2230,12 @@ function slideEffortCount() {
     ["bloque_valido", 7, "", null],
     ["puede_reservar", 5, "", null],
     ["cabe_en_sala", 4, "", null],
-    ["crear_reserva", 3, "nivel 6", ORO],
+    ["crear_reserva", 6, "nivel 9", ROJO],
     ["la fixture", 1, "", null],
-    ["almacen · 4 funciones", 0, "nivel 9", ROJO],
-    ["puede_cancelar", 0, "nivel 6", ORO],
+    ["almacen · 4 funciones", 0, "nivel 6", ORO],
     ["el modelo de solicitud", 0, "nivel 6", ORO],
-    ["comprobante", 0, "nivel 2", C.slate],
+    ["comprobante", 0, "nivel 4", C.slate],
+    ["puede_cancelar", 0, "nivel 2", C.slate],
   ];
 
   const escala = 3.9 / 7;
@@ -2287,7 +2286,7 @@ function slideEffortCount() {
   rect(slide, M, 6.2, 0.06, 0.5, ROJO);
   addText(
     slide,
-    "Siete de veinte pruebas sobre una función de una línea. Los dos riesgos de nivel 9, en cero.",
+    "Siete de veintitrés pruebas sobre una función de una línea. La cuota que no es semanal, en cero.",
     {
       x: M + 0.34,
       y: 6.26,
@@ -2362,10 +2361,10 @@ function slideFourResponses() {
     }
   );
 
-  addKicker(slide, M, 4.72, "Lo que hizo el agente con sus nueve riesgos de producto", C.red, 8);
+  addKicker(slide, M, 4.72, "Lo que hizo el agente con sus diez riesgos de producto", C.red, 8);
 
   rect(slide, M, 4.98, 2.6, 1.0, C.warm, ROJO);
-  addText(slide, "9 de 9", {
+  addText(slide, "9 de 10", {
     x: M,
     y: 5.08,
     w: 2.6,
@@ -2388,7 +2387,7 @@ function slideFourResponses() {
 
   addText(
     slide,
-    "Ninguno quedó aceptado, transferido ni con plan de contingencia. Se le pidió un plan de pruebas y respondió en el idioma de lo que se le pidió. Pero si los nueve exigen pruebas, el registro dejó de priorizar.",
+    "El décimo, una revisión. Ninguno quedó aceptado, transferido ni con plan de contingencia. Se le pidió un plan de pruebas y respondió en ese idioma. Pero si nueve de diez exigen pruebas, el registro dejó de priorizar.",
     {
       x: 3.6,
       y: 5.04,
@@ -2426,15 +2425,15 @@ function slideFourResponses() {
 function slideBlockTwoQuestions() {
   slideQuestions(2, "Tres preguntas antes de trazar", [
     [
-      "RP-01 se ejecutó y falló, así que su probabilidad es uno. Un compañero propone subirlo a nivel máximo en el registro y seguir. ¿Qué se pierde al dejarlo ahí?",
+      "RP2 se ejecutó y falló, así que su probabilidad es uno. Un compañero propone subirlo a nivel máximo en el registro y seguir. ¿Qué se pierde al dejarlo ahí?",
       "Un riesgo se prioriza; un defecto confirmado se corrige o se acepta. Son decisiones distintas.",
     ],
     [
-      "Siete de veinte pruebas están sobre una función de una línea. ¿Hay que borrar pruebas de esa función, y qué distingue una suite desbalanceada de una con pruebas de más?",
+      "Siete de veintitrés pruebas están sobre una función de una línea. ¿Hay que borrar pruebas de esa función, y qué distingue una suite desbalanceada de una con pruebas de más?",
       "Pregúntate si al borrar tres de esas siete se pierde alguna partición o algún límite.",
     ],
     [
-      "El agente asignó una prueba a los nueve riesgos de producto. Si tuvieras que quedarte con cuatro, ¿qué información necesitas para elegir, y está en el código?",
+      "El agente asignó una prueba a nueve de sus diez riesgos de producto. Si tuvieras que quedarte con cuatro, ¿qué información necesitas para elegir, y está en el código?",
       "No depende de qué tan probable es cada fallo, que ya está estimado. Depende de cuánto daño admites.",
     ],
   ]);
@@ -2602,7 +2601,7 @@ function slideRequirementIds() {
     slide,
     "Bloque 3 · dónde guardar la relación",
     "El identificador tiene que viajar con la prueba",
-    "El proyecto necesita primero lo que no tenía: requisitos con identificadores estables. Era la restricción C-03 del bloque 1.",
+    "El proyecto necesita primero lo que no tenía: requisitos con identificadores estables. Era el riesgo de proyecto RPy2 del bloque 1.",
     false,
     { subtitleH: 0.38 }
   );
@@ -2805,7 +2804,7 @@ function slideMarker() {
     color: C.ink,
   });
 
-  addText(slide, "Marcar las veinte pruebas no cambia lo que hacen: la suite sigue informando 20 passed.", {
+  addText(slide, "Marcar las pruebas no cambia lo que hacen: la suite sigue en 22 passed y 1 failed.", {
     x: M,
     y: 5.78,
     w: CW,
@@ -2942,26 +2941,27 @@ function slideMatrixOutput() {
     x: M,
     y: 2.44,
     w: 6.5,
-    h: 2.88,
+    h: 3.02,
     title: "uv run python trazabilidad.py",
     fontSize: 10.4,
     lines: [
       { text: "requisito    pruebas   estado" },
       { text: "RF-01             10   cubierto" },
-      { text: "RF-02              2   cubierto" },
+      { text: "RF-02              3   cubierto" },
       { text: "RF-03              2   cubierto" },
       { text: "RF-04              4   cubierto" },
       { text: "RF-05              0   SIN PRUEBA" },
       { text: "RF-06              1   cubierto" },
+      { text: "Pruebas sin requisito: 3" },
     ],
   });
 
   rect(slide, M + 0.08, 4.44, 0.06, 0.22, ROJO);
 
   const lecturas = [
-    ["El reparto", "Diez de las diecinueve marcas están sobre RF-01, el requisito más simple del sistema.", ORO],
-    ["El requisito sin prueba", "RF-05 tiene cero. La función de cancelación existe hace seis sesiones y nadie la probó.", ROJO],
-    ["La prueba sin requisito", "Una de las veinte no responde a ninguna fila: comprueba la fixture, no el sistema.", AZUL],
+    ["El reparto", "Diez de las veinte pruebas marcadas están sobre RF-01, el requisito más simple del sistema.", ORO],
+    ["El requisito sin prueba", "RF-05 tiene cero. La función de cancelación existe hace siete sesiones y nadie la probó.", ROJO],
+    ["Las pruebas sin requisito", "La de la fixture, que no prueba el sistema, y las dos de seguridad: no hay requisito de seguridad escrito.", AZUL],
   ];
   lecturas.forEach(([titulo, glosa, color], index) => {
     const y = 2.44 + index * 1.0;
@@ -2990,10 +2990,10 @@ function slideMatrixOutput() {
 
   addText(
     slide,
-    "Y hay pruebas que no aparecen: las cinco de extremo a extremo corren con otro ejecutor, y este generador solo lee pytest.",
+    "Y hay pruebas que no aparecen: las nueve de extremo a extremo corren con otro ejecutor, y este generador solo lee pytest.",
     {
       x: M,
-      y: 5.56,
+      y: 5.64,
       w: CW,
       h: 0.3,
       fontSize: 12.4,
@@ -3013,7 +3013,7 @@ function slideTwoGaps() {
   addHeader(
     slide,
     "Bloque 3 · leer los huecos",
-    "Seis sesiones en verde con un requisito sin probar",
+    "Siete sesiones con un requisito sin probar",
     "El primer hueco es una falta. El segundo no es un veredicto: es una obligación de decidir.",
     false,
     { subtitleH: 0.38 }
@@ -3053,7 +3053,7 @@ function slideTwoGaps() {
     lineSpacingMultiple: 1.1,
   });
 
-  addKicker(slide, 7.46, 2.46, "La prueba sin requisito admite tres lecturas", C.red, 5.16);
+  addKicker(slide, 7.46, 2.46, "Una prueba sin requisito admite tres lecturas", C.red, 5.16);
   const lecturas = [
     ["Falta un requisito", "Comprueba algo que el sistema promete y nadie escribió. Se escribe y se marca.", AZUL],
     ["No es sobre el sistema", "Comprueba el andamiaje de la suite. Se deja, sabiendo que no cubre nada.", VERDE],
@@ -3094,7 +3094,7 @@ function slideTwoGaps() {
     lineSpacingMultiple: 1.12,
   });
 
-  addText(slide, "En este proyecto es la segunda: comprueba que la fixture preparó la base de datos.", {
+  addText(slide, "La de la fixture es la segunda. Las dos de seguridad, la primera: falta el requisito.", {
     x: M,
     y: 4.96,
     w: 6.5,
@@ -3165,7 +3165,7 @@ function slideMutantVsMatrix() {
   addKicker(slide, 7.16, 2.44, "Qué dijo cada artefacto", C.red, 5.46);
 
   const veredictos = [
-    ["La suite", "20 passed", "Ninguna prueba se puso roja.", ROJO],
+    ["La suite", "22 passed · 1 failed", "La única roja es la de siempre.", ROJO],
     ["La matriz", "RF-06 · cubierto", "Sigue informando lo mismo.", ROJO],
     ["El requisito", "destruido", "No se cumple en absoluto.", C.slate],
   ];
@@ -3243,7 +3243,7 @@ function slideAgentMatrix() {
     2.44,
     CW,
     0.72,
-    "RF-06 · sin cubrir: la prueba solo revisa el código 201, nunca se revisa el contenido del comprobante.",
+    "RF-06 · sin cubrir: la prueba de la API solo revisa el 201, y las de extremo a extremo solo revisan «Reserva confirmada».",
     "Lo que devolvió el agente sobre la fila que el programa daba por buena",
     VERDE
   );
@@ -3319,7 +3319,7 @@ function slideBlockThreeQuestions() {
       "Tendría que decidir si una aserción comprueba lo que un requisito en español promete.",
     ],
     [
-      "La función de cancelación estuvo seis sesiones sin una sola prueba y la suite informó verde todos los días. ¿Qué otro artefacto podría haberlo detectado antes?",
+      "La función de cancelación estuvo siete sesiones sin una sola prueba y la suite informó sus resultados todos los días. ¿Qué otro artefacto podría haberlo detectado antes?",
       "Repasa lo que mide la cobertura y lo que mide el recuento del bloque anterior. ¿Cuál mostraba un cero?",
     ],
     [
@@ -3725,7 +3725,7 @@ function slideTwoVerdicts() {
     title: "La salida de las dos, juntas",
     fontSize: 10.2,
     lines: [
-      { text: "AssertionError: assert {'reservas': 0, 'eventos': 1} == {'reservas': 0, 'eventos': 0}     ·     1 failed, 1 passed in 0.73s" },
+      { text: "AssertionError: assert {'reservas': 0, 'eventos': 1} == {'reservas': 0, 'eventos': 0}     ·     1 failed, 1 passed, 1 warning in 0.71s" },
     ],
   });
 
@@ -3870,7 +3870,7 @@ function slideRightsInMatrix() {
 
   const filas = [
     ["RF-01", "Bloques del 1 al 8", 10],
-    ["RF-02", "Bloque ya reservado", 2],
+    ["RF-02", "Bloque ya reservado", 3],
     ["RF-03", "Tres reservas por semana", 2],
     ["RF-04", "Entre 1 y 30 personas", 4],
     ["RF-05", "Cancelar 2 horas antes", 0],
@@ -4026,15 +4026,14 @@ function slideAgentClosesLoop() {
     fontSize: 9.2,
     lang: "python",
     code: [
-      "for valor in DATOS_IDENTIFICATORIOS:",
-      "    assert apariciones_en_la_base(ruta, valor), (",
-      '        f"la reserva no dejo {valor!r}; la prueba no comprobaria nada")',
+      "assert filas_que_identifican(conexion, TITULAR) == []",
+      "assert filas_que_identifican(conexion, OTRO_TITULAR) != []",
     ].join("\n"),
   });
 
   rect(slide, 8.26, 4.32, 4.36, 1.3, C.softNeutral);
   rect(slide, 8.26, 4.32, 0.06, 1.3, AZUL);
-  addText(slide, "Antes de borrar, comprueba que los datos estaban", {
+  addText(slide, "Exige que los datos de otra persona sigan ahí", {
     x: 8.52,
     y: 4.46,
     w: 3.9,
@@ -4044,7 +4043,7 @@ function slideAgentClosesLoop() {
     color: AZUL,
     lineSpacingMultiple: 1.1,
   });
-  addText(slide, "Es la defensa contra una prueba que pasa por vacío: si la reserva no se guardó, el borrado daría cero y pasaría sin comprobar nada.", {
+  addText(slide, "Protege contra una supresión que borre de más, y contra una prueba que pasa por vacío: si nada se guardó, la segunda línea lo delata.", {
     x: 8.52,
     y: 4.94,
     w: 3.9,
@@ -4268,7 +4267,7 @@ function slideFinalClaim() {
   addKicker(slide, M, 3.66, "Los tres hallazgos tienen la misma forma", C.gold, 6);
 
   const hallazgos = [
-    ["RF-05", "Seis sesiones sin una sola prueba, y la suite en verde todos los días."],
+    ["RF-05", "Siete sesiones sin una sola prueba, y la suite informando todos los días."],
     ["RF-06", "Una marca que decía cubierto y una aserción que no comprobaba nada."],
     ["Los derechos", "No tenían huecos hasta que alguien escribió la promesa."],
   ];
@@ -4330,7 +4329,7 @@ function slideFinalClaim() {
 
 function slideNextClassBridge() {
   const { slide } = createSlide("dark");
-  addKicker(slide, M, 1.42, "Mañana · Clase 15 · miércoles 30 de septiembre", C.gold, 6);
+  addKicker(slide, M, 1.42, "Hoy · 11:00 · Clase 16 · Laboratorio de Redes", C.gold, 6);
   addText(slide, "Lo que nadie ejecuta no existe", {
     x: M,
     y: 1.88,
@@ -4360,7 +4359,7 @@ function slideNextClassBridge() {
   const siguiente = [
     ["Regresión", "Volver a ejecutar lo que ya funcionaba, para comprobar que sigue funcionando."],
     ["Integración continua", "Que se dispare sola ante cada cambio, sin pedir permiso."],
-    ["Pruebas inestables", "Las que pasan y fallan sin que el sistema haya cambiado."],
+    ["Pruebas inestables", "Qué hacer con la que ya está en una suite que se ejecuta sola."],
   ];
   const w = (CW - 0.32) / 3;
   siguiente.forEach(([titulo, glosa], index) => {
@@ -4389,7 +4388,7 @@ function slideNextClassBridge() {
 
   addText(
     slide,
-    "Y aparece un problema que hoy no podía aparecer, porque hoy todas las ejecuciones dieron el mismo resultado.",
+    "Y vuelve la prueba inestable del lunes: la que pasa y falla sin que el sistema haya cambiado.",
     {
       x: M,
       y: 5.76,

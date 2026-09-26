@@ -15,7 +15,7 @@
 
 Al finalizar esta sesión, el estudiante será capaz de responder, sobre su propio proyecto, una
 pregunta que su suite de pruebas no puede responder por sí sola: **qué quedó sin probar, y por qué
-eso es aceptable**. Las cinco sesiones anteriores dejaron una suite que informa un hecho cierto y
+eso es aceptable**. Las sesiones anteriores dejaron una suite que informa un hecho cierto y
 verificable —cuántas pruebas se ejecutaron y cuántas pasaron—, y ese hecho, por sólido que sea, es
 un informe sobre lo que existe. No dice nada sobre lo que no existe. Una suite completa en verde y
 una suite a la que le falta la mitad de lo importante producen exactamente la misma línea de salida,
@@ -109,7 +109,7 @@ exige saber en cuántos lugares está el dato antes de escribir la prueba que af
 
 | Horario | Sección | Propósito |
 |---------|---------|-----------|
-| 08:30 - 08:40 | Encuadre | Constatar el punto al que llegó el proyecto —una suite con pruebas de los tres niveles, en verde— y plantear la pregunta que esa suite no responde: qué quedó sin probar. Situar la semana de cierre: el plazo de la segunda evaluación parcial ya venció el viernes, y el corte final es este miércoles 30. |
+| 08:30 - 08:40 | Encuadre | Constatar el punto al que llegó el proyecto —una suite con pruebas de los tres niveles, veintidós en verde y una en rojo que se conoce— y plantear la pregunta que esa suite no responde: qué quedó sin probar. Situar la semana de cierre: el plazo de la segunda evaluación parcial ya venció el viernes, y el corte final es este miércoles 30. |
 | 08:40 - 09:05 | Bloque 1 | Qué información contiene un plan de pruebas que no puede estar en el código, leída sobre la norma que la define. Alcance, exclusiones, supuestos, riesgos y criterio de salida. La conformidad adaptada como permiso explícito para recortar declarando. Y el plan que devuelve un agente cuando se le pide uno. |
 | 09:05 - 09:30 | Bloque 2 | El riesgo como criterio para repartir el esfuerzo, con sus dos factores. De cada riesgo a una decisión de nivel de prueba. El recuento de la suite propia y el contraste entre dónde están las pruebas y dónde está el riesgo. |
 | 09:30 - 09:40 | Pausa | Descanso técnico. |
@@ -165,7 +165,7 @@ y lo confirma.
 
 ---
 
-# BLOQUE 1: Veinte pruebas en verde no dicen qué se decidió probar
+# BLOQUE 1: Veintitrés pruebas no dicen qué se decidió probar
 
 - **Duración:** 25 minutos
 - **Objetivo del bloque:** establecer qué información contiene un plan de pruebas que no puede
@@ -183,13 +183,14 @@ y lo confirma.
 
 ## Desarrollo
 
-### 1.1 Veinte pruebas en verde, y la pregunta que no responden
+### 1.1 Veintitrés pruebas, y la pregunta que no responden
 
-El proyecto llega a esta sesión con todo lo que las cinco sesiones anteriores fueron dejando: las
+El proyecto llega a esta sesión con todo lo que las sesiones anteriores fueron dejando: las
 funciones de reglas con sus casos elegidos por partición de equivalencia y valores límite, la
 función de cupo construida escribiendo la prueba antes que el código, la API con su contrato
-corregido, la *fixture* que le da a cada prueba una base de datos propia y la borra al terminar, y
-desde la sesión anterior una interfaz web con sus propias pruebas de extremo a extremo.
+corregido, la *fixture* que le da a cada prueba una base de datos propia y la borra al terminar, y,
+desde la sesión del lunes en la mañana, una interfaz web con sus propias pruebas de extremo a
+extremo.
 
 Dos palabras se van a usar durante toda la sesión y conviene fijarlas antes. **Suite** es el conjunto
 de pruebas automatizadas del proyecto: las que se ejecutan juntas, con un solo comando, y producen un
@@ -205,20 +206,26 @@ problema propio.
 Ejecutada completa, la suite de `pytest` informa:
 
 ```text
-....................                                                     [100%]
-20 passed in 1.80s
+......................F                                                  [100%]
+1 failed, 22 passed, 1 warning in 1.94s
 ```
 
-Veinte casos, ningún fallo, menos de dos segundos. Es un resultado que en cualquier equipo se
-presentaría como evidencia de que el trabajo está hecho.
+Veintitrés pruebas: veintidós en verde y una en rojo que todo el curso conoce. Es la prueba de
+suplantación de la sesión del lunes a las 11:00 —otra persona puede gastar la cuota de reservas de
+Ana usando su RUT—, y quedó en rojo a propósito, porque corregirla exige decidir cómo se identifican
+las personas. El aviso de la última línea no es del proyecto: viene de dos bibliotecas que usa
+FastAPI, y avisa que una de ellas cambió el nombre de una pieza interna. Es un resultado que en
+cualquier equipo se presentaría como evidencia de que el trabajo está en orden: lo que pasa, pasa, y
+lo que falla, se sabe por qué.
 
 Ahora la pregunta de la sesión, que conviene hacerse antes de seguir: **¿qué quedó sin probar?**
 
-La respuesta no está en esa salida y no puede estarlo. El texto `20 passed` es un informe sobre
-veinte pruebas que existen. Sobre las pruebas que no existen no dice nada, y no porque la
-herramienta sea limitada: no hay forma de que un programa informe sobre algo que nadie escribió. Si
-mañana alguien borrara ocho de las veinte, la suite informaría `12 passed` y seguiría siendo
-verde. El color no cambia cuando falta cobertura; solo cambia cuando lo que hay falla.
+La respuesta no está en esa salida y no puede estarlo. El texto `22 passed` es un informe sobre
+veintidós pruebas que existen, y `1 failed` sobre una. Sobre las pruebas que no existen no dice
+nada, y no porque la herramienta sea limitada: no hay forma de que un programa informe sobre algo
+que nadie escribió. Si mañana alguien borrara ocho de las veintidós que pasan, la suite informaría
+`14 passed` junto al mismo rojo de siempre. El resultado no cambia cuando falta cobertura; solo
+cambia cuando lo que hay falla.
 
 Esto es la misma limitación de siempre, corrida un nivel hacia arriba. La Unidad 1 estableció que
 una prueba en verde no demuestra que el código sea correcto, sino que ese caso concreto se comportó
@@ -379,33 +386,50 @@ claude -p "Escribe el plan de pruebas de este proyecto segun ISO/IEC/IEEE 29119-
 Devuelve solo el documento en Markdown, sin explicaciones." --allowed-tools "Read,Glob,Grep"
 ```
 
-Devolvió un documento de 392 líneas, y conviene decir de entrada lo que no se esperaba: **es bueno**.
-Está organizado sobre las diez subcláusulas reales de 7.2, no sobre una plantilla genérica. Enumera
-ocho elementos de prueba, uno por función pública. Separa lo que está dentro del alcance de lo que
-está fuera, y justifica cada exclusión. Declara tres supuestos y tres restricciones. Y lista trece
-riesgos —nueve de producto y cuatro de proyecto— con una escala explícita de probabilidad e impacto.
+Devolvió un documento de 365 líneas, y conviene decir de entrada lo que no se esperaba: **es bueno**.
+Está organizado sobre las diez subcláusulas reales de 7.2, en su orden: identificación, contexto,
+supuestos y restricciones, partes interesadas, comunicación, registro de riesgos, estrategia,
+actividades, personal y cronograma. Reparte el trabajo en siete subprocesos —unitarias,
+integración, concurrencia, seguridad, extremo a extremo, accesibilidad y rendimiento—, cada uno con
+su herramienta y con las pruebas que ya existen. Enumera seis elementos de prueba, uno por módulo
+del proyecto. Separa lo que está dentro del alcance de lo que está fuera, y justifica cada
+exclusión. Declara tres supuestos y cinco restricciones. Y lista dieciséis riesgos —diez de producto
+y seis de proyecto— con una escala explícita de probabilidad e impacto.
 
-Este es el registro de riesgos que produjo, abreviado a sus cuatro entradas de nivel más alto:
+Leyó, además, lo que el proyecto trae de las dos sesiones del lunes: nombra la prueba de
+concurrencia, las de seguridad, las de accesibilidad y la de carga, y reconoce qué pruebas están hoy
+en rojo.
+
+Este es su registro de riesgos de producto, abreviado a los de nivel más alto:
 
 | ID | Riesgo | P | I | Nivel |
 |---|---|---|---|---|
-| RP-01 | `reservas_de` cuenta **todas** las reservas históricas del RUT, no las de la semana. Un usuario quedaría bloqueado para siempre al llegar a 3 reservas. | 3 | 3 | **9** |
-| RP-04 | La tabla no registra fecha ni semana, así que «bloque tomado» es permanente y no se puede reutilizar en otra semana. | 3 | 3 | **9** |
-| RP-02 | Condición de carrera entre `bloque_tomado` y `guardar`. No existe una restricción `UNIQUE(bloque)`, así que dos solicitudes simultáneas pueden reservar el mismo bloque. | 2 | 3 | **6** |
-| RP-05 | No se validan el formato del RUT ni del correo. Se aceptan datos basura o vacíos. | 3 | 2 | **6** |
+| RP1 | **Suplantación de identidad.** El RUT se declara y no se verifica, así que cualquiera puede agotar la cuota de otra persona. La prueba de seguridad describe este caso y se espera que falle con el código actual. | 3 | 3 | **9** |
+| RP2 | **La cuota no es semanal.** `reservas_de` cuenta todas las reservas históricas del RUT, sin filtrar por semana. | 3 | 2 | **6** |
+| RP3 | **Doble reserva o bloqueo bajo concurrencia.** `BEGIN IMMEDIATE` serializa las escrituras, pero una espera larga puede producir `database is locked` (HTTP 500). | 2 | 3 | **6** |
+| RP4 | **Mensaje de validación ilegible.** Si falta un campo, la pantalla puede mostrar `[object Object]`. | 3 | 2 | **6** |
+| RP7 | **Formatos no validados.** El RUT —con su dígito verificador—, el correo y el nombre vacío se aceptan sin control. | 3 | 2 | **6** |
 
-Trece riesgos, de los cuales cuatro tienen nivel alto, sobre un proyecto cuya suite acaba de
-informar veinte pruebas en verde. Antes de discutir qué vale ese documento hay que resolver una
+Dieciséis riesgos, cinco de producto con nivel 6 o más, sobre un proyecto cuya suite acaba de
+informar veintidós pruebas en verde. Antes de discutir qué vale ese documento hay que resolver una
 pregunta anterior, que es la única que este módulo acepta como punto de partida: **¿son ciertos?**
 
-### 1.5 El riesgo principal del plan, comprobado por ejecución
+Tres se pueden responder con lo que dejó la sesión del lunes. RP1 y RP4 son ciertos: los dos tienen
+una prueba que está en rojo desde el lunes, y el propio agente lo anota. RP3 es cierto a medias: la
+doble reserva existió y está corregida con esa misma línea `BEGIN IMMEDIATE`, pero el error 500 por
+base bloqueada no apareció en ninguna de las diez tandas de carga y estrés de esa sesión. Y entre los
+riesgos de proyecto, el agente vuelve a sospechar de la dependencia `httpx2`, que el lunes se
+comprobó legítima. El plan es bueno y no es una lista de hechos. **Quedan RP2 y RP7, que nadie ha
+comprobado todavía.**
 
-Tomamos el primero, RP-01, y lo convertimos en una prueba. El requisito del proyecto —el que se
+### 1.5 Un riesgo del plan, comprobado por ejecución
+
+Tomamos RP2, la cuota que no es semanal, y lo convertimos en una prueba. El requisito del proyecto —el que se
 viene usando desde la sesión de diseño de casos— dice que *un estudiante puede tener hasta 3
 reservas por semana*. Si eso es cierto, alguien que tuvo tres reservas en semanas **pasadas** debe
 poder reservar hoy.
 
-La prueba usa cuatro piezas que vienen de la sesión anterior y conviene volver a nombrar, porque aquí
+La prueba usa cuatro piezas que vienen de la sesión de integración y conviene volver a nombrar, porque aquí
 hacen trabajo. `cliente` es el cliente de pruebas de FastAPI: envía solicitudes a la aplicación
 dentro del mismo proceso, sin levantar un servidor ni abrir un navegador. `SOLICITUD` es el
 diccionario con los cinco campos de una reserva válida, escrito una sola vez para no repetirlo en
@@ -438,7 +462,7 @@ El resultado:
 E       assert 409 == 201
 E        +  where 409 = <Response [409 Conflict]>.status_code
 
-1 failed in 0.62s
+1 failed, 1 warning in 0.86s
 ```
 
 Esa línea se lee «obtenido a la izquierda, esperado a la derecha», y los dos números son códigos de
@@ -462,8 +486,8 @@ No hay ninguna condición sobre la fecha, porque **la tabla no tiene columna de 
 cuenta todas las reservas que ese RUT haya hecho alguna vez. Al llegar a tres, el sistema lo bloquea
 de forma permanente.
 
-Y aquí está lo que hace que este hallazgo pertenezca a esta clase y no a la anterior: **las veinte
-pruebas pasan igual**. No fallan porque ninguna de las veinte ejercita ese caso. La prueba unitaria
+Y aquí está lo que hace que este hallazgo pertenezca a esta clase y no a la anterior: **las
+veintidós pruebas que pasaban siguen pasando**. No fallan porque ninguna ejercita ese caso. La prueba unitaria
 correspondiente le pasa el número de reservas de la semana como argumento —`puede_reservar(3, 4,
 tomado=False)`— y comprueba que la regla decide bien con ese número. Decide bien. El defecto no está
 en la regla: está en quién calcula el número que la regla recibe, y eso nadie lo probó. No es un
@@ -473,25 +497,26 @@ decisión de probar o no probar**, y esa decisión no tenía dónde quedar escri
 ### 1.6 La línea que decide cuánto vale el documento entero
 
 El plan del agente es mejor de lo que la mayoría de los equipos escribe a mano, y encontró por
-lectura un defecto que veinte pruebas en verde no mostraban. Entonces la pregunta no puede ser si
+lectura un defecto que veintidós pruebas en verde no mostraban. Entonces la pregunta no puede ser si
 sirve, porque sirve. La pregunta correcta es **qué parte de él puede darse por buena sin
-verificarla**, y la respuesta está escrita por el propio agente, en su tabla de restricciones:
+verificarla**, y la respuesta está escrita por el propio agente, en su registro de riesgos de
+proyecto:
 
-> | C-03 | Restricción | No existe un documento formal de requisitos. La base de prueba se deriva del código, de las constantes y de los nombres de las pruebas existentes. |
+> | RPy2 | Faltan requisitos formales. Las reglas se infieren del código y de los nombres de las pruebas | 3 | 2 | 6 | Validar los supuestos S1 a S3 con las partes interesadas antes de diseñar casos nuevos |
 
 Esa fila es el hallazgo del bloque. La **base de prueba** —la información contra la cual se compara
 para decidir si algo está bien, que la Unidad 1 definió como cláusula 3.7 de esta misma norma— no
 fue un requisito. Fueron el código y los nombres.
 
-Aplíquese a RP-01. El agente afirma que contar todas las reservas históricas es un defecto. ¿De
-dónde sacó que la regla debía ser semanal? De que la constante se llama `MAX_POR_SEMANA`. Leyó un
+Aplíquese a RP2. El agente afirma que contar todas las reservas históricas es un defecto. ¿De
+dónde sacó que la regla debía ser semanal? De que la constante se llama `MAX_POR_SEMANA`: su propio glosario define la cuota semanal como «hoy vale 3 (`MAX_POR_SEMANA`)». Leyó un
 **nombre de variable** y lo elevó a requisito.
 
 En este caso acertó: el requisito del proyecto efectivamente dice «hasta 3 reservas por semana», y
 la ejecución lo confirmó. Pero el acierto es una coincidencia afortunada entre lo que el
 programador quiso nombrar y lo que el requisito pedía. Si la regla real fuera «3 reservas en todo el
 semestre» y el nombre de la constante estuviera mal elegido —algo que ocurre todos los días—, el
-agente habría escrito exactamente el mismo riesgo, con el mismo nivel 9, con la misma redacción
+agente habría escrito exactamente el mismo riesgo, con el mismo nivel 6, con la misma redacción
 segura, y habría estado equivocado. **Y el documento se vería idéntico.**
 
 De ahí sale la distinción que ordena el resto de la sesión. Un plan de pruebas contiene dos clases
@@ -500,14 +525,14 @@ de afirmaciones:
 | Clase | Ejemplos en este plan | Cómo se comprueba |
 |---|---|---|
 | Afirmaciones sobre el sistema | «La regla de cupo no distingue semanas»; «no se valida el formato del RUT» | Ejecutando algo que las confirme o las refute |
-| Afirmaciones sobre decisiones | «El rendimiento queda fuera del alcance»; «se prueba cuando la cobertura de ramas supera el 85 %»; «se informa el estado cada semana» | No se comprueban: se sostienen, se discuten y se firman |
+| Afirmaciones sobre decisiones | «La autenticación queda fuera del alcance»; «la cobertura de sentencias y decisiones debe llegar al 90 %»; «se informa el estado cada semana» | No se comprueban: se sostienen, se discuten y se firman |
 
 Las de la segunda clase son legítimas y necesarias —son la razón de ser del documento—, pero no son
 verificables, y por eso un plan entero nunca puede validarse ejecutando. Las de la primera clase sí,
 y dejarlas escritas en un documento que nadie ejecuta es desperdiciarlas.
 
 El resto de la sesión se dedica a las dos preguntas que quedan abiertas. La primera: con qué
-criterio se reparte el esfuerzo entre esos trece riesgos, porque probarlos todos por igual no es una
+criterio se reparte el esfuerzo entre esos dieciséis riesgos, porque probarlos todos por igual no es una
 opción. La segunda, y es el núcleo técnico: cómo se hace para que la parte verificable del plan
 —qué requisito cubre cada prueba— deje de ser una afirmación escrita y pase a ser un dato que se
 extrae del propio repositorio y se vuelve a extraer mañana.
@@ -531,8 +556,8 @@ de hoy es el plan de pruebas del proyecto.
 
 **Pista:** si al escribir las tres exclusiones del punto 2 te cuesta encontrar la tercera, no es que
 tu alcance sea total: es que hay cosas que estás dejando fuera sin haberlo notado. Mira el
-rendimiento bajo carga, la interfaz que no existe, los navegadores que nunca probaste, la
-recuperación ante una caída de la base de datos.
+rendimiento bajo carga, la autenticación, los navegadores que nunca probaste, la recuperación
+ante una caída de la base de datos.
 
 **Evidencia esperada:** un archivo con dos riesgos valorados, un alcance con sus exclusiones, una
 declaración de conformidad adaptada con al menos tres omisiones justificadas, y al menos un riesgo
@@ -540,15 +565,15 @@ marcado como comprobable con su ejecución propuesta.
 
 ## Preguntas guía
 
-1. La suite informa `20 passed` y el plan del agente lista trece riesgos, cuatro de ellos altos.
-   Un compañero concluye que las veinte pruebas están mal escritas. ¿Tiene razón, y qué habría que
+1. La suite informa `22 passed` y el plan del agente lista dieciséis riesgos, cinco de producto
+   con nivel 6 o más. Un compañero concluye que las veintidós pruebas que pasan están mal escritas. ¿Tiene razón, y qué habría que
    cambiar en la prueba unitaria del cupo semanal para que hubiera detectado el `409`?
 
    **Pista:** revisa qué recibe `puede_reservar` como argumento y quién calcula ese argumento.
    Pregúntate si el defecto está dentro de la función que la prueba observa o antes de ella.
 
 2. El agente escribió que la base de prueba se derivó del código y de los nombres, y aun así acertó
-   en el riesgo principal. Si el resultado fue correcto, ¿qué problema queda exactamente, y qué
+   en RP2. Si el resultado fue correcto, ¿qué problema queda exactamente, y qué
    habría que agregarle a la carpeta para que la próxima vez el acierto no dependa de la suerte?
 
    **Pista:** piensa qué habría pasado si la constante se llamara `MAX_RESERVAS` a secas, o si
@@ -567,7 +592,7 @@ marcado como comprobable con su ejecución propuesta.
 - [ISO/IEC/IEEE 29119-3:2021, vista previa de la publicación](https://cdn.standards.iteh.ai/samples/79429/27623aa24dba41a2876884c0ec57f5d7/ISO-IEC-IEEE-29119-3-2021.pdf) — páginas numeradas 3 a 5: las definiciones citadas literalmente y el texto completo de la cláusula 4 sobre conformidad.
 - [ISO/IEC/IEEE 29119-2:2021 — *Test processes*](https://www.iso.org/standard/79428.html) — el proceso de gestión de pruebas, del cual el plan de la cláusula 7.2 de la parte 3 es la salida documental.
 - [pytest — documentación oficial](https://docs.pytest.org/en/stable/) — la salida resumida de una ejecución y el significado de la línea final de conteo.
-- Ejecuciones registradas para esta clase sobre el proyecto de reserva de laboratorio, con Python 3.13.11, pytest 9.1.1, FastAPI 0.141.1, Pydantic 2.13.5 y SQLite 3.50.4: la suite completa en `20 passed in 1.80s`, el plan de 392 líneas generado con `claude -p` y herramientas restringidas a lectura junto con su registro de trece riesgos y su restricción C-03, y la prueba del riesgo RP-01 con su resultado `assert 409 == 201` y `1 failed in 0.62s`.
+- Ejecuciones registradas para esta clase sobre el proyecto de reserva de laboratorio, con Python 3.13.11, pytest 9.1.1, FastAPI 0.141.1, Pydantic 2.13.5 y SQLite 3.50.4: la suite completa en `1 failed, 22 passed`, con la prueba de suplantación de la sesión del lunes como única roja; el plan de 365 líneas generado con `claude -p` y herramientas restringidas a lectura, con su registro de dieciséis riesgos y su riesgo de proyecto RPy2; y la prueba del riesgo RP2 con su resultado `assert 409 == 201` y `1 failed, 1 warning in 0.86s`.
 
 ---
 
@@ -590,7 +615,7 @@ marcado como comprobable con su ejecución propuesta.
 
 ### 2.1 El riesgo, definido antes de usarlo
 
-El bloque anterior terminó con trece riesgos sobre la mesa y una pregunta: probarlos todos por igual
+El bloque anterior terminó con dieciséis riesgos sobre la mesa y una pregunta: probarlos todos por igual
 no es una opción, así que hace falta un criterio para repartir. Antes de repartir hay que fijar qué
 es exactamente un riesgo, porque en el uso corriente la palabra significa «algo que me preocupa», y
 con esa definición no se puede ordenar nada.
@@ -649,7 +674,7 @@ técnicas y con cuánta profundidad.
 El plan del bloque anterior usó una escala de 1 a 3 para cada factor y multiplicó. Conviene saber
 qué es eso realmente: los números del 1 al 3 no son probabilidades —una probabilidad va entre cero y
 uno— sino **posiciones en un orden**. Multiplicar posiciones no es multiplicar probabilidades, y el
-«9» de RP-01 no significa que sea nueve veces peor que un riesgo de nivel 1. Es un enfoque
+«9» de RP1 no significa que sea nueve veces peor que un riesgo de nivel 1. Es un enfoque
 cualitativo con aspecto de cuantitativo. Sirve perfectamente para **ordenar** riesgos de mayor a
 menor, que es para lo que se lo usa, y no sirve para hacer cuentas con él. Usarlo sabiendo eso es
 correcto; usarlo creyendo que se está calculando algo, no.
@@ -686,11 +711,11 @@ terceros y sanciones son exactamente el terreno del bloque 4 de esta sesión.
 Ahora se cobra el detalle de 2.1. La probabilidad de un riesgo es mayor que cero y **menor que
 uno**.
 
-En el bloque anterior, RP-01 —«el cupo semanal cuenta todas las reservas históricas»— se convirtió
+En el bloque anterior, RP2 —«la cuota no es semanal»— se convirtió
 en una prueba y se ejecutó. El resultado fue `assert 409 == 201`. El evento no es potencial: **ya
 ocurre, cada vez, de forma reproducible**. Su probabilidad es uno.
 
-Con la definición en la mano, la conclusión es forzosa: RP-01 ya no es un riesgo. Es un **defecto
+Con la definición en la mano, la conclusión es forzosa: RP2 ya no es un riesgo. Es un **defecto
 confirmado**, y esa diferencia cambia lo que corresponde hacer.
 
 | | Riesgo | Defecto confirmado |
@@ -703,10 +728,16 @@ confirmado**, y esa diferencia cambia lo que corresponde hacer.
 Esto no es una sutileza de vocabulario. Es la mecánica del registro de riesgos: **cada vez que se
 ejecuta algo que confirma un riesgo, ese riesgo sale del registro y entra en otra parte**, y el
 registro queda más corto y más honesto. Un registro de riesgos que después de un mes de trabajo
-sigue teniendo las mismas trece filas es un registro que nadie ejecutó.
+sigue teniendo las mismas dieciséis filas es un registro que nadie ejecutó.
 
-Al proyecto le quedan, entonces, doce riesgos por tratar y un defecto por corregir. La pregunta del
-reparto sigue en pie para los doce.
+La misma lectura vale para dos filas que el agente escribió como riesgos. RP1, la suplantación, y
+RP4, el `[object Object]`, tienen una prueba en rojo desde el lunes: su probabilidad también es uno.
+El agente las valoró con un 3 sobre 3, como si todavía pudieran no ocurrir, y el propio plan lo
+dice en la columna de tratamiento —«se espera que falle»—. Son defectos confirmados escritos en el
+lugar de los riesgos, y un plan que los deja ahí mezcla lo que podría pasar con lo que ya pasa.
+
+Al proyecto le quedan, entonces, trece riesgos por tratar y tres defectos confirmados por corregir.
+La pregunta del reparto sigue en pie para los trece.
 
 ### 2.4 De un riesgo a un nivel de prueba: dónde puede manifestarse
 
@@ -718,7 +749,7 @@ aplicaciones es exactamente la que hace falta aquí:
 > — ISTQB CTFL v4.0.1, sección 5.2.3
 
 Determinar los niveles de prueba. Lo que la fuente no da —y hay que construir— es la regla concreta
-para pasar de un riesgo a un nivel. La sesión anterior dejó el criterio que la hace posible: un
+para pasar de un riesgo a un nivel. La sesión de integración dejó el criterio que la hace posible: un
 nivel de prueba se distingue por **qué deja de sustituir**. De ahí sale la regla:
 
 > **El nivel de una prueba lo decide el arreglo más pequeño de piezas en el que el evento adverso
@@ -738,10 +769,10 @@ Aplicada a cuatro riesgos del registro:
 
 | Riesgo | ¿Dónde puede ocurrir el evento? | Nivel que corresponde |
 |---|---|---|
-| RP-09 · el comprobante no escapa el carácter separador, y un nombre que lo contenga rompe el formato | Dentro de `comprobante()`, que recibe un texto y devuelve un texto | **Unitaria**: no hace falta nada más que la función |
-| RP-01 · el cupo cuenta todas las reservas históricas | Solo cuando `crear_reserva` llama a `reservas_de` con una base de datos que tiene filas anteriores | **Integración**: la función de regla recibe el número ya calculado, así que en su nivel el evento no cabe |
-| RP-05 · no se valida el formato del RUT ni del correo | En el borde donde el cuerpo de la solicitud se convierte en el modelo | **Integración sobre la API**: el modelo no se ejecuta si no entra una solicitud |
-| RP-02 · dos solicitudes simultáneas pueden tomar el mismo bloque | Solo si hay más de una solicitud a la vez | **Ningún nivel de los tres alcanza por sí solo**: hace falta un tipo de prueba distinto, con ejecución concurrente |
+| RP6 · el comprobante devuelve el RUT y el correo completos | Dentro de `comprobante()`, que recibe los datos y arma el texto | **Unitaria**: no hace falta nada más que la función |
+| RP2 · la cuota cuenta todas las reservas históricas | Solo cuando `crear_reserva` llama a `reservas_de` con una base de datos que tiene filas anteriores | **Integración**: la función de regla recibe el número ya calculado, así que en su nivel el evento no cabe |
+| RP7 · no se valida el formato del RUT ni del correo | En el borde donde el cuerpo de la solicitud se convierte en el modelo | **Integración sobre la API**: el modelo no se ejecuta si no entra una solicitud |
+| RP3 · dos solicitudes simultáneas pueden tomar el mismo bloque | Solo si hay más de una solicitud a la vez | **Ningún nivel de los tres alcanza por sí solo**: hace falta un tipo de prueba distinto, con ejecución concurrente |
 
 La segunda fila es la que conviene mirar dos veces, porque explica el resultado del bloque anterior.
 La prueba unitaria del cupo existe, está bien escrita y pasa:
@@ -752,13 +783,14 @@ La prueba unitaria del cupo existe, está bien escrita y pasa:
 
 Le entrega a `puede_reservar` el número 3 y comprueba que decide rechazar. Decide bien. El evento
 adverso —contar mal— no ocurre dentro de esa función, porque esa función **no cuenta**: recibe el
-conteo hecho. Ninguna cantidad de pruebas unitarias sobre `puede_reservar` habría encontrado RP-01,
+conteo hecho. Ninguna cantidad de pruebas unitarias sobre `puede_reservar` habría encontrado RP2,
 y eso no es un defecto de esas pruebas. Es que el riesgo vive un nivel más arriba.
 
 La cuarta fila enseña lo contrario y es igual de importante: **hay riesgos para los que ningún
 nivel sirve**, y reconocerlo a tiempo evita escribir una prueba que da tranquilidad sin dar
 evidencia. Una prueba secuencial de dos reservas al mismo bloque pasa en verde y no dice nada sobre
-la condición de carrera, porque nunca hubo dos cosas a la vez.
+la condición de carrera, porque nunca hubo dos cosas a la vez. Es exactamente la razón por la que la
+prueba de la sesión del lunes a las 11:00 envía veinte reservas desde veinte hilos al mismo tiempo.
 
 ### 2.5 Dónde están las pruebas y dónde está el riesgo
 
@@ -778,28 +810,30 @@ cuenta repeticiones. El resultado sobre el proyecto:
 
 ```text
       4 test_api.py
+      1 test_concurrencia.py
      12 test_reservas.py
       4 test_sala.py
+      2 test_seguridad.py
 ```
 
-Veinte pruebas, y más de la mitad en un solo archivo. Desglosado por elemento de prueba —la lista de
-ocho que el plan del bloque anterior enumeró— queda así:
+Veintitrés pruebas, y más de la mitad en un solo archivo. El plan del bloque anterior agrupó los
+elementos de prueba por módulo; aquí conviene bajar un nivel y desglosar por función:
 
 | Elemento de prueba | Pruebas | Riesgo asociado y su nivel |
 |---|---|---|
 | `bloque_valido` | **7** | ninguno |
 | `puede_reservar` | **5** | — |
 | `cabe_en_sala` | **4** | — |
-| `crear_reserva` (la ruta de la API) | **3** | RP-02 nivel 6, RP-05 nivel 6, RP-06 nivel 2 |
+| `crear_reserva` (la ruta de la API) | **6** | RP1 nivel 9, RP3 nivel 6, RP5 nivel 3 |
 | La *fixture* de base de datos | **1** | — |
-| `almacen.*` (cuatro funciones) | **0** | RP-01 nivel 9, RP-04 nivel 9, RP-08 nivel 3 |
-| `puede_cancelar` | **0** | RP-03, nivel 6 |
-| `comprobante` | **0** | RP-09, nivel 2 |
-| El modelo que valida la solicitud | **0** | RP-05, nivel 6 |
+| `almacen.*` (cuatro funciones) | **0** | RP2 nivel 6 |
+| El modelo que valida la solicitud | **0** | RP7 nivel 6 |
+| `comprobante` | **0** | RP6 nivel 4 |
+| `puede_cancelar` | **0** | RPy6 nivel 2 |
 
 Léase de arriba hacia abajo y después de abajo hacia arriba.
 
-Siete de las veinte pruebas —el 35 % del esfuerzo— están sobre `bloque_valido`, que es esta función:
+Siete de las veintitrés pruebas —el 30 % del esfuerzo— están sobre `bloque_valido`, que es esta función:
 
 ```python
 def bloque_valido(bloque: int) -> bool:
@@ -807,8 +841,15 @@ def bloque_valido(bloque: int) -> bool:
 ```
 
 Una línea, dos comparaciones, ningún riesgo de nivel alto asociado. Y las cuatro funciones del
-módulo de persistencia, donde viven **los dos riesgos de nivel 9**, tienen cero pruebas propias: se
-ejecutan solo de paso, cuando alguna prueba de la API las alcanza sin afirmar nada sobre ellas.
+módulo de persistencia, donde vive **RP2, el riesgo que el bloque anterior acaba de confirmar**,
+tienen cero pruebas propias: se ejecutan solo de paso, cuando alguna prueba de la API las alcanza
+sin afirmar nada sobre ellas.
+
+La fila de `crear_reserva` cuenta otra historia. Tenía tres pruebas, y el lunes a las 11:00 pasó a
+seis: las tres nuevas están justo sobre riesgos que el plan califica de altos o medios, la
+concurrencia, la suplantación y la inyección. Ese movimiento fue bueno, y no lo decidió ningún plan:
+lo decidió una sesión que salió a buscar riesgos. Muestra que el reparto se puede corregir, y también
+que hasta hoy se corrigió siguiendo lo que cada sesión enseñaba, no una decisión escrita.
 
 La pregunta obligada es por qué salió así, y la respuesta no es negligencia. Salió así porque cada
 sesión probó lo que esa sesión enseñaba, y porque **probar `bloque_valido` es barato**: se importa
@@ -822,7 +863,7 @@ elegidas. No dice que la suite sea mala. Dice una sola cosa, y es suficiente: **
 esfuerzo no fue una decisión, y hoy no coincide con el reparto del riesgo**. Eso es corregible, y
 corregirlo es una decisión de plan, no de código.
 
-Hay un detalle más en esa tabla que se va a usar en el bloque siguiente. Una de las veinte pruebas
+Hay un detalle más en esa tabla que se va a usar en el bloque siguiente. Una de las veintitrés pruebas
 —la de la *fixture*— no aparece asociada a ningún elemento de prueba del sistema, porque no prueba
 el sistema: comprueba que la preparación de la prueba funciona. Es legítima y es útil. Pero no
 responde a ningún requisito, y por lo tanto es invisible para cualquier argumento sobre qué está
@@ -841,8 +882,8 @@ respuestas posibles, y solo una de ellas es probar:
 
 | Respuesta | Qué significa | Ejemplo en este proyecto |
 |---|---|---|
-| **Mitigar probando** | Escribir y ejecutar pruebas que reduzcan la probabilidad de que el fallo llegue al usuario | RP-01 y RP-04: son la razón de ser de las pruebas de integración que faltan |
-| **Aceptar** | Decidir, y dejar escrito, que se convive con el riesgo | RP-08: los nombres de columna se arman con interpolación de texto, pero hoy solo lo invocan llamadas internas con claves fijas |
+| **Mitigar probando** | Escribir y ejecutar pruebas que reduzcan la probabilidad de que el fallo llegue al usuario | RP2 y RP7: son la razón de ser de las pruebas de integración que faltan |
+| **Aceptar** | Decidir, y dejar escrito, que se convive con el riesgo | RP5: los nombres de columna se arman con interpolación de texto, pero hoy solo lo invocan llamadas internas con claves fijas, y el lunes se intentó explotarlo por la API sin éxito |
 | **Transferir** | Pasarlo a otro responsable | Delegar la validación del formato del RUT en una biblioteca mantenida por terceros |
 | **Plan de contingencia** | Preparar qué se hace si ocurre | Un procedimiento de restauración si la base de datos queda corrupta |
 
@@ -853,16 +894,15 @@ gobernanza; lo segundo es suerte.
 
 **Lo que hace un agente con esto.** El registro que produjo el agente en el bloque anterior es una
 buena muestra, y tiene un sesgo que se puede constatar leyendo la columna de tratamiento: de los
-nueve riesgos de producto, **los nueve reciben al menos un caso de prueba**. Ninguno queda aceptado,
-transferido ni con plan de contingencia; dos agregan revisión estática, pero además del caso, no en
-su lugar. Incluso RP-08, para el cual el propio agente escribió el argumento de aceptación —«hoy
-solo lo invocan llamadas internas con claves fijas»—, termina con un caso asignado. En cambio los
-cuatro riesgos de proyecto sí recibieron respuestas no ejecutables, porque ahí no había prueba
-posible que proponer.
+diez riesgos de producto, **nueve reciben al menos un caso de prueba**, y el décimo, RP6, una
+revisión. Ninguno queda aceptado, transferido ni con plan de contingencia. Incluso RP5, para el cual
+el propio agente escribió el argumento de aceptación —«los valores sí van parametrizados»— y que el
+lunes se comprobó no explotable, conserva su prueba asignada. En cambio los seis riesgos de proyecto
+sí recibieron respuestas no ejecutables, porque ahí no había prueba posible que proponer.
 
 El sesgo es explicable y no es un error del modelo: se le pidió un plan de pruebas, y responde en el
 idioma de lo que se le pidió. Pero el efecto sobre el documento es real y es el mismo que produce
-una lista donde todo es prioritario: **si los nueve riesgos exigen pruebas, el registro dejó de
+una lista donde todo es prioritario: **si nueve de diez riesgos exigen pruebas, el registro dejó de
 priorizar**. La decisión que el agente no puede tomar —y que es del estudiante— no es cuáles riesgos
 existen, sino **cuáles se aceptan**. Esa es una decisión sobre cuánto daño se está dispuesto a
 admitir, y no se delega.
@@ -900,7 +940,7 @@ manifestarse, y una aceptación escrita con su razón.
 
 ## Preguntas guía
 
-1. RP-01 se ejecutó y falló, así que su probabilidad es uno y dejó de ser un riesgo. Un compañero
+1. RP2 se ejecutó y falló, así que su probabilidad es uno y dejó de ser un riesgo. Un compañero
    dice que entonces basta con subirlo a nivel máximo en el registro y seguir. ¿Qué se pierde al
    dejarlo ahí, y a qué documento debería pasar?
 
@@ -908,16 +948,16 @@ manifestarse, y una aceptación escrita con su razón.
    prioriza; un defecto confirmado se corrige o se acepta. Son decisiones distintas y las toma gente
    distinta.
 
-2. Siete de veinte pruebas están sobre una función de una línea, y las cuatro funciones que guardan
+2. Siete de veintitrés pruebas están sobre una función de una línea, y las cuatro funciones que guardan
    los datos no tienen ninguna. ¿Significa eso que hay que borrar pruebas de `bloque_valido`, y qué
    distingue a una suite desbalanceada de una suite con pruebas de más?
 
    **Pista:** pregúntate qué pasaría si borraras tres de esas siete. ¿Se pierde alguna partición o
    algún límite? Después pregúntate si borrarlas agrega una sola prueba donde falta.
 
-3. El agente asignó un caso de prueba a los nueve riesgos de producto, incluido uno para el que él
-   mismo había escrito el argumento de por qué no hacía falta. Si tú tuvieras que quedarte con solo
-   cuatro de esos nueve, ¿qué información necesitas para elegir, y está esa información en el
+3. El agente asignó un caso de prueba a nueve de sus diez riesgos de producto, incluido uno para el
+   que él mismo había escrito el argumento de por qué no hacía falta. Si tú tuvieras que quedarte con
+   solo cuatro de esos nueve, ¿qué información necesitas para elegir, y está esa información en el
    código?
 
    **Pista:** la elección no depende de qué tan probable es cada fallo, que ya está estimado. Depende
@@ -930,7 +970,7 @@ manifestarse, y una aceptación escrita con su razón.
 - [ISO/IEC/IEEE 29119-3:2021 — *Test documentation*](https://www.iso.org/standard/79429.html) — el registro de riesgos como subcláusula 7.2.6 del plan de pruebas, y el reporte de incidente de la cláusula 8.11 como el lugar al que pasa un riesgo cuya ocurrencia quedó confirmada.
 - [ISO 31000 — *Risk management*](https://www.iso.org/iso-31000-risk-management.html) — la fuente que el programa de ISTQB cita para el marco general de gestión de riesgos.
 - [pytest — recolección de pruebas](https://docs.pytest.org/en/stable/how-to/usage.html) — la opción `--collect-only`, que lista las pruebas sin ejecutarlas, y el formato `archivo::prueba` con el que las identifica.
-- Ejecuciones registradas para esta clase sobre el proyecto de reserva de laboratorio, con Python 3.13.11 y pytest 9.1.1: el recuento por archivo `4 test_api.py`, `12 test_reservas.py` y `4 test_sala.py` sobre un total de veinte pruebas recolectadas, y el desglose por elemento de prueba obtenido de la lista completa de identificadores que devuelve la recolección.
+- Ejecuciones registradas para esta clase sobre el proyecto de reserva de laboratorio, con Python 3.13.11 y pytest 9.1.1: el recuento por archivo `4 test_api.py`, `1 test_concurrencia.py`, `12 test_reservas.py`, `4 test_sala.py` y `2 test_seguridad.py` sobre un total de veintitrés pruebas recolectadas, y el desglose por elemento de prueba obtenido de la lista completa de identificadores que devuelve la recolección.
 
 ---
 
@@ -952,7 +992,7 @@ manifestarse, y una aceptación escrita con su razón.
 
 ### 3.1 Qué es una matriz de trazabilidad
 
-Los dos bloques anteriores dejaron decisiones escritas: un alcance, trece riesgos valorados, un
+Los dos bloques anteriores dejaron decisiones escritas: un alcance, dieciséis riesgos valorados, un
 reparto de esfuerzo que no coincide con ese riesgo. Todo eso vive en un documento. La pregunta que
 falta es si el documento y el repositorio dicen lo mismo, y para responderla la norma define un
 artefacto específico:
@@ -1004,8 +1044,8 @@ nada obliga a actualizarla cuando alguien renombra una prueba. El segundo es pon
 consigo. Ese es el que se usa.
 
 El proyecto necesita entonces dos piezas nuevas. La primera es el archivo de requisitos con
-identificadores estables, que hasta ahora no existía —era la restricción C-03 que el agente declaró
-en el bloque 1—:
+identificadores estables, que hasta ahora no existía —era el riesgo de proyecto RPy2 que el agente
+declaró en el bloque 1—:
 
 ```markdown
 | ID | Requisito |
@@ -1069,10 +1109,15 @@ def test_reglas_de_reserva(...)
 caso**. Los identificadores de `ids` no cambian: cada caso sigue llamándose igual, y ahora además
 sabe qué requisito lo justifica.
 
-Marcar las veinte pruebas no cambia nada de lo que hacen. La suite sigue informando lo mismo:
+Las pruebas de la sesión del lunes a las 11:00 se marcan con el mismo criterio. La de concurrencia
+comprueba RF-02 —un bloque tomado no se vuelve a reservar, ahora con veinte solicitudes a la vez— y
+lleva esa marca. Las dos de seguridad no llevan ninguna, y no por descuido: el archivo de requisitos
+no tiene ningún requisito de seguridad al que puedan responder.
+
+Marcar las pruebas no cambia nada de lo que hacen. La suite sigue informando lo mismo:
 
 ```text
-20 passed in 0.80s
+1 failed, 22 passed, 1 warning in 1.10s
 ```
 
 Eso es deseable y conviene notarlo: **la trazabilidad no altera el comportamiento de la suite**. Lo
@@ -1134,7 +1179,7 @@ Ejecutado sobre el proyecto:
 MATRIZ DE TRAZABILIDAD
 requisito    pruebas   estado
 RF-01             10   cubierto
-RF-02              2   cubierto
+RF-02              3   cubierto
 RF-03              2   cubierto
 RF-04              4   cubierto
 RF-05              0   SIN PRUEBA
@@ -1143,16 +1188,18 @@ RF-06              1   cubierto
 Requisitos sin prueba: 1
   RF-05
 
-Pruebas sin requisito: 1
+Pruebas sin requisito: 3
   test_api.py::test_la_base_de_datos_existe_durante_la_prueba
+  test_seguridad.py::test_un_nombre_con_codigo_sql_se_guarda_como_texto
+  test_seguridad.py::test_otra_persona_no_puede_agotar_la_cuota_de_ana
 ```
 
 Esa salida es la matriz de trazabilidad del proyecto, y tiene la propiedad que el apartado 3.1
 buscaba: **se vuelve a producir cuando se quiera**. Si mañana alguien borra la prueba del bloque 8,
 la línea de RF-01 baja a 9 sin que nadie tenga que acordarse de nada.
 
-Y hay algo que esta matriz no ve, aunque exista: **las cinco pruebas de extremo a extremo** de la
-sesión anterior. No aparecen como cubiertas ni como huérfanas, porque el generador recolecta la suite
+Y hay algo que esta matriz no ve, aunque exista: **las nueve pruebas de extremo a extremo** de las
+dos sesiones del lunes. No aparecen como cubiertas ni como huérfanas, porque el generador recolecta la suite
 de `pytest` y esas pruebas corren con otro ejecutor. No es un defecto del programa, sino de su
 alcance, y es exactamente el problema que el bloque 1 estableció para el plan: **una matriz que no
 declara qué suites lee omite en silencio**.
@@ -1161,7 +1208,7 @@ La solución tiene la misma forma que la de `pytest`. En Playwright, cada prueba
 etiqueta, y la herramienta las lista sin ejecutar nada:
 
 ```typescript
-test("un doble clic envía una sola solicitud de reserva", { tag: "@RF-11" }, async ({ page }) => {
+test("tras reservar, el bloque 4 aparece tomado · espera una condición", { tag: "@RF-02" }, async ({ page }) => {
 ```
 
 ```bash
@@ -1169,7 +1216,7 @@ npx playwright test --list --reporter=json
 ```
 
 La segunda instrucción devuelve, para cada prueba, su nombre y sus etiquetas —en este caso,
-`["RF-11"]`—, y un generador puede leerlas igual que lee los marcadores. La matriz completa del
+`["RF-02"]`—, y un generador puede leerlas igual que lee los marcadores. La matriz completa del
 proyecto necesita leer las dos suites. Mientras no lo haga, lo mínimo es escribir en el plan que
 cubre solo la de `pytest`.
 
@@ -1178,8 +1225,8 @@ cubre solo la de `pytest`.
 La salida contiene tres clases de información, y dos de ellas son hallazgos.
 
 **Primero, el reparto**, que confirma por otra vía lo que el bloque anterior midió: RF-01 tiene diez
-de las diecinueve pruebas marcadas. Más de la mitad del esfuerzo está sobre el requisito más simple
-del sistema.
+de las veinte pruebas marcadas. La mitad del esfuerzo está sobre el requisito más simple del
+sistema.
 
 **Segundo, el requisito sin prueba.** RF-05 —cancelar hasta 2 horas antes— tiene cero. La función que
 implementa esa regla existe en el proyecto desde hace sesiones:
@@ -1189,25 +1236,30 @@ def puede_cancelar(inicio_bloque: datetime, ahora: datetime) -> bool:
     return inicio_bloque - ahora > ANTICIPACION_CANCELACION
 ```
 
-Está escrita, tiene su constante, y nunca nadie la probó. Durante seis sesiones la suite informó
-verde y el requisito de cancelación estuvo sin comprobar. Ninguna ejecución podía avisarlo, porque
+Está escrita, tiene su constante, y nunca nadie la probó. Durante siete sesiones la suite informó
+sus resultados y el requisito de cancelación estuvo sin comprobar. Ninguna ejecución podía avisarlo, porque
 una prueba que no existe no falla. Y conviene ser preciso sobre la magnitud del hallazgo: no es que
 la función esté mal —puede estar perfecta—, es que **nadie lo sabe**, y hasta hoy nadie tenía cómo
 enterarse de que no lo sabía.
 
-**Tercero, la prueba sin requisito.** `test_la_base_de_datos_existe_durante_la_prueba` no responde a
-ningún requisito, y hay que leer ese resultado con cuidado porque admite dos interpretaciones muy
-distintas:
+**Tercero, las pruebas sin requisito.** Son tres, y hay que leer ese resultado con cuidado porque
+admite dos interpretaciones muy distintas:
 
 | Interpretación | Qué significa | Qué hacer |
 |---|---|---|
 | Falta un requisito | La prueba comprueba algo que el sistema sí promete, pero que nadie escribió | Escribir el requisito y marcar la prueba |
 | La prueba no es sobre el sistema | Comprueba el andamiaje de la propia suite, no una promesa del producto | Dejarla, sabiendo que no cuenta como cobertura de nada |
 
-Este caso es el segundo: la prueba comprueba que la *fixture* preparó la base de datos. Es legítima
-y útil, y no cubre ningún requisito. Lo que la matriz aporta no es un veredicto sino una
-**obligación de decidir**: cada prueba huérfana obliga a responder cuál de las dos filas es, y esa
-respuesta no la puede dar un programa.
+La de la *fixture* es el segundo caso: comprueba que la preparación de la prueba funciona. Es legítima
+y útil, y no cubre ningún requisito.
+
+Las dos de seguridad son el primero, y es el hallazgo más útil de la matriz. Comprueban promesas que
+el sistema sí debería cumplir —que un texto no se ejecute como código, que nadie actúe en nombre de
+otra persona—, y nadie las escribió como requisito. El archivo tiene seis requisitos y los seis son
+funcionales. Ni la seguridad, ni el rendimiento, ni la accesibilidad que se probaron el lunes tienen
+una fila a la que responder, y por eso ninguna de esas pruebas cuenta como cobertura de nada. Lo que
+la matriz aporta no es un veredicto sino una **obligación de decidir**: cada prueba huérfana obliga a
+responder cuál de las dos filas es, y esa respuesta no la puede dar un programa.
 
 Hay una tercera interpretación que en un proyecto real es la más frecuente, y la Unidad 1 ya la
 nombró: la prueba huérfana que fija el comportamiento actual del código porque quien la escribió
@@ -1254,12 +1306,15 @@ El comprobante ya no contiene el nombre, ni el RUT, ni el correo, ni el bloque. 
 no se cumple en absoluto. La suite de `pytest` completa:
 
 ```text
-....................                                                     [100%]
-20 passed in 0.63s
+......................F                                                  [100%]
+1 failed, 22 passed, 1 warning in 1.06s
 ```
 
-Veinte en verde. La matriz sigue informando RF-06 como cubierto. **El requisito está destruido y
-ningún artefacto del proyecto lo nota.**
+El mismo resultado que sin la alteración: la única roja es la suplantación de siempre. La matriz
+sigue informando RF-06 como cubierto. Y la suite de extremo a extremo tampoco reacciona: su prueba de
+la reserva completa busca «Reserva confirmada» en la pantalla, y ese texto sigue apareciendo aunque
+el comprobante que lo acompaña ya no diga nada. **El requisito está destruido y ningún artefacto del
+proyecto lo nota.**
 
 De aquí sale el límite exacto de la técnica, y hay que decirlo con precisión porque es lo que
 distingue usarla bien de creerle de más:
@@ -1298,16 +1353,27 @@ trazabilidad: para cada requisito, que pruebas lo cubren, y si queda alguno sin
 cubrir. Solo la tabla y las conclusiones, sin explicaciones." --allowed-tools "Read,Glob,Grep"
 ```
 
-Encontró los dos huecos que encontró el programa: RF-05 sin cubrir, y la prueba de la *fixture* sin
-requisito asociado. Y además escribió esto:
+Encontró lo mismo que el programa y bastante más. Declaró RF-05 sin cubrir, y tampoco dio por
+cubierto RF-06:
 
-> | RF-06 (comprobante con nombre, RUT, correo, bloque) | `test_api.py::test_reserva_aceptada_responde_201` (solo revisa el código 201) | **Sin cubrir**: nunca se revisa el contenido del comprobante |
+> | **RF-06** Comprobante con nombre, RUT, correo y bloque | — (`test_api.py::test_reserva_aceptada_responde_201` solo revisa el 201; los e2e solo revisan "Reserva confirmada") | **Sin cubrir** |
 
-Es decir: **acertó donde el programa se equivocó**. Vio la marca que correspondía poner, vio que la
-aserción no comprueba el requisito, y se negó a darlo por cubierto. Y agregó dos observaciones que
-el programa no puede formular de ninguna manera: que RF-03 está a medias porque falta el límite de
-dos reservas activas, y que RF-04 está a medias porque falta el caso de una sola persona. Las dos
-son ciertas.
+Es decir: **acertó donde el programa se equivocó**. Y para llegar ahí leyó también la suite de
+extremo a extremo, que el programa ni siquiera recolecta, y concluyó lo mismo que el mutante de 3.5:
+tampoco esas pruebas miran el comprobante. Agregó observaciones que el programa no puede formular de
+ninguna manera: que RF-03 está a medias porque nadie prueba que el conteo sea por semana —el defecto
+del bloque 1—; que RF-04 no tiene el caso de una sola persona; y una que nadie había hecho:
+`puede_cancelar` usa `>`, así que una cancelación exactamente dos horas antes se rechaza, aunque el
+requisito dice «hasta 2 horas antes». Ejecutado, es cierto: con un margen de 2 horas y 1 segundo la
+función devuelve `True`, y con 2 horas exactas, `False`. Es el caso límite que la sesión de diseño de
+casos habría pedido probar.
+
+Hay una diferencia en la otra dirección que conviene no pasar por alto. El agente asoció la prueba de
+suplantación a RF-03, la cuota semanal, y el programa la dejó huérfana. Ninguno de los dos está
+equivocado del todo: la prueba sí toca la cuota, pero lo que comprueba es que nadie pueda usar un RUT
+ajeno, y eso no está escrito en ningún requisito. El agente llenó el hueco con el requisito más
+cercano; el programa lo dejó a la vista. Decidir si la prueba responde a RF-03 o a un requisito de
+seguridad que falta escribir es trabajo de quien conoce el sistema.
 
 Conviene detenerse en esto antes de sacar la conclusión cómoda. Los dos artefactos fallan en
 direcciones opuestas, y no por casualidad:
@@ -1371,8 +1437,8 @@ y el resultado de la alteración del punto 5 con su conclusión en una línea.
    español promete. Pregúntate qué clase de artefacto sabe hacer eso, y si su respuesta se puede
    volver a producir igual mañana.
 
-2. `puede_cancelar` estuvo seis sesiones sin una sola prueba y la suite informó verde todos los
-   días. ¿Qué otro artefacto del proyecto podría haberlo detectado antes, y por qué ninguno lo hizo?
+2. `puede_cancelar` estuvo siete sesiones sin una sola prueba y la suite informó sus resultados
+   todos los días sin mencionarlo. ¿Qué otro artefacto del proyecto podría haberlo detectado antes, y por qué ninguno lo hizo?
 
    **Pista:** repasa lo que mide la cobertura y lo que mide el conteo del bloque anterior. Pregúntate
    cuál de los dos habría mostrado un cero en esa función, y por qué un cero ahí es más elocuente que
@@ -1392,7 +1458,7 @@ y el resultado de la alteración del punto 5 con su conclusión en una línea.
 - [pytest — marcadores](https://docs.pytest.org/en/stable/how-to/mark.html) — `@pytest.mark.<nombre>`, la declaración de marcadores propios en la configuración para evitar marcadores creados por un error de tipeo, y la advertencia que emite la herramienta cuando falta esa declaración.
 - [pytest — parametrización](https://docs.pytest.org/en/stable/how-to/parametrize.html) — `pytest.param(valores, marks=...)`, que permite marcar un caso individual de una prueba parametrizada en lugar de la función completa.
 - [pytest — escribir *plugins* y usar la API desde Python](https://docs.pytest.org/en/stable/how-to/writing_plugins.html) — `pytest.main(args, plugins=[...])`, el *hook* `pytest_collection_modifyitems`, y los atributos `nodeid` e `iter_markers` de cada prueba recolectada.
-- Ejecuciones registradas para esta clase sobre el proyecto de reserva de laboratorio, con Python 3.13.11 y pytest 9.1.1: la suite marcada en `20 passed in 0.80s`, la salida completa del generador de la matriz con RF-05 en cero y una prueba sin requisito, la ejecución con `comprobante()` reducido a una constante que devolvió `20 passed in 0.63s` con RF-06 aún informado como cubierto, y la matriz producida por `claude -p` con herramientas restringidas a lectura sobre las pruebas sin marcar.
+- Ejecuciones registradas para esta clase sobre el proyecto de reserva de laboratorio, con Python 3.13.11 y pytest 9.1.1: la suite marcada en `1 failed, 22 passed`, la salida completa del generador de la matriz con RF-05 en cero y tres pruebas sin requisito, la ejecución con `comprobante()` reducido a una constante que devolvió el mismo `1 failed, 22 passed` con RF-06 aún informado como cubierto, las pruebas de extremo a extremo de la reserva completa y de la espera en verde con esa misma alteración, la etiqueta `@RF-02` leída con `npx playwright test --list --reporter=json`, la matriz producida por `claude -p` con herramientas restringidas a lectura sobre las pruebas sin marcar, y la comprobación de `puede_cancelar` con márgenes de 2 horas y 1 segundo, 2 horas y 1 hora 59 minutos.
 
 ---
 
@@ -1592,10 +1658,13 @@ Las dos juntas:
 
 ```text
 E       AssertionError: assert {'reservas': 0, 'eventos': 1} == {'reservas': 0, 'eventos': 0}
+E
+E         Omitting 1 identical items, use -vv to show
 E         Differing items:
 E         {'eventos': 1} != {'eventos': 0}
+E         Use -v to get more diff
 
-1 failed, 1 passed in 0.73s
+1 failed, 1 passed, 1 warning in 0.71s
 ```
 
 `1 failed, 1 passed`. **La misma supresión, el mismo sistema, el mismo requisito, dos veredictos
@@ -1667,7 +1736,7 @@ dos lados: `NULL` es como la base de datos representa la ausencia de valor, y `N
 ausencia llega a Python. El evento sobrevive; la persona no está en él. Y las dos pruebas de RF-07:
 
 ```text
-2 passed in 0.59s
+2 passed, 1 warning in 0.57s
 ```
 
 Conviene subrayar cuál fue exactamente el trabajo humano en este apartado, porque es el que no se
@@ -1686,7 +1755,7 @@ marcadas, la matriz del bloque anterior se regenera sin tocar el programa:
 MATRIZ DE TRAZABILIDAD
 requisito    pruebas   estado
 RF-01             10   cubierto
-RF-02              2   cubierto
+RF-02              3   cubierto
 RF-03              2   cubierto
 RF-04              4   cubierto
 RF-05              0   SIN PRUEBA
@@ -1701,6 +1770,11 @@ Requisitos sin prueba: 4
   RF-08
   RF-09
   RF-10
+
+Pruebas sin requisito: 3
+  test_api.py::test_la_base_de_datos_existe_durante_la_prueba
+  test_seguridad.py::test_un_nombre_con_codigo_sql_se_guarda_como_texto
+  test_seguridad.py::test_otra_persona_no_puede_agotar_la_cuota_de_ana
 ```
 
 Los derechos no necesitaron un artefacto aparte: son filas de la misma matriz, con el mismo
@@ -1719,25 +1793,32 @@ explicaciones." --allowed-tools "Read,Glob,Grep"
 ```
 
 Devolvió una prueba mejor que la de 4.4. No supone los nombres de las tablas ni de las columnas:
-consulta el catálogo de SQLite, consulta las columnas de cada tabla y busca los tres datos
-identificatorios —nombre, RUT y correo— en todas ellas. Y agrega algo que no estaba en la versión
-de la clase:
+consulta el catálogo de SQLite y recorre todas las filas de cada tabla buscando cualquiera de los tres
+datos identificatorios —nombre, RUT y correo—. Y agrega algo que no estaba en la versión de la clase:
+reserva también para otra persona, y exige que los datos de esa persona **sigan** en la base después
+de la supresión:
 
 ```python
-    for valor in DATOS_IDENTIFICATORIOS:
-        assert apariciones_en_la_base(base_de_datos_de_prueba, valor), (
-            f"la reserva no dejo {valor!r} en la base; la prueba no comprobaria nada"
-        )
+        assert filas_que_identifican(conexion, TITULAR) == []
+        assert filas_que_identifican(conexion, OTRO_TITULAR) != []
 ```
 
-Antes de borrar, comprueba que los datos **estaban**. Es la defensa contra una prueba que pasa por
-vacío: si por cualquier razón la reserva no se hubiera guardado, la comprobación del borrado daría
-cero y pasaría sin haber comprobado nada. Ejecutada contra la versión con el defecto, la prueba lo
-encuentra:
+La segunda línea hace dos trabajos. Protege contra una supresión que borre de más: si el sistema
+vaciara la base entera, la primera afirmación pasaría igual. Y protege contra una prueba que pasa por
+vacío: si por cualquier razón las reservas no se hubieran guardado, la primera afirmación daría una
+lista vacía sin haber comprobado nada, y la segunda lo delataría. Ejecutada contra la versión con el
+defecto, la prueba lo encuentra:
 
 ```text
-AssertionError: '11.111.111-1' sigue en la base tras la supresion
+E           AssertionError: assert [('eventos', ....111.111-1'))] == []
+E             Left contains 2 more items, first extra item: ('eventos', ('2026-09-26 00:38:45', 'reserva creada', '11.111.111-1'))
 ```
+
+`pytest` abrevia con puntos la lista que no cabe en la línea. La segunda línea la completa: el RUT de
+Ana sigue en la tabla de eventos, en las dos filas que dejaron sus dos reservas. Con la
+anonimización de 4.5, la prueba pasa. Y pasa también con la otra implementación, la que borra la
+fila del evento entera: la afirmación de 4.5 —dos implementaciones pasan la misma prueba y solo una
+cumple la ley— vale igual para la prueba del agente.
 
 Y aquí se cierra el arco de la sesión, porque este resultado y el del primer bloque son el mismo
 experimento con una variable cambiada. En el bloque 1 el agente escribió un plan sobre un proyecto
@@ -1817,7 +1898,7 @@ suprimir o anonimizar por lugar con su finalidad, y la matriz regenerada con los
 - [ISO/IEC/IEEE 29119-3:2021 — *Test documentation*](https://www.iso.org/standard/79429.html) — la matriz de trazabilidad de la cláusula 3.26, aquí aplicada sin modificaciones a requisitos cuya fuente es una ley en lugar de una especificación funcional.
 - [SQLite — el esquema interno `sqlite_master`](https://www.sqlite.org/schematab.html) — la tabla del catálogo donde el motor guarda la definición de sus propias tablas, que permite recorrer el almacenamiento sin suponer qué tablas existen.
 - [pytest — documentación oficial](https://docs.pytest.org/en/stable/) — la comparación de diccionarios en una aserción y el informe de diferencias que produce cuando falla.
-- Ejecuciones registradas para esta clase sobre el proyecto de reserva de laboratorio, con Python 3.13.11, pytest 9.1.1, FastAPI 0.141.1 y SQLite 3.50.4: las dos pruebas de RF-07 con el resultado `1 failed, 1 passed in 0.73s` y la diferencia literal `{'reservas': 0, 'eventos': 1}`; el estado de la tabla de eventos antes y después de la supresión corregida; las mismas dos pruebas en `2 passed in 0.59s` tras la corrección; la matriz regenerada con diez requisitos y cuatro sin prueba; y la prueba de supresión generada con `claude -p` con herramientas restringidas a lectura, con su resultado sobre la versión defectuosa.
+- Ejecuciones registradas para esta clase sobre el proyecto de reserva de laboratorio, con Python 3.13.11, pytest 9.1.1, FastAPI 0.141.1 y SQLite 3.50.4: las dos pruebas de RF-07 con el resultado `1 failed, 1 passed, 1 warning in 0.71s` y la diferencia literal `{'reservas': 0, 'eventos': 1}`; el estado de la tabla de eventos antes y después de la supresión corregida; las mismas dos pruebas en `2 passed, 1 warning in 0.57s` tras la corrección; la matriz regenerada con diez requisitos, cuatro sin prueba y tres pruebas sin requisito; la prueba de supresión generada con `claude -p` con herramientas restringidas a lectura, con su resultado sobre la versión defectuosa; y esa prueba y las dos de la clase en verde tanto con la anonimización como con el borrado completo de la fila del evento.
 
 ---
 
@@ -1839,7 +1920,7 @@ Las tres filas dejan un hueco común, y la sesión mostró con qué se tapa: **a
 propósito y exigir el rojo**. Es el único procedimiento de los cuatro que produce evidencia en lugar
 de una afirmación, y por eso es el que arbitra cuando los otros se contradicen. Cuando la matriz dijo
 que RF-06 estaba cubierto y el agente dijo que no, lo que resolvió la discusión no fue ninguno de los
-dos: fue un comprobante reducido a una constante y una suite que siguió en verde.
+dos: fue un comprobante reducido a una constante y una suite que no cambió su resultado.
 
 ## 2. La afirmación que se puede sostener
 
@@ -1870,7 +1951,7 @@ En tres líneas, antes de salir:
 
 ## 4. Próxima sesión: lo que nadie ejecuta no existe
 
-La sesión de mañana ataca exactamente esa fragilidad. Todo lo que se construyó hoy —la suite, el
+La sesión de hoy a las 11:00 ataca exactamente esa fragilidad. Todo lo que se construyó hoy —la suite, el
 plan, la matriz— comparte una condición que hasta ahora nadie cuestionó: alguien tiene que
 acordarse. Basta una entrega apurada para que la suite no se ejecute, y basta un mes para que la
 matriz deje de regenerarse y vuelva a ser una planilla vieja con otro nombre.
@@ -1878,16 +1959,17 @@ matriz deje de regenerarse y vuelva a ser una planilla vieja con otro nombre.
 La sesión que sigue traslada esa responsabilidad de las personas a la infraestructura: pruebas de
 regresión que vuelven a ejecutar lo que ya funcionaba para comprobar que sigue funcionando, e
 integración continua que las dispara sola ante cada cambio, sin pedir permiso ni depender de que
-alguien tenga un buen día. Y aparece ahí un problema nuevo que hoy no podía aparecer, porque hoy
-todas las ejecuciones dieron el mismo resultado: la **prueba inestable**, la que pasa y falla sin que
-el sistema haya cambiado, que es la forma más eficaz conocida de que un equipo deje de creerle a su
-propia suite.
+alguien tenga un buen día. Y vuelve ahí un problema que la sesión del lunes en la mañana dejó
+abierto: la **prueba inestable**, la que pasa y falla sin que el sistema haya cambiado. El lunes se
+vio cómo nace y cómo se corrige; lo que queda es qué hacer con la que ya está en una suite que se
+ejecuta sola ante cada cambio, porque es la forma más eficaz conocida de que un equipo deje de
+creerle a su propia suite.
 
 ## Mensaje final
 
 Los tres hallazgos de la sesión tienen la misma forma, y por eso se pueden resumir en una sola idea.
-El requisito de cancelación llevaba seis sesiones sin una sola prueba, y la suite informó verde todos
-los días. El requisito del comprobante tenía una marca que decía «cubierto» y una aserción que no lo
+El requisito de cancelación llevaba siete sesiones sin una sola prueba, y la suite informó sus
+resultados todos los días sin mencionarlo. El requisito del comprobante tenía una marca que decía «cubierto» y una aserción que no lo
 comprobaba, y sobrevivió intacto a que la función se redujera a una constante. Los derechos del
 titular no tenían huecos hasta que se escribieron como requisitos, porque un hueco solo existe
 contra algo. En los tres casos, lo que faltaba no produjo ninguna señal.
