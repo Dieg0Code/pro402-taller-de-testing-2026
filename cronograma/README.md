@@ -12,7 +12,10 @@
 
 > Entre el 14 y el 16 de septiembre no hay sesiones: la semana de fiestas patrias es receso
 > institucional. Las clases se retoman el lunes 21. El martes 22, el lunes 28 y el martes 29
-> hay un segundo bloque de 11:00 a 13:15, en el Laboratorio de Redes.
+> hay un segundo bloque de 11:00 a 13:15, en el Laboratorio de Redes. El del martes 22 se usó como
+> trabajo supervisado sobre el proyecto, sin materia nueva; por eso la Clase 12 pasó al miércoles 23
+> y el resto de la unidad se corrió un bloque. Las clases se numeran por contenido: la 15 se dicta
+> el lunes 28 a las 11:00, antes que la 14.
 
 ## Evaluación
 
@@ -97,14 +100,14 @@ El módulo trabaja con una guía maestra de la Ley 21.719 como referencia.
 | 21/09 | 08:30–10:50 | 10 | Caja negra, caja blanca y cobertura: por qué el 100% de cobertura no prueba nada. Dobles de prueba y el mecanismo por el que una suite mockeada llega al 100% sin verificar nada. Generar casos con IA y auditarlos críticamente |
 | **21/09** | — | — | **Fecha de corte de la Evaluación Parcial 1** (envío, no ocupa sesión) |
 | 22/09 | 08:30–10:50 | 11 | TDD con `pytest`: el ciclo rojo-verde-refactor completo sobre el proyecto, y su traducción a Vitest en TypeScript |
-| 22/09 | 11:00–13:15 | 12 | Pruebas de integración sobre FastAPI: fixtures, base de datos y dónde un doble deja de ser legítimo. Datos sintéticos, minimización, aislamiento y eliminación verificable bajo la Ley 21.719 |
-| 23/09 | 08:30–10:50 | 13 | Pruebas E2E con Playwright. El agente como usuario que entra por primera vez: exploratorio asistido y hallazgos de usabilidad |
+| 22/09 | 11:00–13:15 | — | Bloque de recuperación sin materia nueva: trabajo supervisado sobre el proyecto |
+| 23/09 | 08:30–10:50 | 12 | Pruebas de integración sobre FastAPI: fixtures, base de datos y dónde un doble deja de ser legítimo. Datos sintéticos, minimización, aislamiento y eliminación verificable bajo la Ley 21.719 |
 | **25/09** | — | — | **Fecha de corte de la Evaluación Parcial 2** (viernes, sin sesión) |
-| _Semana del 28/09_ | | | _Plan de pruebas, automatización y cierre_ |
-| 28/09 | 08:30–10:50 | 14 | Plan de pruebas según ISO/IEC/IEEE 29119: estructura, objetivos y trazabilidad. Derechos y obligaciones de protección de datos convertidos en requisitos, riesgos y casos de prueba |
-| 28/09 | 11:00–13:15 | 15 | Pruebas de regresión e integración continua con GitHub Actions. Pruebas inestables (flaky) y cómo tratarlas. Pipeline completo en verde sobre el proyecto |
-| 29/09 | 08:30–10:50 | 16 | Pruebas no funcionales: rendimiento, carga y escalabilidad; seguridad, privacidad, usabilidad, accesibilidad y portabilidad. Ley 21.719, decisiones automatizadas y respuesta frente a incidentes |
-| 29/09 | 11:00–13:15 | — | Taller de cierre: trabajo supervisado sobre el proyecto, con el docente disponible para resolver lo que falte antes del corte final |
+| _Semana del 28/09_ | | | _Extremo a extremo, no funcionales, plan de pruebas y cierre_ |
+| 28/09 | 08:30–10:50 | 13 | Pruebas E2E con Playwright y la espera que vuelve inestable una prueba. El agente como usuario que entra por primera vez: exploratorio asistido y hallazgos de usabilidad |
+| 28/09 | 11:00–13:15 | 15 | Pruebas no funcionales: rendimiento, carga, estrés y escalabilidad; seguridad frente al OWASP Top 10 y los deberes de seguridad y reporte de la Ley 21.719; accesibilidad según WCAG 2.2 y portabilidad. La auditoría no funcional de un agente, verificada ejecutando |
+| 29/09 | 08:30–10:50 | 14 | Plan de pruebas según ISO/IEC/IEEE 29119: estructura, riesgos y trazabilidad que se ejecuta. Derechos y obligaciones de protección de datos convertidos en requisitos, riesgos y casos de prueba |
+| 29/09 | 11:00–13:15 | 16 | Pruebas de regresión e integración continua con GitHub Actions. Pruebas inestables (flaky) y cómo tratarlas. Pipeline completo en verde sobre el proyecto |
 | 30/09 | 08:30–10:50 | — | Cierre del módulo. **Fecha de corte de la Evaluación Final**: el proyecto con integración continua, pruebas de regresión y no funcionales, y su pipeline en verde |
 
 ## Resultado Esperado del Módulo
