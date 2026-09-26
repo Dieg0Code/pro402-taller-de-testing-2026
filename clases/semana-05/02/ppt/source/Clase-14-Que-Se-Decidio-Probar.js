@@ -600,7 +600,7 @@ function slideOpeningQuestion() {
     "Veintitrés pruebas. ¿Qué quedó sin probar?",
     "La única roja es la prueba de suplantación del lunes, que quedó así a propósito.",
     false,
-    { subtitleH: 0.38 }
+    { subtitleH: 0.38, titleFontSize: 27 }
   );
 
   addTerminalPanel(slide, SH, {
@@ -2715,28 +2715,29 @@ function slideMarker() {
     "Un marcador es una etiqueta en la prueba",
     "La herramienta la conserva y deja consultarla después. Se escribe como decorador: una línea con arroba, encima de la función, que le agrega algo sin tocar su cuerpo.",
     false,
-    { subtitleH: 0.38, titleFontSize: 27 }
+    { subtitleH: 0.38 }
   );
 
   addCodePanel(slide, SH, {
     x: M,
     y: 2.44,
     w: 6.0,
-    h: 1.74,
+    h: 2.02,
     title: "Una marca para toda la función",
     fontSize: 9.8,
     lang: "python",
     code: [
       '@pytest.mark.requisito("RF-01")',
-      "@pytest.mark.parametrize(...)",
+      '@pytest.mark.parametrize(("bloque", "esperado"),',
+      "    [(0, False), (1, True), (8, True), (9, False)])",
       "def test_limites_del_requisito(bloque, esperado):",
       "    assert bloque_valido(bloque) is esperado",
     ].join("\n"),
   });
 
-  addText(slide, "parametrize corre la misma prueba una vez por cada fila de valores. Sus cuatro casos comprueban el mismo requisito, así que una marca arriba alcanza.", {
+  addText(slide, "parametrize corre la misma prueba una vez por cada par de valores de la lista. Los cuatro casos comprueban el mismo requisito, así que una marca arriba alcanza.", {
     x: M,
-    y: 4.28,
+    y: 4.54,
     w: 6.0,
     h: 0.44,
     fontSize: 10.8,
@@ -2748,7 +2749,7 @@ function slideMarker() {
     x: 6.96,
     y: 2.44,
     w: 5.66,
-    h: 1.74,
+    h: 2.02,
     title: "Una marca por caso",
     fontSize: 9.4,
     lang: "python",
@@ -2762,7 +2763,7 @@ function slideMarker() {
 
   addText(slide, "Aquí cada caso comprueba una regla distinta. pytest.param reemplaza la tupla y le agrega marcas a ese caso.", {
     x: 6.96,
-    y: 4.28,
+    y: 4.54,
     w: 5.66,
     h: 0.44,
     fontSize: 10.8,
@@ -2770,11 +2771,11 @@ function slideMarker() {
     lineSpacingMultiple: 1.12,
   });
 
-  rect(slide, M, 4.88, 6.0, 0.72, C.softNeutral);
-  rect(slide, M, 4.88, 0.06, 0.72, ORO);
+  rect(slide, M, 5.04, 6.0, 0.64, C.softNeutral);
+  rect(slide, M, 5.04, 0.06, 0.64, ORO);
   addText(slide, "Hay que declararlo en la configuración", {
     x: M + 0.26,
-    y: 4.98,
+    y: 5.1,
     w: 5.5,
     h: 0.24,
     fontSize: 11.4,
@@ -2783,7 +2784,7 @@ function slideMarker() {
   });
   addText(slide, 'markers = ["requisito(id): el requisito que comprueba"]', {
     x: M + 0.26,
-    y: 5.24,
+    y: 5.36,
     w: 5.5,
     h: 0.24,
     fontFace: TYPOGRAPHY.mono,
@@ -2791,20 +2792,20 @@ function slideMarker() {
     color: C.slate,
   });
 
-  rect(slide, 6.96, 4.88, 5.66, 0.72, C.warm);
-  rect(slide, 6.96, 4.88, 0.06, 0.72, ROJO);
+  rect(slide, 6.96, 5.04, 5.66, 0.64, C.warm);
+  rect(slide, 6.96, 5.04, 0.06, 0.64, ROJO);
   addText(slide, "Por qué la declaración importa", {
     x: 7.22,
-    y: 4.98,
+    y: 5.1,
     w: 5.16,
     h: 0.24,
     fontSize: 11.4,
     bold: true,
     color: ROJO,
   });
-  addText(slide, "Sin ella, escribir «requsito» con un error de tipeo crea un marcador nuevo y silencioso.", {
+  addText(slide, "Sin ella, un error de tipeo como «requsito» crea un marcador nuevo y silencioso.", {
     x: 7.22,
-    y: 5.24,
+    y: 5.36,
     w: 5.16,
     h: 0.26,
     fontSize: 10.4,
@@ -2813,7 +2814,7 @@ function slideMarker() {
 
   addText(slide, "Marcar las pruebas no cambia lo que hacen: la suite sigue en 22 passed y 1 failed.", {
     x: M,
-    y: 5.78,
+    y: 5.8,
     w: CW,
     h: 0.28,
     fontSize: 12.4,
@@ -2900,7 +2901,7 @@ function slideGenerator() {
   const piezas = [
     ["pytest_collection_modifyitems", "El punto del proceso donde la herramienta entrega la lista completa."],
     ["item.nodeid", "El identificador de una prueba: archivo, nombre y caso."],
-    ["iter_markers(name=...)", "Recorre las marcas de ese nombre, vengan de la función o del caso."],
+    ["iter_markers(name=\"requisito\")", "Recorre las marcas con ese nombre, vengan de la función o del caso."],
     ["m.args[0]", "El primer argumento de la marca. Aquí, el texto RF-01."],
   ];
   piezas.forEach(([nombre, glosa], index) => {
@@ -4522,7 +4523,7 @@ function slideHowToReadATest() {
   });
 
   const piezas = [
-    ["def test_...", "Una prueba es una función cuyo nombre empieza con test. La herramienta las encuentra por ese nombre.", AZUL],
+    ["def test_", "Una prueba es una función cuyo nombre empieza con test_. La herramienta las encuentra por ese comienzo.", AZUL],
     ["base_de_datos_de_prueba", "Una fixture: prepara lo que la prueba necesita antes de que corra, y lo deshace al terminar.", ORO],
     ["cliente", "El cliente de pruebas. Envía solicitudes a la aplicación dentro del mismo proceso, sin levantar un servidor.", AZUL],
     ["SOLICITUD", "El diccionario con los cinco campos de una reserva válida, escrito una sola vez arriba del archivo.", C.slate],
