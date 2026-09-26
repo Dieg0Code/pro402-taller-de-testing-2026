@@ -101,7 +101,7 @@ solo durante un instante.
 | 09:35 - 09:45 | Pausa | Descanso técnico. |
 | 09:45 - 10:15 | Bloque 3 | Probar sin casos escritos de antemano. La prueba exploratoria según las dos fuentes, que no la clasifican igual; la sesión con carta, tiempo acotado y registro; y un agente que recorre la interfaz como quien entra por primera vez, con sus hallazgos separados entre los que se confirman y los que no. |
 | 10:15 - 10:40 | Bloque 4 | De un hallazgo a un criterio. El doble clic convertido en magnitud, método y umbral contra la capacidad de interacción de ISO/IEC 25010:2023; la prueba que lo comprueba y hoy falla, y otra que pasa con el defecto presente porque mide un instante. |
-| 10:40 - 10:50 | Cierre | Consolidar qué agrega cada testigo —la función, la colaboración, la persona— y dejar planteado lo que la sesión siguiente tiene que decidir: cuánto de todo esto vale la pena probar, y cómo se registra una evidencia que corre con otra herramienta. |
+| 10:40 - 10:50 | Cierre | Consolidar qué agrega cada testigo —la función, la colaboración, la persona— y dejar planteada la pregunta de la sesión de las 11:00: todo lo probado hasta aquí comprueba qué hace el sistema, y nada dice todavía cómo lo hace. |
 
 > Se trabaja sobre el mismo proyecto de reserva de laboratorio de las sesiones anteriores, que hoy
 > recibe por primera vez algo que una persona puede abrir en un navegador: una interfaz web pequeña,
@@ -1519,8 +1519,10 @@ agrega una capa que habla de las personas:
 > declaro como defecto lo reproduje. Y de lo que encontré, hay una prueba que hoy falla y dice
 > exactamente qué falta corregir.
 
-Lo que sigue sin poder afirmarse: cuánto de todo esto era necesario probar. Hoy la suite creció en
-cinco pruebas y un ejecutor nuevo, y nadie decidió por qué esas y no otras.
+Lo que sigue sin poder afirmarse: cómo se comporta el sistema mientras hace todo eso. Cada prueba de
+hoy comprueba **qué** hace —que la reserva se complete, que el mensaje diga lo que pasó—, y ninguna
+dice cuánto tarda con cien personas a la vez, si deja que alguien actúe en nombre de otra, o si lo
+puede usar alguien que no ve bien la pantalla.
 
 ## 3. Ticket de salida
 
@@ -1532,16 +1534,17 @@ En tres líneas, antes de salir:
 3. Un hallazgo de exploración de tu sistema, con su clasificación: confirmado, exige el requisito, o
    falso al reproducirlo.
 
-## 4. Próxima sesión: cuánto de todo esto vale la pena probar
+## 4. Próxima sesión: funciona, pero ¿cómo lo hace?
 
-Con esta sesión el módulo tiene pruebas en cuatro niveles, y ninguna decisión escrita sobre cuántas
-hacen falta en cada uno ni por qué. La sesión de mañana se ocupa de eso: el plan de pruebas, el
-documento donde se declara qué se prueba, qué queda fuera y con qué criterio se reparte el esfuerzo.
+Hoy a las 11:00, en el Laboratorio de Redes, la sesión cambia de pregunta. Todas las pruebas del
+módulo hasta ahora, incluidas las de esta mañana, son **funcionales**: comprueban qué hace el sistema.
+La sesión de las 11:00 se ocupa de las **no funcionales**, las que comprueban cómo lo hace: cuánto
+aguanta cuando muchas personas lo usan a la vez, a quién deja entrar, para quién sirve y en qué
+entornos funciona.
 
-Conviene llegar con una pregunta, porque la sesión de mañana va a construir una herramienta que la
-vuelve concreta. Las pruebas de hoy están escritas en TypeScript y corren con otro ejecutor. Si
-mañana se genera un registro de qué requisito cubre cada prueba a partir de la suite de `pytest`,
-**¿dónde quedan en ese registro las cinco pruebas de extremo a extremo?**
+Conviene llegar con una pregunta, porque la sesión la va a responder ejecutando. La prueba de hoy
+confirma que una persona puede completar la reserva. **¿Sigue siendo cierto si cien personas reservan
+al mismo tiempo?**
 
 ## Mensaje final
 

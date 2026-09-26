@@ -4716,7 +4716,7 @@ function slideDefensibleClaim() {
   const wd = CW - wl - 0.3;
   rect(slide, xd, 1.92, wd, 3.8, NAVY_CHIP);
   addKicker(slide, xd + 0.3, 2.12, "Lo que sigue sin poder afirmarse", C.gold, wd - 0.6);
-  addText(slide, "Cuánto de todo esto era necesario probar.", {
+  addText(slide, "Cómo se comporta mientras lo hace.", {
     x: xd + 0.3,
     y: 2.46,
     w: wd - 0.6,
@@ -4727,7 +4727,7 @@ function slideDefensibleClaim() {
     color: C.white,
     lineSpacingMultiple: 1.08,
   });
-  addText(slide, "Hoy la suite creció en cinco pruebas y un ejecutor nuevo, y nadie decidió por qué esas y no otras.", {
+  addText(slide, "Cada prueba de hoy comprueba qué hace el sistema. Ninguna dice cuánto aguanta con cien personas a la vez, a quién deja entrar, ni si lo puede usar alguien que no ve bien la pantalla.", {
     x: xd + 0.3,
     y: 3.52,
     w: wd - 0.6,
@@ -4748,75 +4748,47 @@ function slideDefensibleClaim() {
 
 function slideTomorrow() {
   const { slide } = createSlide("light");
-  addHeader(slide, "Mañana · Clase 14 · martes 29 de septiembre", "Cuánto de todo esto vale la pena probar", "", false, {
-    titleFontSize: 28,
-  });
+  addHeader(slide, "Hoy · 11:00 · Clase 15 · Laboratorio de Redes", "Funciona, pero ¿cómo lo hace?", "", false);
 
   addText(
     slide,
-    "El módulo ya tiene pruebas en cuatro niveles, y ninguna decisión escrita sobre cuántas hacen falta en cada uno ni por qué. Mañana: el plan de pruebas, el documento donde se declara qué se prueba, qué queda fuera y con qué criterio se reparte el esfuerzo.",
-    { x: M, y: 1.9, w: CW, h: 0.8, fontSize: 12.6, color: C.slate, lineSpacingMultiple: 1.14 }
+    "Todas las pruebas del módulo hasta ahora son funcionales: comprueban qué hace el sistema. A las 11:00, las no funcionales: las que comprueban cómo lo hace.",
+    { x: M, y: 1.9, w: CW, h: 0.56, fontSize: 12.6, color: C.slate, lineSpacingMultiple: 1.14 }
   );
 
-  const y = 3.2;
-  const wS = 3.4;
-  const suites = [
-    [VERDE, "Suite de pytest", "20 pruebas · Python", true],
-    [ROJO, "Suite de extremo a extremo", "5 pruebas · TypeScript, otro ejecutor", false],
+  const preguntas = [
+    ["¿Cuánto aguanta?", "Con muchas personas usándolo a la vez.", AZUL],
+    ["¿A quién deja entrar?", "Y qué puede hacer alguien que no debería.", ROJO],
+    ["¿Para quién sirve?", "Sin mouse, con poca visión, en otro navegador.", VERDE],
   ];
-  suites.forEach(([color, nombre, detalle, conectada], index) => {
-    const yy = y + index * 1.1;
-    rect(slide, M, yy, wS, 0.92, C.white);
-    rect(slide, M, yy, 0.06, 0.92, color);
-    addText(slide, nombre, { x: M + 0.24, y: yy + 0.12, w: wS - 0.4, h: 0.3, fontSize: 12.6, bold: true, color: C.ink });
-    addText(slide, detalle, { x: M + 0.24, y: yy + 0.46, w: wS - 0.4, h: 0.3, fontSize: 10.6, color: C.slate });
-    if (conectada) {
-      arrow(slide, M + wS + 0.12, yy + 0.46, 1.3, C.ink, 1.8);
-    } else {
-      addText(slide, "?", {
-        x: M + wS + 0.4,
-        y: yy + 0.1,
-        w: 0.7,
-        h: 0.72,
-        fontFace: TYPOGRAPHY.display,
-        fontSize: 32,
-        bold: true,
-        color: ROJO,
-        align: "center",
-        valign: "mid",
-      });
-    }
-  });
-  const xr = M + wS + 1.56;
-  rect(slide, xr, y, 2.8, 0.92, C.softNeutral, C.border);
-  addText(slide, "Registro: qué requisito cubre cada prueba", {
-    x: xr + 0.2,
-    y: y + 0.08,
-    w: 2.4,
-    h: 0.76,
-    fontSize: 11.4,
-    bold: true,
-    color: C.ink,
-    valign: "mid",
-    lineSpacingMultiple: 1.08,
+  const gap = 0.16;
+  const w = (CW - gap * 2) / 3;
+  preguntas.forEach(([titulo, glosa, color], index) => {
+    const x = M + index * (w + gap);
+    rect(slide, x, 2.66, w, 1.36, C.white);
+    rect(slide, x, 2.66, w, 0.06, color);
+    addText(slide, titulo, {
+      x: x + 0.26,
+      y: 2.86,
+      w: w - 0.5,
+      h: 0.4,
+      fontFace: TYPOGRAPHY.display,
+      fontSize: 17,
+      bold: true,
+      color,
+    });
+    addText(slide, glosa, { x: x + 0.26, y: 3.36, w: w - 0.5, h: 0.5, fontSize: 11.6, color: C.slate, lineSpacingMultiple: 1.1 });
   });
 
-  const xq = xr + 3.1;
-  const wq = M + CW - xq;
-  rect(slide, xq, y, wq, 2.02, NAVY_CHIP);
-  addKicker(slide, xq + 0.26, y + 0.16, "Llega con esta pregunta", C.gold, wq - 0.5);
-  addText(slide, "Si el registro se genera a partir de la suite de pytest, ¿dónde quedan las cinco pruebas de extremo a extremo?", {
-    x: xq + 0.26,
-    y: y + 0.46,
-    w: wq - 0.5,
-    h: 1.46,
-    fontSize: 12.6,
-    bold: true,
-    color: C.white,
-    lineSpacingMultiple: 1.14,
-  });
+  rect(slide, M, 4.28, CW, 1.64, NAVY_CHIP);
+  addKicker(slide, M + 0.34, 4.46, "Llega con esta pregunta", C.gold, 6);
+  addText(
+    slide,
+    "La prueba de hoy confirma que una persona puede completar la reserva. ¿Sigue siendo cierto si cien personas reservan al mismo tiempo?",
+    { x: M + 0.34, y: 4.78, w: CW - 0.68, h: 1.0, fontSize: 15, bold: true, color: C.white, lineSpacingMultiple: 1.16 }
+  );
 
-  addTakeaway(slide, "Mañana se decide qué se prueba, qué queda fuera y por qué.");
+  addTakeaway(slide, "Hoy se probó qué hace el sistema. A las 11:00, cómo lo hace.");
   validateSlide(slide, pptx);
 }
 
