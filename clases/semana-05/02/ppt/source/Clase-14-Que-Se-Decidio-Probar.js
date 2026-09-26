@@ -7,7 +7,14 @@ const {
 
 const { theme, components, utils } = slidesSystem;
 const { applyAiepTheme, TOKENS: C, TYPOGRAPHY } = theme;
-const { addCodePanel, addTerminalPanel } = components;
+const { addCodePanel: addCodePanelDelSistema, addTerminalPanel } = components;
+
+// El panel del sistema deja el numero de linea pegado al codigo («1def»).
+// Un espacio al comienzo de cada linea los separa sin tocar el sistema compartido.
+function addCodePanel(slide, SH, opts) {
+  const codigo = opts.code.split(String.fromCharCode(10)).map((linea) => " " + linea).join(String.fromCharCode(10));
+  return addCodePanelDelSistema(slide, SH, { ...opts, code: codigo });
+}
 const { validateSlide } = utils;
 
 const pptx = new PptxGenJS();
@@ -593,7 +600,7 @@ function slideOpeningQuestion() {
     "Veintitrés pruebas. ¿Qué quedó sin probar?",
     "La única roja es la prueba de suplantación del lunes, que quedó así a propósito.",
     false,
-    { subtitleH: 0.38, titleFontSize: 27 }
+    { subtitleH: 0.38 }
   );
 
   addTerminalPanel(slide, SH, {
@@ -2705,10 +2712,10 @@ function slideMarker() {
   addHeader(
     slide,
     "Bloque 3 · la sintaxis",
-    "Un marcador es una etiqueta pegada a una prueba",
+    "Un marcador es una etiqueta en la prueba",
     "La herramienta la conserva y deja consultarla después. Se escribe como decorador: una línea con arroba, encima de la función, que le agrega algo sin tocar su cuerpo.",
     false,
-    { subtitleH: 0.38 }
+    { subtitleH: 0.38, titleFontSize: 27 }
   );
 
   addCodePanel(slide, SH, {
